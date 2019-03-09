@@ -12,8 +12,7 @@ app.use(express.json());
 app.use(cors({origin: 'http://localhost:4200'}));
 
 //routes
-// app.use('/api/clients',require('./routes/client.routes'));
-app.use('/api/destinationcity',require('./routes/destinationCity.routes'));
+app.use('/api/clients',require('./routes/client.routes'));
 
 
 //starting
