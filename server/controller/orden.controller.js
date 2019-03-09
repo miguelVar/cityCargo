@@ -6,6 +6,8 @@ const ordenCtrl = {};
 // Método usado para cargar las ordenes
 ordenCtrl.getOrden = (req, res) => {
 
+    console.log(req);
+
     var query = `SELECT * FROM orden`;
 
     ibmdb.open(connStr, function (err, conn) {
@@ -26,8 +28,8 @@ ordenCtrl.getOrden = (req, res) => {
 // Método encargado de crear ordenes
 ordenCtrl.createOrden = (req, res) => {
 
-    let numeroOrden = req.body.NUMERO_ORDEN;
-    let descripcionOrden = req.body.DESCRIPCION_ORDEN;
+    let numeroOrden = req.body.numeroOrden;
+    let descripcionOrden = req.body.descripcionOrden;
 
     var query = `INSERT INTO orden (numeroOrden, descripcionOrden, Estado_idEstadoOrden) VALUES('${numeroOrden}', '${descripcionOrden}', 1)`;
 
@@ -50,8 +52,8 @@ ordenCtrl.createOrden = (req, res) => {
 ordenCtrl.updateOrden = (req, res) => {
 
     let idOrden = parseInt(req.params.idOrden);
-    let numeroOrden = req.body.NUMEROORDEN;
-    let descripcionOrden = req.body.NUMEROORDEN;
+    let numeroOrden = req.body.numeroOrden;
+    let descripcionOrden = req.body.descripcionOrden;
 
     var query = `UPDATE Orden SET numeroOrden = '${numeroOrden}', descripcionOrden = '${descripcionOrden}' WHERE idOrden = '${idOrden}'`;
 
