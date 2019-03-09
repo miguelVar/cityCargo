@@ -1,0 +1,25 @@
+{
+  "name": "citycargo",
+  "version": "1.0.0",
+  "description": "cityCargo S.A.S",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "ibm_db": "^2.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miguelVar/cityCargo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/miguelVar/cityCargo/issues"
+  },
+  "homepage": "https://github.com/miguelVar/cityCargo#readme"
+}
