@@ -146,7 +146,7 @@ CREATE TABLE Usuario (
 -- Table Vehiculo_has_Conductor
 -- -----------------------------------------------------
 CREATE TABLE Vehiculo_has_Conductor (
-  Vehiculo_idVehiculo INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
+  Vehiculo_idVehiculo INT NOT NULL,
   Conductor_idConductor INT NOT NULL,
   fecha DATE NOT NULL,
   PRIMARY KEY (Vehiculo_idVehiculo, Conductor_idConductor),
