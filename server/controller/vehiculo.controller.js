@@ -49,6 +49,7 @@ vehiculoCtrl.createVehiculo = (req, res) => {
 
 }
 
+//Método para actualizar vehiculo
 vehiculoCtrl.updateVehiculo = (req, res) => {
 
     let idVehiculo = req.params.idVehiculo;
@@ -74,6 +75,7 @@ vehiculoCtrl.updateVehiculo = (req, res) => {
 
 }
 
+// Método para eliminar logicamente vehiculo
 vehiculoCtrl.deleteVehiculoLogico = (req, res) => {
 
     let idVehiculo = parseInt(req.params.idVehiculo);
@@ -96,6 +98,7 @@ vehiculoCtrl.deleteVehiculoLogico = (req, res) => {
 
 }
 
+//Método para restaurar logico vehiculo
 vehiculoCtrl.restauraLogicoVehiculo = (req, res) => {
 
     let idVehiculo = parseInt(req.params.idVehiculo);
@@ -118,6 +121,7 @@ vehiculoCtrl.restauraLogicoVehiculo = (req, res) => {
 
 }
 
+//Método para eliminar fisico vehiculo
 vehiculoCtrl.deleteVehiculoFisico = (req, res) => {
 
     let idVehiculo = parseInt(req.params.idVehiculo);
