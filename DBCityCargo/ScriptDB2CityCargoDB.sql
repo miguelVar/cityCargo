@@ -118,6 +118,7 @@ CREATE TABLE Conductor (
   idConductor INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
   nombreConductor VARCHAR(45) NOT NULL,
   celularConductor VARCHAR(20) NOT NULL,
+  estadoEliminado BOOLEAN NULL,
   PRIMARY KEY (idConductor)
 );
 
