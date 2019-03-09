@@ -27,7 +27,7 @@ CREATE TABLE Cliente (
 -- Table TipoVehiculo
 -- -----------------------------------------------------
 CREATE TABLE TipoVehiculo (
-  idTipoVehiculo INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),,
+  idTipoVehiculo INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
   nombreTipo VARCHAR(50) NOT NULL,
   descripcionTipo VARCHAR(600) NULL,
   estadoEliminado BOOLEAN NULL,
