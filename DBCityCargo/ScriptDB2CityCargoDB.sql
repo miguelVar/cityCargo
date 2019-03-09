@@ -1,9 +1,7 @@
-DROP TABLE CiudadDestino;
-DROP TABLE CiudadOrigen;
-DROP TABLE Observacion;
 DROP TABLE Cliente;
 DROP TABLE TipoVehiculo;
 DROP TABLE Vehiculo;
+DROP TABLE Estado;
 DROP TABLE Orden;
 DROP TABLE Servicio;
 DROP TABLE ElementosTransporte;
@@ -14,54 +12,25 @@ DROP TABLE Vehiculo_has_Conductor;
 DROP TABLE Rol_has_Usuario;
 
 -- -----------------------------------------------------
--- Table CiudadDestino
--- -----------------------------------------------------
-CREATE TABLE CiudadDestino (
-  idCiudadDestino INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
-  nombreCiudadDestino VARCHAR(50) NOT NULL,
-  descripcionCiudadDDestino VARCHAR(600) NULL,
-  direccionCiudadDestino VARCHAR(200) NOT NULL,
-  PRIMARY KEY (idCiudadDestino)
-);
-
--- -----------------------------------------------------
--- Table CiudadOrigen
--- -----------------------------------------------------
-CREATE TABLE CiudadOrigen (
-  idCiudadOrigen INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
-  nombreCiudadOrigen VARCHAR(50) NOT NULL,
-  descripcionCiudadOrigen VARCHAR(600) NULL,
-  direccionCiudadOrigen VARCHAR(45) NOT NULL,
-  PRIMARY KEY (idCiudadOrigen)
-);
-
--- -----------------------------------------------------
--- Table Observacion
--- -----------------------------------------------------
-CREATE TABLE Observacion (
-  idObservacion INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
-  descripciónObservacion VARCHAR(600) NOT NULL,
-  PRIMARY KEY (idObservacion)
-);
-
--- -----------------------------------------------------
 -- Table Cliente
 -- -----------------------------------------------------
 CREATE TABLE Cliente (
   idCliente INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
   nombreCliente VARCHAR(45) NOT NULL,
-  celularCliente VARCHAR(20) NOT NULL UNIQUE,
+  celularCliente VARCHAR(20) UNIQUE NOT NULL,
   direccionCliente VARCHAR(45) NULL,
+  estadoEliminado BOOLEAN NULL,
   PRIMARY KEY (idCliente)
- );
+);
 
 -- -----------------------------------------------------
 -- Table TipoVehiculo
 -- -----------------------------------------------------
 CREATE TABLE TipoVehiculo (
-  idTipoVehiculo INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
+  idTipoVehiculo INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),,
   nombreTipo VARCHAR(50) NOT NULL,
   descripcionTipo VARCHAR(600) NULL,
+  estadoEliminado BOOLEAN NULL,
   PRIMARY KEY (idTipoVehiculo)
 );
 
@@ -70,11 +39,22 @@ CREATE TABLE TipoVehiculo (
 -- -----------------------------------------------------
 CREATE TABLE Vehiculo (
   idVehiculo INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
-  placaVehiculo VARCHAR(50) NOT NULL UNIQUE,
+  placaVehiculo VARCHAR(50) NOT NULL,
   descripcionVehiculo VARCHAR(600) NULL,
   TipoVehiculo_idTipoVehiculo INT NOT NULL,
+  estadoEliminado BOOLEAN NULL,
   PRIMARY KEY (idVehiculo),
   CONSTRAINT fk_Vehiculo_TipoVehiculo1 FOREIGN KEY (TipoVehiculo_idTipoVehiculo) REFERENCES TipoVehiculo (idTipoVehiculo) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+
+-- -----------------------------------------------------
+-- Table Estado
+-- -----------------------------------------------------
+CREATE TABLE Estado (
+  idEstadoOrden INT NOT NULL,
+  estado VARCHAR(45) NOT NULL,
+  PRIMARY KEY (idEstadoOrden)
 );
 
 -- -----------------------------------------------------
@@ -82,9 +62,11 @@ CREATE TABLE Vehiculo (
 -- -----------------------------------------------------
 CREATE TABLE Orden (
   idOrden INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
-  numeroOrden VARCHAR(45) NOT NULL UNIQUE,
+  numeroOrden VARCHAR(45) NOT NULL,
   descripcionOrden VARCHAR(600) NULL,
-  PRIMARY KEY (idOrden)
+  Estado_idEstadoOrden INT NOT NULL,
+  PRIMARY KEY (idOrden),
+  CONSTRAINT fk_Orden_Estado1 FOREIGN KEY (Estado_idEstadoOrden) REFERENCES Estado (idEstadoOrden) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 
@@ -100,19 +82,21 @@ CREATE TABLE Servicio (
   horaFinServicio VARCHAR(45) NOT NULL,
   fechaInicioServicio DATE NOT NULL,
   fechaFinServicio DATE NULL,
-  CiudadDestino_idCiudadDestino INT NOT NULL,
-  CiudadOrigen_idCiudadOrigen INT NOT NULL,
-  Observacion_idObservacion INT NOT NULL,
+  observacion VARCHAR(700) NULL,
+  ciudadOrigen VARCHAR(100) NOT NULL,
+  ciudadDestino VARCHAR(100) NOT NULL,
+  direccionOrigenServicio VARCHAR(150) NULL,
+  direccionDestinoServicio VARCHAR(150) NULL,
+  estadoEliminado BOOLEAN NULL,
   Cliente_idCliente INT NOT NULL,
   Vehiculo_idVehiculo INT NOT NULL,
   Orden_idOrden INT NOT NULL,
+  Estado_idEstadoOrden INT NOT NULL,
   PRIMARY KEY (idServicio),
-  CONSTRAINT fk_Servicio_CiudadDestino FOREIGN KEY (CiudadDestino_idCiudadDestino) REFERENCES CiudadDestino (idCiudadDestino) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT fk_Servicio_CiudadOrigen1 FOREIGN KEY (CiudadOrigen_idCiudadOrigen) REFERENCES CiudadOrigen (idCiudadOrigen) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT fk_Servicio_Observacion1 FOREIGN KEY (Observacion_idObservacion) REFERENCES Observacion (idObservacion) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT fk_Servicio_Cliente1 FOREIGN KEY (Cliente_idCliente) REFERENCES Cliente (idCliente) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT fk_Servicio_Vehiculo1 FOREIGN KEY (Vehiculo_idVehiculo) REFERENCES Vehiculo (idVehiculo) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT fk_Servicio_Orden1 FOREIGN KEY (Orden_idOrden) REFERENCES Orden (idOrden) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT fk_Servicio_Orden1 FOREIGN KEY (Orden_idOrden) REFERENCES Orden (idOrden) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT fk_Servicio_Estado1 FOREIGN KEY (Estado_idEstadoOrden) REFERENCES Estado (idEstadoOrden) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 -- -----------------------------------------------------
@@ -121,7 +105,6 @@ CREATE TABLE Servicio (
 CREATE TABLE ElementosTransporte (
   idElementosTransporte INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
   nombreElemento VARCHAR(50) NOT NULL,
-  descripcionElemento VARCHAR(600) NULL,
   cantidadElemento INT NOT NULL,
   Servicio_idServicio INT NOT NULL,
   PRIMARY KEY (idElementosTransporte),
@@ -134,7 +117,7 @@ CREATE TABLE ElementosTransporte (
 CREATE TABLE Conductor (
   idConductor INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
   nombreConductor VARCHAR(45) NOT NULL,
-  celularConductor VARCHAR(20) NOT NULL UNIQUE,
+  celularConductor VARCHAR(20) NOT NULL,
   PRIMARY KEY (idConductor)
 );
 
@@ -154,7 +137,7 @@ CREATE TABLE Rol (
 CREATE TABLE Usuario (
   idUsuario INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
   nombreUsuario VARCHAR(100) NOT NULL,
-  correo VARCHAR(200) NOT NULL UNIQUE,
+  correo VARCHAR(200) NOT NULL,
   password VARCHAR(200) NOT NULL,
   PRIMARY KEY (idUsuario)
 );
@@ -163,7 +146,7 @@ CREATE TABLE Usuario (
 -- Table Vehiculo_has_Conductor
 -- -----------------------------------------------------
 CREATE TABLE Vehiculo_has_Conductor (
-  Vehiculo_idVehiculo INT NOT NULL,
+  Vehiculo_idVehiculo INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1 INCREMENT BY 1),
   Conductor_idConductor INT NOT NULL,
   fecha DATE NOT NULL,
   PRIMARY KEY (Vehiculo_idVehiculo, Conductor_idConductor),
