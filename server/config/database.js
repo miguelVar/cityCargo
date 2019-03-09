@@ -1,5 +1,5 @@
 var ibmdb=require('ibm_db')
-    ,connStr="DATABASE=BLUDB;HOSTNAME=dashdb-txn-sbox-yp-dal09-03.services.dal.bluemix.net;PORT=50000;PROTOCOL=TCPIP;UID=cpr38340;PWD=f2k1f426nnd90^5r";
+    ,connStr="DATABASE=BLUDB;HOSTNAME=dashdb-txn-sbox-yp-dal09-04.services.dal.bluemix.net;PORT=50000;PROTOCOL=TCPIP;UID=lbx38088;PWD=t1q3qm9-425l3s7j";
 
     ibmdb.open(connStr)
     .then(db=> console.log('Conecto a la BD'))
