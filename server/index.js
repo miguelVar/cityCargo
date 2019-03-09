@@ -10,8 +10,8 @@ app.use(express.json());
 app.use(cors({origin: 'http://localhost:4200'}));
 
 //routes
-app.use('/api/orden',require('./routes/orden.routes'));
-
+app.use('/api/orden', require('./routes/orden.routes'));
+app.use('/api/vehiculo', require('./routes/vehiculo.routes'));
 
 //starting
 app.listen(app.get('port'),()=>{
