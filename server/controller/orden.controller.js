@@ -29,7 +29,7 @@ ordenCtrl.createOrden = (req, res) => {
     let numeroOrden = req.body.NUMERO_ORDEN;
     let descripcionOrden = req.body.DESCRIPCION_ORDEN;
 
-    var query = `INSERT INTO orden (numeroOrden, descripcionOrden) VALUES('${numeroOrden}', '${descripcionOrden}')`;
+    var query = `INSERT INTO orden (numeroOrden, descripcionOrden, Estado_idEstadoOrden) VALUES('${numeroOrden}', '${descripcionOrden}', 1)`;
 
     ibmdb.open(connStr, function (err, conn) {
         if (err) return console.log(err);
