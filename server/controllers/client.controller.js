@@ -99,6 +99,7 @@ clients.deleteLogicClient = (req, res) => {
 
     var query = `UPDATE Cliente SET  estadoEliminado='${estadoEliminado}' WHERE idcliente='${idClient}'`;
 
+    
     ibmdb.open(connStr, function (err, conn) {
         if (err) return console.log(err);
 
