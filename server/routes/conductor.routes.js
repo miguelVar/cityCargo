@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const conductorCtrl = require('../controller/conductor.controller');
+const conductorCtrl = require('../controllers/conductor.controller');
 
 //Lista conductor
 router.get('/', conductorCtrl.getConductor);

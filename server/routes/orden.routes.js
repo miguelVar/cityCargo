@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const ordenCtrl = require('../controller/orden.controller');
+const ordenCtrl = require('../controllers/orden.controller');
 
 //Lista ordenes
 router.get('/', ordenCtrl.getOrden);
