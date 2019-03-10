@@ -45,6 +45,50 @@ transportElement.getTransportElement = (req, res) => {
 }
 
 
+// se encarga de actualizar un elemento a transportar
+transportElement.updateTransportElement = (req, res) => {
+    let idElemento=req.params.id;
+    let nombreElemento=req.body.nombreElemento;
+    let cantidadElemento=req.body.cantidadElemento;
+    let Servicio_idServicio=req.body.Servicio_idServicio;
+
+    var query = `UPDATE ElementosTransporte SET nombreElemento='${nombreElemento}'
+    , cantidadElemento='${cantidadElemento}'
+    , Servicio_idServicio='${Servicio_idServicio}' WHERE idElementosTransporte='${idElemento}'`;
+
+    ibmdb.open(connStr, function (err, conn) {
+        if (err) return console.log(err);
+
+        conn.query(query, function (err, data) {
+            if (err) res.json({ error: err })
+            else res.json({data:'Se actualizo el elemento de manera satisfactoria'})
+            conn.close(function () {
+                console.log('done Listar elementos a transportar');
+            });
+        });
+    });
+}
+
+
+// se encarga de eliminar un  elemento a transportar de manera fisica
+transportElement.deleteTransportElement = (req, res) => {
+
+    let idElemento=req.params.id;
+    var query = `DELETE FROM ElementosTransporte WHERE idElementosTransporte='${idElemento}'`;
+
+    ibmdb.open(connStr, function (err, conn) {
+        if (err) return console.log(err);
+
+        conn.query(query, function (err, data) {
+            if (err) res.json({ error: err })
+            else res.json({data:'Se elimino el elemento a transportar de manera satisfactoria'});
+            conn.close(function () {
+                console.log('done Listar elementos a transportar');
+            });
+        });
+    });
+}
+
 
 
 module.exports=transportElement;
