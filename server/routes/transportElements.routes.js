@@ -5,6 +5,7 @@ const trasnsportElementCtrl = require('../controllers/transportElements.controll
 
 
 router.post('/',trasnsportElementCtrl.createTransportElement);
+router.get('/',trasnsportElementCtrl.getTransportElement);
 
 
 
