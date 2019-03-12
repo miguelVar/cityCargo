@@ -6,8 +6,6 @@ const ordenCtrl = {};
 // Método usado para cargar las ordenes
 ordenCtrl.getOrden = (req, res) => {
 
-    console.log(req);
-
     var query = `SELECT * FROM orden`;
 
     ibmdb.open(connStr, function (err, conn) {
