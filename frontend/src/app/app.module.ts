@@ -14,6 +14,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { VehiculoComponent } from './components/vehiculo/vehiculo.component';
 import { ServicioComponent } from './components/servicio/servicio.component';
+import { ConductorComponent } from './components/conductor/conductor.component';
+import { OrdenComponent } from './components/orden/orden.component';
+import { ETransporteComponent } from './components/e-transporte/e-transporte.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { ServicioComponent } from './components/servicio/servicio.component';
     NavBarComponent,
     ClientsComponent,
     VehiculoComponent,
-    ServicioComponent
+    ServicioComponent,
+    ConductorComponent,
+    OrdenComponent,
+    ETransporteComponent
   ],
   imports: [
     BrowserModule,
