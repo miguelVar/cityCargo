@@ -12,6 +12,7 @@ import { from } from 'rxjs';
 import { HomeComponent } from './components/home/home.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ClientsComponent } from './components/clients/clients.component';
+import { VehiculoComponent } from './components/vehiculo/vehiculo.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ClientsComponent } from './components/clients/clients.component';
     LoginComponent,
     HomeComponent,
     NavBarComponent,
-    ClientsComponent
+    ClientsComponent,
+    VehiculoComponent
   ],
   imports: [
     BrowserModule,
