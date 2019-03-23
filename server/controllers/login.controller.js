@@ -16,7 +16,7 @@ loginCtrl.obtenerUsuarios = (req, res) => {
 
   ibmdb.open(connStr, (err, conn) => {
 
-    conn.query("SELECT * FROM usuario", (err, data) => {
+    conn.query("SELECT * FROM Usuario", (err, data) => {
       if (err) {
         res.json({ error: err })
         console.log("Hubo un error en la busqueda" + err);
