@@ -13,6 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { VehiculoComponent } from './components/vehiculo/vehiculo.component';
+import { ServicioComponent } from './components/servicio/servicio.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { VehiculoComponent } from './components/vehiculo/vehiculo.component';
     HomeComponent,
     NavBarComponent,
     ClientsComponent,
-    VehiculoComponent
+    VehiculoComponent,
+    ServicioComponent
   ],
   imports: [
     BrowserModule,
