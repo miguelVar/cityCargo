@@ -2,7 +2,7 @@
 INSERT INTO Rol VALUES(1,'Administrador','Administrador');
 
 -- Insersion de usuario
-INSERT INTO Usuario(nombreUsuario,correo,password) VALUES('Administrador','Adminitrador@citycargo.com','12345');
+INSERT INTO Usuario(nombreUsuario,correo,password) VALUES('Admin','Admin@citycargo.com','12345');
 -- Insert con bcrypt
 INSERT INTO Usuario(nombreUsuario,correo,password) VALUES('Admin','Admin@citycargo.com','$2y$08$lkMldzBikXFa2bIbwqdOaug0ubCYfVIwzKWkm8iWegrFpc.tw22oa');
 
