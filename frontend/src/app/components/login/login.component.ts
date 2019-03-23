@@ -43,13 +43,13 @@ export class LoginComponent implements OnInit {
         console.log(data);
         localStorage.setItem('usuario', data['token']);
         this.router.navigate(['home']);
-        this.tokenPayload = decode(data['token']);
-        this.loginService.validarAdmin(this.tokenPayload.id_usuario)
-        .subscribe(res => {
-          console.log("--------->",res[0].ROL_ID_ROL);
-          localStorage.setItem('rol',res[0].ROL_ID_ROL);
-          const tokenid = localStorage.getItem('rol');
-        })
+        // this.tokenPayload = decode(data['token']);
+        // this.loginService.validarAdmin(this.tokenPayload.id_usuario)
+        // .subscribe(res => {
+        //   console.log("--------->",res[0].ROL_ID_ROL);
+        //   localStorage.setItem('rol',res[0].ROL_ID_ROL);
+        //   const tokenid = localStorage.getItem('rol');
+        // })
       });
   }
 

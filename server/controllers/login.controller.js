@@ -45,7 +45,7 @@ loginCtrl.authentication = (req, res) => {
   ibmdb.open(connStr, (err, conn) => {
       if (err) { console.log(err) }
       else {
-          conn.query(`SELECT * FROM usuario WHERE correo = '${correo}'`, (err, data) => {
+          conn.query(`SELECT * FROM Usuario WHERE correo = '${correo}'`, (err, data) => {
 
               conn.close()
               if (err) { res.send('Correo o contraseña no son correctos' + err) }
