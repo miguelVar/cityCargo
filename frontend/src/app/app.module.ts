@@ -10,12 +10,14 @@ import { HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { from } from 'rxjs';
 import { HomeComponent } from './components/home/home.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
