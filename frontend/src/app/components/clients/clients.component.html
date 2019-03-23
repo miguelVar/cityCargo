@@ -12,3 +12,74 @@
     </div>
   </div>
 </div>
+<div class="container">
+  <!--------------------------------INICIO MODAL AGREGAR CLIENTE----------------------------->
+  <!-- Modal -->
+  <div class="modal fade" id="addcl" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content border-success">
+        <div class="modal-header">
+          <h5 id="titulomodal" class="modal-title" id="exampleModalLabel"><Strong>Agregar Cliente</Strong></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #clientForm="ngForm">
+            <div class="row">
+              <div class="input-field col-12">
+                <label><Strong><label id="lbl">*</label>Nombre del cliente</Strong></label>
+                <input class="form-control" id="input" type="text" name="NOMBRE_CLIENTE" #name="ngModel"
+                  [(ngModel)]="clientService.selectedClient.nombre_cliente" placeholder="Ingrese el nombre" required>
+              </div>
+              <div class="input-field col-12">
+                <label><Strong>Número celular del cliente</Strong></label>
+                <input class="form-control" id="input" type="text" name="NUMERO_CLIENTE" #name="ngModel"
+                  [(ngModel)]="clientService.selectedClient.descripcion_cliente" placeholder="Ingrese el número">
+              </div>
+              <div class="input-field col-12">
+                <label><Strong>Dirección del cliente</Strong></label>
+                <input class="form-control" id="input" type="text" name="DIRECCION_CLIENTE" #name="ngModel"
+                  [(ngModel)]="clientService.selectedClient.descripcion_cliente" placeholder="Ingrese la dirección">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+          <button [disabled]="!clientForm.valid" type="button" class="btn btn-outline-success"
+            (click)="getCantNombreRepetidos(clientForm)">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--------------------------------FIN MODAL AGREGAR CLIENTE--------------------------------->
+
+  <div class="container">
+    <div class="row col-12">
+      <div class="input-group col-12">
+        <div class="col-2">
+          <select id="select" class="form-control" #mySelect>
+            <option value=1>Nombre</option>
+            <option value=2>ID</option>
+          </select>
+        </div>
+        <input id="input" class="form-control" placeholder="Buscar..." #myInput style="border-radius: 0rem;"
+          title="Ingrese el campo para filtrar" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
+        </div>
+        <div class="col-4">
+          <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addcl"
+            (click)="ClienteLogueado(clientService.idClient)">Agregar Cliente</button>&nbsp;
+          <button type="button" class="btn btn-outline-info" [routerLink]="['/deletedclients']">Ver
+            Eliminados</button>
+        </div>
+      </div>
+      <div class="col-2"></div>
+    </div>
+    <br>
+    <br>
+  </div>
+
+</div>
