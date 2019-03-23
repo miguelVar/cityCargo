@@ -64,6 +64,11 @@
     border-radius: .6rem;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   }
+  #inputb{
+    height: auto;
+    border-radius: .6rem;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
   
   .form-label-group {
     position: relative;

@@ -19,7 +19,9 @@ export class LoginComponent implements OnInit {
   condition: number = 0;
   tokenPayload;
 
-  constructor(private loginService: LoginService, private toastr: ToastrService, private router: Router, private fb: FormBuilder) {
+  // constructor(private loginService: LoginService, private toastr: ToastrService, private router: Router, private fb: FormBuilder)
+
+  constructor(private loginService: LoginService, private router: Router, private fb: FormBuilder) {
     this.buildForm();
   }
 
@@ -35,7 +37,7 @@ export class LoginComponent implements OnInit {
 
   login(form?: NgForm) {
     cargando = false;
-    console.log(form.value);
+    console.log("datossss",form.value);
     this.loginService.authentication(form.value)
       .subscribe((data) => {
         console.log(data);

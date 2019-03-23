@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(cors({origin: 'http://localhost:4200'}));
 
 //routes
+app.use('/usuario', require('./routes/login.routes'));
 app.use('/api/clients',require('./routes/client.routes'));
 app.use('/api/transportElement',require('./routes/transportElements.routes'));
 app.use('/api/servicecitycargo',require('./routes/serviceCityCargo.routes'));
