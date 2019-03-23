@@ -95,7 +95,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `DBgestorCityCargo`.`Servicio` (
   `idServicio` INT NOT NULL AUTO_INCREMENT,
   `nombreServicio` VARCHAR(50) NOT NULL,
-  `descripciónServicio` VARCHAR(600) NULL,
+  `descripcionServicio` VARCHAR(600) NULL,
   `valorServicio` FLOAT NOT NULL,
   `horaInicioServicio` TIME NOT NULL,
   `horaFinServicio` VARCHAR(45) NOT NULL,
