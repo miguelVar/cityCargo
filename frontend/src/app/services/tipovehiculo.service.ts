@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Tipovehiculo } from '../models/tipovehiculo';
+import { Vehiculo } from '../models/vehiculo';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,9 @@ import { Tipovehiculo } from '../models/tipovehiculo';
 export class TipovehiculoService {
 
   selectedTipoVehiculo: Tipovehiculo;
+  selectedVehiculo: Vehiculo;
   tipovehiculo: Tipovehiculo[];
+  vehiculo: Vehiculo[];
 
   readonly URL_API = 'http://localhost:3000/api/tipovehiculo';
 

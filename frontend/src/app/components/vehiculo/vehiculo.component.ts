@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TipovehiculoService } from '../../services/tipovehiculo.service';
+import { VehiculoService } from '../../services/vehiculo.service';
 import { NgForm } from '@angular/forms';
 import { Tipovehiculo } from '../../models/tipovehiculo';
+import { Vehiculo } from '../../models/vehiculo';
 import decode from 'jwt-decode';
 
 declare var M: any;
@@ -13,10 +15,19 @@ declare var M: any;
 })
 export class VehiculoComponent implements OnInit {
 
-  constructor(private tipoVehiculoService: TipovehiculoService) { }
+  constructor(private tipoVehiculoService: TipovehiculoService, private vehiculoService: VehiculoService) { }
 
   ngOnInit() {
     this.getTipoVehiculo();
+    this.getVehiculo();
+  }
+
+  getVehiculo() {
+    this.vehiculoService.getVehiculos()
+      .subscribe(res => {
+        console.log(res);
+        this.vehiculoService.vehiculo = res as Vehiculo[];
+      })
   }
 
   getTipoVehiculo() {
@@ -59,6 +70,10 @@ export class VehiculoComponent implements OnInit {
 
   editTipoVehiculo(tipovehiculo: Tipovehiculo) {
     this.tipoVehiculoService.selectedTipoVehiculo = tipovehiculo;
+  }
+
+  editVehiculo(vehiculo: Vehiculo){
+    this.vehiculoService.selectedVehiculo = vehiculo;
   }
 
   eliminaTipoVehiculo(tipoVehiculo: Tipovehiculo) {
