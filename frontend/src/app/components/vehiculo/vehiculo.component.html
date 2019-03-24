@@ -118,18 +118,18 @@
                   </div>
                   <div class="input-field col-12">
                     <div class="card-footer bg-transparent border-dark">
-                      <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ex"
+                      <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ex2"
                         (click)="editVehiculo(v)">
                         <i class="material-icons">edit</i>Editar
                       </button>&nbsp;
                       <button type="button" class="btn btn-outline-danger" (click)="getTipoVehiculo1(t)"
-                        onclick="('modal-dialog')" data-toggle="modal" data-target="#modal-eliminar">
+                        onclick="('modal-dialog')" data-toggle="modal" data-target="#modal-eliminar-vehiculo">
                         <i class="material-icons">delete</i>Borrar
                       </button>
                     </div>
                     <!---->
                     <!-------------------------->
-                    <div class="modal fade" id="ex" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade" id="ex2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                       aria-hidden="true">
                       <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
@@ -142,20 +142,18 @@
                           <div class="modal-body">
                             <form #tipoVehiculoForm="ngForm">
                               <input class="form-control" id="input" type="text" name="idVehiculo"
-                                #idTipoVehiculo="ngModel"
-                                [(ngModel)]="vehiculoService.selectedVehiculo.idVehiculo">
+                                #idTipoVehiculo="ngModel" [(ngModel)]="vehiculoService.selectedVehiculo.idVehiculo">
                               <div class="row">
                                 <div class="input-field col-12">
                                   <label><Strong>Placa del Vehiculo</Strong></label>
-                                  <input class="form-control" id="input" type="text" name="placaVehiculo" #name="ngModel"
-                                    [(ngModel)]="vehiculoService.selectedVehiculo.placaVehiculo"
+                                  <input class="form-control" id="input" type="text" name="placaVehiculo"
+                                    #name="ngModel" [(ngModel)]="vehiculoService.selectedVehiculo.placaVehiculo"
                                     placeholder="Ingrese la placa" required>
                                 </div>
                                 <div class="input-field col-12">
                                   <label><Strong>Descripción del Vehiculo</Strong></label>
                                   <textarea class="form-control" id="textarea" type="text" name="descripcionVehiculo"
-                                    #name="ngModel"
-                                    [(ngModel)]="vehiculoService.selectedVehiculo.descripcionVehiculo"
+                                    #name="ngModel" [(ngModel)]="vehiculoService.selectedVehiculo.descripcionVehiculo"
                                     placeholder="Ingrese la descripción"></textarea>
                                 </div>
                               </div>
@@ -180,12 +178,12 @@
           </div>
           <!---->
 
-          <div class="modal fade" id="modal-eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-lg" id="modal-eliminar" role="document">
+          <div class="modal fade" id="modal-eliminar-vehiculo" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" id="modal-eliminar-vehiculo" role="document">
               <div class="modal-content">
                 <div class="modal-body">
-                  ¿Desea eliminar el Tipo de Vehiculo?
+                  ¿Desea eliminar el Vehiculo?
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-primary" data-dismiss="modal"
