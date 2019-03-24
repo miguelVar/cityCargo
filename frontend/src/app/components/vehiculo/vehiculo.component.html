@@ -28,7 +28,7 @@
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="vehiculo" role="tabpanel" aria-labelledby="home-tab">
       <br>
-      <!--------------------------------INICIO MODAL AGREGAR CLIENTE----------------------------->
+      <!--------------------------------INICIO MODAL AGREGAR VEHICULO----------------------------->
       <!-- Modal -->
       <div class="modal fade" id="addcl" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -69,7 +69,7 @@
           </div>
         </div>
       </div>
-      <!--------------------------------FIN MODAL AGREGAR CLIENTE--------------------------------->
+      <!--------------------------------FIN MODAL AGREGAR VEHICULO--------------------------------->
 
       <div class="container">
         <div class="row col-12">
@@ -86,8 +86,8 @@
               <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
             </div>
             <div class="col-4">
-              <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addcl"
-                (click)="ClienteLogueado(clientService.idClient)">Agregar Vehiculo</button>&nbsp;
+              <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addcl">Agregar
+                Vehiculo</button>&nbsp;
               <button type="button" class="btn btn-outline-info" [routerLink]="['/deletedclients']">Ver
                 Eliminados</button>
             </div>
@@ -101,6 +101,179 @@
     </div>
 
     <div class="tab-pane fade" id="tipo" role="tabpanel" aria-labelledby="profile-tab">
+
+      <br>
+      <!--------------------------------INICIO MODAL AGREGAR TIPO VEHICULO----------------------------->
+      <!-- Modal -->
+      <div class="modal fade" id="addtpv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content border-success">
+            <div class="modal-header">
+              <h5 id="titulomodal" class="modal-title" id="exampleModalLabel"><Strong>Agregar Tipo de vehiculo</Strong>
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form #clientForm="ngForm">
+                <div class="row">
+                  <div class="input-field col-12">
+                    <label><Strong><label id="lbl">*</label>Nombre Tipo de vehiculo</Strong></label>
+                    <input class="form-control" id="input" type="text" name="NOMBRE_TIPO"
+                      placeholder="Ingrese el nombre" required>
+                  </div>
+                  <div class="input-field col-12">
+                    <label><Strong>Descripción del vehículo</Strong></label>
+                    <textarea class="form-control" id="textarea" type="text" name="DESCRIPCION_TIPO"
+                      placeholder="Ingrese la descripción"></textarea>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+              <button [disabled]="!clientForm.valid" type="button" class="btn btn-outline-success">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--------------------------------FIN MODAL AGREGAR TIPO VEHICULO--------------------------------->
+
+      <div class="container">
+        <div class="row col-12">
+          <div class="input-group col-12">
+            <div class="col-2">
+              <select id="select" class="form-control" #mySelect>
+                <option value=1>Nombre</option>
+                <option value=2>ID</option>
+              </select>
+            </div>
+            <input id="input" class="form-control" placeholder="Buscar..." #myInput style="border-radius: 0rem;"
+              title="Ingrese el campo para filtrar" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
+            </div>
+            <div class="col-4">
+              <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addtpv">Agregar
+                Tipo</button>&nbsp;
+              <button type="button" class="btn btn-outline-info" [routerLink]="['/deletedclients']">Ver
+                Eliminados</button>
+            </div>
+          </div>
+          <div class="col-2"></div>
+        </div>
+        <br>
+        <br>
+      </div>
+
+      <!------------------------------------------------------------------------------->
+
+      <div class="col-12">
+        <!--Inicio Card-->
+        <div class="card-group">
+          <div class="container">
+            <div class="row">
+              <div *ngFor="let t of tipoVehiculoService.tipovehiculo" class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card border-dark">
+                  <div class="card-header border-dark">
+                    <h4 id="tituloCard">{{t.nombreTipo}}</h4>
+                  </div>
+                  <div class="card-body text-dark">
+                    <h5 class="card-title"><strong>ID:</strong> {{t.nombreTipo}}</h5>
+                    <p class="card-text"> {{t.descipcionTipo}} </p>
+                    <br>
+                  </div>
+                  <div class="input-field col-12">
+                    <div class="card-footer bg-transparent border-dark">
+                      <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ex">
+                        <i class="material-icons">edit</i>Editar
+                      </button>&nbsp;
+                      <button type="button" class="btn btn-outline-danger" onclick="('modal-dialog')"
+                        data-toggle="modal" data-target="#modal-eliminar">
+                        <i class="material-icons">delete</i>Borrar
+                      </button>
+                    </div>
+                    <!---->
+                    <!-------------------------->
+                    <div class="modal fade" id="ex" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel"><Strong>Editar Cliente</Strong></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-label="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form #clientForm="ngForm">
+                              <input class="form-control" id="input" type="hidden" name="ID_CLIENTE">
+                              <div class="row">
+                                <div class="input-field col-12">
+                                  <label><Strong>Nombre del Cliente</Strong></label>
+                                  <input class="form-control" id="input" type="text" name="nombre_cliente"
+                                    placeholder="Ingrese el nombre" required>
+                                </div>
+                                <div class="input-field col-12">
+                                  <label><Strong>Descripción del Cliente</Strong></label>
+                                  <textarea class="form-control" id="textarea" type="text" name="descripcion_cliente"
+                                    placeholder="Ingrese la descripción" required></textarea>
+                                </div>
+                                <div class="input-field col-12">
+                                  <label><Strong>Seleccione el usuario</Strong></label>
+                                  <select id="select" class="form-control" name="usuario_id_usuario" required>
+                                    <option value="" disabled>Seleccione el Usuario</option>
+                                    <option value="">
+                                    </option>
+                                  </select>
+                                </div>
+                              </div>
+                            </form>
+                            <!---------------------------------->
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                            <button [disabled]="!clientForm.valid" type="button" class="btn btn-outline-success"
+                              data-dismiss="modal">Guardar cambios</button>
+                          </div>
+                          <!------------------------------------->
+                        </div>
+                      </div>
+                    </div>
+                    <!-------------------------->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!---->
+
+          <div class="modal fade" id="modal-eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" id="modal-eliminar" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                  ¿Desea eliminar el cliente?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Eliminar</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Fin Card-->
+        </div>
+        <div class="col">
+          <!---->
+        </div>
+      </div>
+
+      <!------------------------------------------------------------------------------->
+
 
     </div>
 

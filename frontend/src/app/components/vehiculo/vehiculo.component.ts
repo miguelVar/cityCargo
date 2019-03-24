@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { TipovehiculoService } from '../../services/tipovehiculo.service';
+import { NgForm } from '@angular/forms';
+import { Tipovehiculo } from '../../models/tipovehiculo';
+import decode from 'jwt-decode';
 
 @Component({
   selector: 'app-vehiculo',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VehiculoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tipoVehiculoService: TipovehiculoService) { }
 
   ngOnInit() {
+    this.getTipoVehiculo();
+  }
+
+  getTipoVehiculo() {
+
+    this.tipoVehiculoService.getTipoVehiculos()
+      .subscribe(res => {
+        this.tipoVehiculoService.tipovehiculo = res as Tipovehiculo[];
+      });
   }
 
 }
