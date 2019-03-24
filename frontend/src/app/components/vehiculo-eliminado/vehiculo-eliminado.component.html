@@ -1,0 +1,100 @@
+<app-nav-bar></app-nav-bar>
+<br>
+<br>
+<br>
+<br>
+&nbsp;
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 id="tituloCliente">Vehiculos Eliminados</h1>
+      <hr id="hrCliente">
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="container">
+    <div class="row col-12">
+      <div class="input-group col-12">
+        <div class="col-2">
+          <select id="select" class="form-control" #mySelect>
+            <option value=1>Nombre</option>
+            <option value=2>ID</option>
+          </select>
+        </div>
+        <input id="input" class="form-control" placeholder="Buscar..." #myInput style="border-radius: 0rem;"
+          title="Ingrese el campo para filtrar" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
+        </div>
+        <div class="col-4">
+          <button type="button" class="btn btn-outline-info" [routerLink]="['/vehiculo']">Volver</button>
+        </div>
+      </div>
+      <div class="col-2"></div>
+    </div>
+    <br>
+    <br>
+  </div>
+
+  <div class="col-12">
+    <!--Inicio Card-->
+    <div class="card-group">
+      <div class="container">
+        <div class="row">
+          <div *ngFor="let v of vehiculoService.vehiculo" class="col-sm-12 col-md-6 col-lg-4">
+            <div class="card border-dark">
+              <div class="card-header border-dark">
+                <h4 id="tituloCard">{{v.placaVehiculo}}</h4>
+              </div>
+              <div class="card-body text-dark">
+                <h5 class="card-title"><strong>ID:</strong> {{v.idVehiculo}}</h5>
+                <p class="card-text"><strong>Placa:</strong> {{v.placaVehiculo}} </p>
+                <p class="card-text"><strong>Descripción:</strong> {{v.descripcionVehiculo}} </p>
+                <br>
+              </div>
+              <div class="input-field col-12">
+                <div class="card-footer bg-transparent border-dark">
+                  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ex2">
+                    <i class="material-icons">edit</i>Restaurar
+                  </button>&nbsp;
+                  <button type="button" class="btn btn-outline-danger" onclick="('modal-dialog')" data-toggle="modal"
+                    data-target="#modal-eliminar-vehiculo">
+                    <i class="material-icons">delete</i>Borrar
+                  </button>
+                </div>
+                <!---->
+                <!-------------------------->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!---->
+
+      <div class="modal fade" id="modal-eliminar-vehiculo" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" id="modal-eliminar-vehiculo" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              ¿Desea eliminar el Vehiculo?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal"
+                (click)="eliminaVehiculo(vehiculoService.selectedVehiculo)">Eliminar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Fin Card-->
+    </div>
+    <div class="col">
+      <!---->
+    </div>
+  </div>
+
+</div>

@@ -17,6 +17,7 @@ import { ServicioComponent } from './components/servicio/servicio.component';
 import { ConductorComponent } from './components/conductor/conductor.component';
 import { OrdenComponent } from './components/orden/orden.component';
 import { ETransporteComponent } from './components/e-transporte/e-transporte.component';
+import { VehiculoEliminadoComponent } from './components/vehiculo-eliminado/vehiculo-eliminado.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ETransporteComponent } from './components/e-transporte/e-transporte.com
     ServicioComponent,
     ConductorComponent,
     OrdenComponent,
-    ETransporteComponent
+    ETransporteComponent,
+    VehiculoEliminadoComponent
   ],
   imports: [
     BrowserModule,

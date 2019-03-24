@@ -20,6 +20,14 @@ export class VehiculoService {
     return this.http.get(this.URL_API);
   }
 
+  getVehiculosEliminados() {
+    return this.http.get(this.URL_API+`/getVehiculosEliminados`);
+  }
+
+  restauraVehiculoEliminado(vehiculo: Vehiculo){
+    return this.http.put(this.URL_API + `/restauralogicovehiculo`,vehiculo);
+  }
+
   postVehiculo(vehiculo: Vehiculo) {
     return this.http.post(this.URL_API, vehiculo);
   }

@@ -14,6 +14,9 @@ router.put('/:idVehiculo', vehiculoCtrl.updateVehiculo);
 //Elimina Vehiculo logico
 router.put('/deletelogicovehiculo/:idVehiculo', vehiculoCtrl.deleteVehiculoLogico);
 
+//Lista Vehiculos Eliminados
+router.get('/getVehiculosEliminados/', vehiculoCtrl.getVehiculoEliminado);
+
 //Restaura logico vehiculo
 router.put('/restauralogicovehiculo/:idVehiculo', vehiculoCtrl.restauraLogicoVehiculo);
 

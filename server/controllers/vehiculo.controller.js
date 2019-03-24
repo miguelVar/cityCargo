@@ -31,6 +31,33 @@ vehiculoCtrl.getVehiculo = (req, res) => {
 
 }
 
+// Método para cargar los vehiculos
+vehiculoCtrl.getVehiculoEliminado = (req, res) => {
+
+    var query = 'SELECT * FROM Vehiculo WHERE estadoEliminado = 1';
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        console.log('Done lista vehiculo eliminado');
+    });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done Listar vehiculo');
+    //         });
+    //     });
+    // });
+
+}
+
+
 // Método para crear vehiculo
 vehiculoCtrl.createVehiculo = (req, res) => {
 
