@@ -1,6 +1,8 @@
-const ibmdb = require("ibm_db");
+// const ibmdb = require("ibm_db");
+// let connStr = require('../config/database');
+const dbconnection = require('../config/dbmysql');
+const connection = dbconnection();
 
-let connStr = require('../config/database');
 const conductorCtrl = {};
 
 //Método para cargar conductores
@@ -8,18 +10,28 @@ conductorCtrl.getConductor = (req, res) => {
 
     var query = 'SELECT * FROM Conductor';
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: data })
-
-            conn.close(function () {
-                console.log('done Listar conductor');
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done Lista conductor');
         });
     });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done Listar conductor');
+    //         });
+    //     });
+    // });
 
 }
 
@@ -30,20 +42,32 @@ conductorCtrl.createConductor = (req, res) => {
     let celularConductor = req.body.celularConductor;
     let estadoEliminado = req.body.estadoEliminado || false;
 
+    console.log(req.body);
+
     var query = `INSERT INTO Conductor (nombreConductor, celularConductor, estadoEliminado) VALUES('${nombreConductor}', '${celularConductor}', '${estadoEliminado}')`;
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: data })
-
-            conn.close(function () {
-                console.log('done crear conductor');
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done Crea conductor');
         });
     });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done crear conductor');
+    //         });
+    //     });
+    // });
 
 }
 
@@ -56,84 +80,124 @@ conductorCtrl.updateConductor = (req, res) => {
 
     var query = `UPDATE Conductor SET nombreConductor = '${nombreConductor}', celularConductor = '${celularConductor}', estadoEliminado = 0 WHERE idConductor = '${idConductor}'`;
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: data })
-
-            conn.close(function () {
-                console.log('done actualiza conductor');
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done actualiza conductor');
         });
     });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done actualiza conductor');
+    //         });
+    //     });
+    // });
 
 }
 
 //Método para eliminar logico conductor
-conductorCtrl.deleteLogicoConductor = (req, res) =>{
+conductorCtrl.deleteLogicoConductor = (req, res) => {
 
     let idConductor = parseInt(req.params.idConductor);
 
     var query = `UPDATE Conductor SET estadoEliminado = 1 WHERE idConductor = '${idConductor}'`;
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: data })
-
-            conn.close(function () {
-                console.log('done elimina logico conductor');
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done elimina logico conductor');
         });
     });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done elimina logico conductor');
+    //         });
+    //     });
+    // });
 
 }
 
 //Método para restaurar logico conductor
-conductorCtrl.restauraLogicoConductor = (req, res) =>{
+conductorCtrl.restauraLogicoConductor = (req, res) => {
 
     let idConductor = parseInt(req.params.idConductor);
 
     var query = `UPDATE Conductor SET estadoEliminado = 0 WHERE idConductor = '${idConductor}'`;
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: data })
-
-            conn.close(function () {
-                console.log('done restaura logico conductor');
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done restaura logico conductor');
         });
     });
 
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done restaura logico conductor');
+    //         });
+    //     });
+    // });
+
 }
 
-//Método para eliminar logico conductor
-conductorCtrl.eliminaFisicoConductor = (req, res) =>{
+//Método para eliminar fisico conductor
+conductorCtrl.eliminaFisicoConductor = (req, res) => {
 
     let idConductor = parseInt(req.params.idConductor);
 
     var query = `DELETE FROM Conductor WHERE idConductor = '${idConductor}'`;
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: data })
-
-            conn.close(function () {
-                console.log('done elimina fisico conductor');
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done elimian fisico conductor');
         });
     });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done elimina fisico conductor');
+    //         });
+    //     });
+    // });
 
 }
 
