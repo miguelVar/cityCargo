@@ -13,6 +13,34 @@
   </div>
 </div>
 <div class="container">
+
+  <div class="container">
+    <div class="row col-12">
+      <div class="input-group col-12">
+        <div class="col-2">
+          <select id="select" class="form-control" #mySelect>
+            <option value=1>Nombre</option>
+            <option value=2>ID</option>
+          </select>
+        </div>
+        <input id="input" class="form-control" placeholder="Buscar..." #myInput style="border-radius: 0rem;"
+          title="Ingrese el campo para filtrar" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
+        </div>
+        <div class="col-4">
+          <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addcl">Agregar
+            Cliente</button>&nbsp;
+          <button type="button" class="btn btn-outline-info" [routerLink]="['/deletedclients']">Ver
+            Eliminados</button>
+        </div>
+      </div>
+      <div class="col-2"></div>
+    </div>
+    <br>
+    <br>
+  </div>
+
   <!--------------------------------INICIO MODAL AGREGAR CLIENTE----------------------------->
   <!-- Modal -->
   <div class="modal fade" id="addcl" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -55,31 +83,96 @@
   </div>
   <!--------------------------------FIN MODAL AGREGAR CLIENTE--------------------------------->
 
-  <div class="container">
-    <div class="row col-12">
-      <div class="input-group col-12">
-        <div class="col-2">
-          <select id="select" class="form-control" #mySelect>
-            <option value=1>Nombre</option>
-            <option value=2>ID</option>
-          </select>
-        </div>
-        <input id="input" class="form-control" placeholder="Buscar..." #myInput style="border-radius: 0rem;"
-          title="Ingrese el campo para filtrar" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
-        </div>
-        <div class="col-4">
-          <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addcl">Agregar
-            Clienteeeeeeeeee</button>&nbsp;
-          <button type="button" class="btn btn-outline-info" [routerLink]="['/deletedclients']">Ver
-            Eliminados</button>
+  <!------------------------------------------------------------------------------->
+
+  <div class="col-12">
+    <!--Inicio Card-->
+    <div class="card-group">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-4">
+            <div class="card border-dark">
+              <div class="card-header border-dark">
+                <h4 id="tituloCard">sdfsdf</h4>
+              </div>
+              <div class="card-body text-dark">
+                <h5 class="card-title"><strong>ID:</strong>sdfsdf</h5>
+                <p class="card-text"><strong>aaa:</strong> dsfsdf </p>
+                <p class="card-text"><strong>aaa:</strong> sfdsdf </p>
+                <br>
+              </div>
+              <div class="input-field col-12">
+                <div class="card-footer bg-transparent border-dark">
+                  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ex2">
+                    <i class="material-icons">edit</i>Editar
+                  </button>&nbsp;
+                  <button type="button" class="btn btn-outline-danger" onclick="('modal-dialog')" data-toggle="modal"
+                    data-target="#modal-eliminar-vehiculo">
+                    <i class="material-icons">delete</i>Borrar
+                  </button>
+                </div>
+                <!---->
+                <!-------------------------->
+                <div class="modal fade" id="ex2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><Strong>Editar Cliente</Strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-label="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form #tipoVehiculoForm="ngForm">
+                          <input class="form-control" id="input" type="text" name="idVehiculo">
+                          <div class="row">
+                            <div class="input-field col-12">
+                              <label><Strong>Placa del Vehiculo</Strong></label>
+                              <input class="form-control" id="input" type="text" name="placaVehiculo"
+                                placeholder="Ingrese la placa" required>
+                            </div>
+                          </div>
+                        </form>
+                        <!---------------------------------->
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Guardar
+                          cambios</button>
+                      </div>
+                      <!------------------------------------->
+                    </div>
+                  </div>
+                </div>
+                <!-------------------------->
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-2"></div>
+      <!---->
+
+      <div class="modal fade" id="modal-eliminar-vehiculo" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" id="modal-eliminar-vehiculo" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              ¿Desea eliminar el Cliente?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Eliminar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Fin Card-->
     </div>
-    <br>
-    <br>
+    <div class="col">
+      <!---->
+    </div>
   </div>
 
 </div>
