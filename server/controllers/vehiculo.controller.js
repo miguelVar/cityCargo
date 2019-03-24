@@ -1,6 +1,8 @@
-const ibmdb = require("ibm_db");
+// const ibmdb = require("ibm_db");
+// let connStr = require('../config/database');
+const dbconnection = require('../config/dbmysql');
+const connection = dbconnection();
 
-let connStr = require('../config/database');
 const vehiculoCtrl = {};
 
 // Método para cargar los vehiculos
@@ -8,18 +10,28 @@ vehiculoCtrl.getVehiculo = (req, res) => {
 
     var query = 'SELECT * FROM Vehiculo';
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: data })
-
-            conn.close(function () {
-                console.log('done Listar vehiculo');
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done lista vehiculo');
         });
     });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done Listar vehiculo');
+    //         });
+    //     });
+    // });
 
 }
 
@@ -33,19 +45,29 @@ vehiculoCtrl.createVehiculo = (req, res) => {
 
     var query = `INSERT INTO Vehiculo (placaVehiculo, descripcionVehiculo, TipoVehiculo_idTipoVehiculo, estadoEliminado) VALUES('${placaVehiculo}', '${descripcionVehiculo}', '${TipoVehiculo_idTipoVehiculo}', '${estadoEliminado}')`;
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: data })
-
-            conn.close(function () {
-                console.log('done crear vehiculo');
-                console.log(res);
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done crea vehiculo');
         });
     });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done crear vehiculo');
+    //             console.log(res);
+    //         });
+    //     });
+    // });
 
 }
 
@@ -55,23 +77,33 @@ vehiculoCtrl.updateVehiculo = (req, res) => {
     let idVehiculo = req.params.idVehiculo;
     let placaVehiculo = req.body.placaVehiculo;
     let descripcionVehiculo = req.body.descripcionVehiculo;
-    let TipoVehiculo_idTipoVehiculo = parseInt(req.body.TipoVehiculo_idTipoVehiculo );
+    let TipoVehiculo_idTipoVehiculo = parseInt(req.body.TipoVehiculo_idTipoVehiculo);
 
     var query = `UPDATE Vehiculo SET placaVehiculo = '${placaVehiculo}', descripcionVehiculo = '${descripcionVehiculo}', TipoVehiculo_idTipoVehiculo = '${TipoVehiculo_idTipoVehiculo}' WHERE idVehiculo = '${idVehiculo}'`;
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: data })
-
-            conn.close(function () {
-                console.log('done actualiza vehiculo');
-                console.log(res);
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done actualiza vehiculo');
         });
     });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done actualiza vehiculo');
+    //             console.log(res);
+    //         });
+    //     });
+    // });
 
 }
 
@@ -82,19 +114,29 @@ vehiculoCtrl.deleteVehiculoLogico = (req, res) => {
 
     var query = `UPDATE Vehiculo SET estadoEliminado = 1 WHERE idVehiculo = '${idVehiculo}'`;
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: data })
-
-            conn.close(function () {
-                console.log('done eliminar logico vehiculo');
-                console.log(res);
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done elimina logico vehiculo');
         });
     });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done eliminar logico vehiculo');
+    //             console.log(res);
+    //         });
+    //     });
+    // });
 
 }
 
@@ -105,19 +147,29 @@ vehiculoCtrl.restauraLogicoVehiculo = (req, res) => {
 
     var query = `UPDATE Vehiculo SET estadoEliminado = 0 WHERE idVehiculo = '${idVehiculo}'`;
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: data })
-
-            conn.close(function () {
-                console.log('done eliminar logico vehiculo');
-                console.log(res);
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done retaura vehiculo');
         });
-    }); 
+    });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done eliminar logico vehiculo');
+    //             console.log(res);
+    //         });
+    //     });
+    // });
 
 }
 
@@ -128,20 +180,30 @@ vehiculoCtrl.deleteVehiculoFisico = (req, res) => {
 
     var query = `DELETE FROM Vehiculo WHERE idVehiculo = '${idVehiculo}'`;
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: data })
-
-            conn.close(function () {
-                console.log('done eliminar fisico vehiculo');
-                console.log(res);
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done elimina vehiculo');
         });
     });
-    
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done eliminar fisico vehiculo');
+    //             console.log(res);
+    //         });
+    //     });
+    // });
+
 }
 
 module.exports = vehiculoCtrl;
