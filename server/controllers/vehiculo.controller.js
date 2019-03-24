@@ -8,7 +8,7 @@ const vehiculoCtrl = {};
 // Método para cargar los vehiculos
 vehiculoCtrl.getVehiculo = (req, res) => {
 
-    var query = 'SELECT * FROM Vehiculo';
+    var query = 'SELECT * FROM Vehiculo WHERE estadoEliminado = 0';
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });

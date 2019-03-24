@@ -28,4 +28,10 @@ export class VehiculoService {
     console.log("id actualizar" + vehiculo.idVehiculo);
     return this.http.put(this.URL_API + `/${vehiculo.idVehiculo}`, vehiculo);
   }
+
+  deleteVehiculo(vehiculo: Vehiculo) {
+    console.log("id a eliminar " + vehiculo.idVehiculo);
+    return this.http.put(this.URL_API + '/deletelogicovehiculo/' + `${vehiculo.idVehiculo}`, vehiculo);
+  }
+
 }

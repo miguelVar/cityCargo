@@ -109,14 +109,30 @@ export class VehiculoComponent implements OnInit {
     this.deleteTipoVehiculo(tipoVehiculo);
   }
 
+  eliminaVehiculo(vehiculo: Vehiculo) {
+    this.deleteVehiculo(vehiculo);
+  }
+
   getTipoVehiculo1(tipoVehiculo: Tipovehiculo) {
     this.tipoVehiculoService.selectedTipoVehiculo = tipoVehiculo;
+  }
+
+  getVehiculo1(vehiculo: Vehiculo) {
+    this.vehiculoService.selectedVehiculo = vehiculo;
   }
 
   deleteTipoVehiculo(tipoVehiculo: Tipovehiculo) {
     this.tipoVehiculoService.deleteTipoVehiculo(tipoVehiculo)
       .subscribe(res => {
         this.getTipoVehiculo();
+        console.log(res);
+      });
+  }
+
+  deleteVehiculo(vehiculo: Vehiculo) {
+    this.vehiculoService.deleteVehiculo(vehiculo)
+      .subscribe(res => {
+        this.getVehiculo();
         console.log(res);
       });
   }
