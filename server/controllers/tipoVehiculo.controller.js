@@ -1,6 +1,8 @@
-const ibmdb = require("ibm_db");
+// const ibmdb = require("ibm_db");
+// let connStr = require('../config/database');
+const dbconnection = require('../config/dbmysql');
+const connection = dbconnection();
 
-let connStr = require('../config/database');
 const tipoVehiculoCtrl = {};
 
 // Método que lista tipo vehiculo
@@ -8,18 +10,28 @@ tipoVehiculoCtrl.getTipoVehiculo = (req, res) => {
 
     var query = 'SELECT * FROM TipoVehiculo';
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: data })
-
-            conn.close(function () {
-                console.log('done Listar tipo vehiculo');
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done lista tipo vehiculo');
         });
     });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done Listar tipo vehiculo');
+    //         });
+    //     });
+    // });
 
 }
 
@@ -32,18 +44,28 @@ tipoVehiculoCtrl.createTipoVehiculo = (req, res) => {
 
     var query = `INSERT INTO TipoVehiculo (nombreTipo, descripcionTipo, estadoEliminado) VALUES ('${nombreTipo}', '${descripcionTipo}', '${estadoEliminado}')`;
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: data })
-
-            conn.close(function () {
-                console.log('done crear tipo vehiculo');
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done crea tipo vehiculo');
         });
     });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done crear tipo vehiculo');
+    //         });
+    //     });
+    // });
 
 }
 
@@ -56,18 +78,28 @@ tipoVehiculoCtrl.updateTipoVehiculo = (req, res) => {
 
     var query = `UPDATE TipoVehiculo SET nombreTipo = '${nombreTipo}', descripcionTipo = '${descripcionTipo}' WHERE idTipoVehiculo = '${idTipoVehiculo}'`;
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: data })
-
-            conn.close(function () {
-                console.log('done Listar tipo vehiculo');
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done actualiza tipo vehiculo');
         });
-    }); 
+    });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done Listar tipo vehiculo');
+    //         });
+    //     });
+    // });
 
 }
 
@@ -78,18 +110,28 @@ tipoVehiculoCtrl.deleteTipoVehiculo = (req, res) => {
 
     var query = `DELETE FROM TipoVehiculo WHERE idTipoVehiculo = '${idTipoVehiculo}'`;
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: data })
-
-            conn.close(function () {
-                console.log('done elimina tipo vehiculo');
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done elimina tipo vehiculo');
         });
-    }); 
+    });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done elimina tipo vehiculo');
+    //         });
+    //     });
+    // });
 
 }
 
