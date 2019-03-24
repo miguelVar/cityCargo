@@ -1,5 +1,7 @@
-const ibmdb = require('ibm_db');
-let connStr = require("../config/database");
+// const ibmdb = require('ibm_db');
+// let connStr = require("../config/database");
+const dbconnection = require('../config/dbmysql');
+const connection = dbconnection();
 const clients = {};
 
 
