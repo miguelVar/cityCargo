@@ -14,14 +14,10 @@ transportElement.createTransportElement = (req, res) => {
 
     var query = `INSERT INTO ElementosTransporte (nombreElemento, cantidadElemento, Servicio_idServicio) VALUES ('${nombreElemento}','${cantidadElemento}','${Servicio_idServicio}')`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done crea elementos transporte');
-        });
+        console.log('Done crea elementos transporte');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -44,14 +40,10 @@ transportElement.getTransportElement = (req, res) => {
 
     var query = `SELECT * FROM ElementosTransporte`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done lista elementos transporte');
-        });
+        console.log('Done lista elementos transporte');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -79,14 +71,10 @@ transportElement.updateTransportElement = (req, res) => {
     , cantidadElemento='${cantidadElemento}'
     , Servicio_idServicio='${Servicio_idServicio}' WHERE idElementosTransporte='${idElemento}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done actualiza elementos transporte');
-        });
+        console.log('Done actualiza elementos transporte');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -109,14 +97,10 @@ transportElement.deleteTransportElement = (req, res) => {
     let idElemento = req.params.id;
     var query = `DELETE FROM ElementosTransporte WHERE idElementosTransporte='${idElemento}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done elimina elementos transporte');
-        });
+        console.log('Done elimina elementos transporte');
     });
 
     // ibmdb.open(connStr, function (err, conn) {

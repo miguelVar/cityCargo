@@ -10,14 +10,10 @@ ordenCtrl.getOrden = (req, res) => {
 
     var query = `SELECT * FROM orden`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done Lista orden');
-        });
+        console.log('Done Lista orden');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -43,14 +39,10 @@ ordenCtrl.createOrden = (req, res) => {
 
     var query = `INSERT INTO orden (numeroOrden, descripcionOrden, Estado_idEstadoOrden) VALUES('${numeroOrden}', '${descripcionOrden}', 1)`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done crea orden');
-        });
+        console.log('Done crea orden');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -77,14 +69,10 @@ ordenCtrl.updateOrden = (req, res) => {
 
     var query = `UPDATE Orden SET numeroOrden = '${numeroOrden}', descripcionOrden = '${descripcionOrden}' WHERE idOrden = '${idOrden}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done actualiza orden');
-        });
+        console.log('Done actualiza orden');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -109,14 +97,10 @@ ordenCtrl.deleteOrden = (req, res) => {
 
     var query = `DELETE FROM Orden WHERE idOrden = '${idOrden}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done elimina orden');
-        });
+        console.log('Done elimina orden');
     });
 
     // ibmdb.open(connStr, function (err, conn) {

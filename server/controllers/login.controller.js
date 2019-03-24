@@ -9,6 +9,7 @@ var router = express.Router();
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var config = require('../models/config');
+var md5=require('md5')
 
 
 // Metodo encargado de listar todos los usuarios
@@ -16,14 +17,10 @@ loginCtrl.obtenerUsuarios = (req, res) => {
 
   var query = `SELECT * FROM Usuario`;
 
-  connection.connect();
-
   connection.query(query, function (error, results) {
     if (error) throw res.json({ errorinfo: error });
     else res.json(results);
-    connection.end(function () {
-      console.log('Lista Usuarios ok');
-    });
+    console.log('Lista Usuarios ok');
   });
 
   // ibmdb.open(connStr, (err, conn) => {
@@ -54,8 +51,6 @@ loginCtrl.authentication = (req, res) => {
   let correo = req.body.correo;
   let password = req.body.password;
 
-  connection.connect();
-
   connection.query(`SELECT * FROM Usuario WHERE correo = '${correo}'`, function (error, data) {
     if (error) throw error;
     else {
@@ -63,10 +58,10 @@ loginCtrl.authentication = (req, res) => {
         console.log("correo mal");
         res.send('Correo incorrecto')
       }
-      // else if (bcrypt.compareSync(password, data[0].PASSWORD) != 1) {
-      //   //  else if (password != data[0].PASSWORD){
-      //   res.send('Correo o contraseña no son correctos')
-      // } 
+      else if (String(data[0].password) != md5(password)) {
+        //  else if (password != data[0].PASSWORD){
+        res.send('Correo o contraseña no son correctos')
+      }
       else {
 
         //Se crea un token con el id el correo y el rol
@@ -80,9 +75,6 @@ loginCtrl.authentication = (req, res) => {
       }
 
     }
-    connection.end(function () {
-      console.log('Lista Usuarios ok');
-    });
   });
 
   // ibmdb.open(connStr, (err, conn) => {

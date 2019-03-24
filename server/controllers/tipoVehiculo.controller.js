@@ -10,14 +10,10 @@ tipoVehiculoCtrl.getTipoVehiculo = (req, res) => {
 
     var query = 'SELECT * FROM TipoVehiculo';
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done lista tipo vehiculo');
-        });
+        console.log('Done lista tipo vehiculo');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -44,14 +40,10 @@ tipoVehiculoCtrl.createTipoVehiculo = (req, res) => {
 
     var query = `INSERT INTO TipoVehiculo (nombreTipo, descripcionTipo, estadoEliminado) VALUES ('${nombreTipo}', '${descripcionTipo}', '${estadoEliminado}')`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done crea tipo vehiculo');
-        });
+        console.log('Done crea tipo vehiculo');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -78,14 +70,10 @@ tipoVehiculoCtrl.updateTipoVehiculo = (req, res) => {
 
     var query = `UPDATE TipoVehiculo SET nombreTipo = '${nombreTipo}', descripcionTipo = '${descripcionTipo}' WHERE idTipoVehiculo = '${idTipoVehiculo}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done actualiza tipo vehiculo');
-        });
+        console.log('Done actualiza tipo vehiculo');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -110,14 +98,10 @@ tipoVehiculoCtrl.deleteTipoVehiculo = (req, res) => {
 
     var query = `DELETE FROM TipoVehiculo WHERE idTipoVehiculo = '${idTipoVehiculo}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done elimina tipo vehiculo');
-        });
+        console.log('Done elimina tipo vehiculo');
     });
 
     // ibmdb.open(connStr, function (err, conn) {

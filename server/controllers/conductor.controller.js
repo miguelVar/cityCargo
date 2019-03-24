@@ -10,14 +10,10 @@ conductorCtrl.getConductor = (req, res) => {
 
     var query = 'SELECT * FROM Conductor';
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done Lista conductor');
-        });
+        console.log('Done Lista conductor');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -42,18 +38,13 @@ conductorCtrl.createConductor = (req, res) => {
     let celularConductor = req.body.celularConductor;
     let estadoEliminado = req.body.estadoEliminado || false;
 
-    console.log(req.body);
-
     var query = `INSERT INTO Conductor (nombreConductor, celularConductor, estadoEliminado) VALUES('${nombreConductor}', '${celularConductor}', '${estadoEliminado}')`;
-
-    connection.connect();
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done Crea conductor');
-        });
+        console.log('Done Crea conductor');
+
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -80,14 +71,10 @@ conductorCtrl.updateConductor = (req, res) => {
 
     var query = `UPDATE Conductor SET nombreConductor = '${nombreConductor}', celularConductor = '${celularConductor}', estadoEliminado = 0 WHERE idConductor = '${idConductor}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done actualiza conductor');
-        });
+        console.log('Done actualiza conductor');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -112,14 +99,10 @@ conductorCtrl.deleteLogicoConductor = (req, res) => {
 
     var query = `UPDATE Conductor SET estadoEliminado = 1 WHERE idConductor = '${idConductor}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done elimina logico conductor');
-        });
+        console.log('Done elimina logico conductor');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -144,14 +127,11 @@ conductorCtrl.restauraLogicoConductor = (req, res) => {
 
     var query = `UPDATE Conductor SET estadoEliminado = 0 WHERE idConductor = '${idConductor}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done restaura logico conductor');
-        });
+        console.log('Done restaura logico conductor');
+
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -176,14 +156,10 @@ conductorCtrl.eliminaFisicoConductor = (req, res) => {
 
     var query = `DELETE FROM Conductor WHERE idConductor = '${idConductor}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done elimian fisico conductor');
-        });
+        console.log('Done elimian fisico conductor');
     });
 
     // ibmdb.open(connStr, function (err, conn) {

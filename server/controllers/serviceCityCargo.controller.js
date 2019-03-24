@@ -29,14 +29,10 @@ serviceCityCargo.createServiceCityCargo = (req, res) => {
 
     var query = `INSERT INTO Servicio (nombreServicio, descripcionServicio, valorServicio, horaInicioServicio, horaFinServicio,fechaInicioServicio, fechaFinServicio,observacion,ciudadOrigen,ciudadDestino, direccionOrigenServicio,direccionDestinoServicio, estadoEliminado,Cliente_idCliente,Vehiculo_idVehiculo,Orden_idOrden,Estado_idEstadoOrden) VALUES ('${nombreServicio}','${descripcionServicio}','${valorServicio}','${horaInicioServicio}','${horaFinServicio}','${fechaInicioServicio}','${fechaFinServicio}','${observacion}','${ciudadOrigen}','${ciudadDestino}','${direccionOrigenServicio}','${direccionDestinoServicio}','${estadoEliminado}','${Cliente_idCliente}','${Vehiculo_idVehiculo}','${Orden_idOrden}','${Estado_idEstadoOrden}')`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done agrega servicio');
-        });
+        console.log('Done agrega servicio');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -60,14 +56,10 @@ serviceCityCargo.getServiceCityCargo = (req, res) => {
 
     var query = `SELECT * FROM Servicio`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done Lista servicio');
-        });
+        console.log('Done Lista servicio');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -128,14 +120,10 @@ serviceCityCargo.updateServiceCityCargo = (req, res) => {
         ,Orden_idOrden='${Orden_idOrden}'
         ,Estado_idEstadoOrden='${Estado_idEstadoOrden}' WHERE idServicio ='${idService}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done actualiza servicio');
-        });
+        console.log('Done actualiza servicio');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -161,14 +149,10 @@ serviceCityCargo.deleteServiceCityCargo = (req, res) => {
 
     var query = `DELETE FROM Servicio WHERE idServicio='${idServiciio}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done elimina fisico servicio');
-        });
+        console.log('Done elimina fisico servicio');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -195,14 +179,11 @@ serviceCityCargo.deletelogicServiceCityCargo = (req, res) => {
 
     var query = `UPDATE Servicio SET estadoEliminado='${estadoEliminado}' WHERE idServicio='${idServiciio}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done elimina logico servicio');
-        });
+        console.log('Done elimina logico servicio');
+
     });
 
     // ibmdb.open(connStr, function (err, conn) {

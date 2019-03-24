@@ -10,14 +10,10 @@ vehiculoCtrl.getVehiculo = (req, res) => {
 
     var query = 'SELECT * FROM Vehiculo';
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done lista vehiculo');
-        });
+        console.log('Done lista vehiculo');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -45,14 +41,10 @@ vehiculoCtrl.createVehiculo = (req, res) => {
 
     var query = `INSERT INTO Vehiculo (placaVehiculo, descripcionVehiculo, TipoVehiculo_idTipoVehiculo, estadoEliminado) VALUES('${placaVehiculo}', '${descripcionVehiculo}', '${TipoVehiculo_idTipoVehiculo}', '${estadoEliminado}')`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done crea vehiculo');
-        });
+        console.log('Done crea vehiculo');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -81,14 +73,10 @@ vehiculoCtrl.updateVehiculo = (req, res) => {
 
     var query = `UPDATE Vehiculo SET placaVehiculo = '${placaVehiculo}', descripcionVehiculo = '${descripcionVehiculo}', TipoVehiculo_idTipoVehiculo = '${TipoVehiculo_idTipoVehiculo}' WHERE idVehiculo = '${idVehiculo}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done actualiza vehiculo');
-        });
+        console.log('Done actualiza vehiculo');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -114,14 +102,10 @@ vehiculoCtrl.deleteVehiculoLogico = (req, res) => {
 
     var query = `UPDATE Vehiculo SET estadoEliminado = 1 WHERE idVehiculo = '${idVehiculo}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done elimina logico vehiculo');
-        });
+        console.log('Done elimina logico vehiculo');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -147,14 +131,11 @@ vehiculoCtrl.restauraLogicoVehiculo = (req, res) => {
 
     var query = `UPDATE Vehiculo SET estadoEliminado = 0 WHERE idVehiculo = '${idVehiculo}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done retaura vehiculo');
-        });
+        console.log('Done retaura vehiculo');
+
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -180,14 +161,10 @@ vehiculoCtrl.deleteVehiculoFisico = (req, res) => {
 
     var query = `DELETE FROM Vehiculo WHERE idVehiculo = '${idVehiculo}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done elimina vehiculo');
-        });
+        console.log('Done elimina vehiculo');
     });
 
     // ibmdb.open(connStr, function (err, conn) {

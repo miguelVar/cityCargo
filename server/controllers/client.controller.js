@@ -13,14 +13,10 @@ clients.createClient = (req, res) => {
 
     var query = `INSERT INTO Cliente (nombreCliente, celularCliente, direccionCliente, estadoEliminado) VALUES ('${nombreCliente}','${celularCliente}','${direccionCliente}','${estadoEliminado}')`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done Crea cientes');
-        });
+        console.log('Done Crea cientes');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -42,14 +38,10 @@ clients.getClient = (req, res) => {
 
     var query = `SELECT * FROM Cliente`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done lista cientes');
-        });
+        console.log('Done lista cientes');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -76,14 +68,10 @@ clients.updateClient = (req, res) => {
 
     var query = `UPDATE Cliente set nombreCliente='${nombreCliente}', celularCliente='${celularCliente}', direccionCliente='${direccionCliente}', estadoEliminado='${estadoEliminado}' WHERE idCliente='${idClient}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done Update cientes');
-        });
+        console.log('Done Update cientes');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -106,14 +94,10 @@ clients.deleteClient = (req, res) => {
 
     var query = `DELETE FROM Cliente WHERE idcliente='${idClient}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done Elimina cientes');
-        });
+        console.log('Done Elimina cientes');
     });
 
     // ibmdb.open(connStr, function (err, conn) {
@@ -136,14 +120,11 @@ clients.deleteLogicClient = (req, res) => {
 
     var query = `UPDATE Cliente SET  estadoEliminado='${estadoEliminado}' WHERE idcliente='${idClient}'`;
 
-    connection.connect();
-
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json(results);
-        connection.end(function () {
-            console.log('Done Elimina Logico cientes');
-        });
+        console.log('Done Elimina Logico cientes');
+
     });
 
     // ibmdb.open(connStr, function (err, conn) {
