@@ -151,6 +151,7 @@ CREATE TABLE IF NOT EXISTS `DBgestorCityCargo`.`Conductor` (
   `idConductor` INT NOT NULL AUTO_INCREMENT,
   `nombreConductor` VARCHAR(45) NOT NULL,
   `celularConductor` VARCHAR(20) NOT NULL,
+  `estadoEliminado` TINYINT NULL,
   PRIMARY KEY (`idConductor`),
   UNIQUE INDEX `celularConductor_UNIQUE` (`celularConductor` ASC))
 ENGINE = InnoDB;
