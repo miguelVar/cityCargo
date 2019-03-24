@@ -7,7 +7,6 @@ import { Clients } from '../models/clients';
 })
 export class ClientsService {
 
-  
   clients:Clients[];
 
   readonly URL_API='http://localhost:3000/api/clients';
