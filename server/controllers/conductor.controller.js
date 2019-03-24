@@ -1,6 +1,6 @@
-const ibmdb = require("ibm_db");
+// const ibmdb = require("ibm_db");
 
-let connStr = require('../config/database');
+// let connStr = require('../config/database');
 const conductorCtrl = {};
 
 //Método para cargar conductores

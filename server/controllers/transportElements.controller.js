@@ -1,5 +1,5 @@
-const ibmdb = require('ibm_db');
-let connStr = require("../config/database");
+// const ibmdb = require('ibm_db');
+// let connStr = require("../config/database");
 const transportElement = {};
 
 

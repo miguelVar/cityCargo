@@ -8,6 +8,7 @@ const connection = dbconnection();
 var router = express.Router();
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
+var md5=require('md5');
 var config = require('../models/config');
 
 
@@ -52,42 +53,75 @@ loginCtrl.logout = (req, res) => {
 loginCtrl.authentication = (req, res) => {
   console.log("AQUI", req.body.password);
   let correo = req.body.correo;
+  console.log("AQUI", req.body.correo);
   let password = req.body.password;
 
-  connection.connect();
+  // connection.connect();
 
-  connection.query(connection, (err, conn) => {
-    if (err) { console.log(err) }
+  connection.query(`SELECT * FROM Usuario WHERE correo = '${correo}'`, function (error, data) {
+    if (error) throw error;
     else {
-      conn.query(`SELECT * FROM Usuario WHERE correo = '${correo}'`, (err, data) => {
+      console.log("----------------------->",md5(data[0].password));
+      if (data.length == 0) {
+        console.log("correo mal");
+        res.send('Correo incorrecto')
+      }
+      
+      else if (String(data[0].password) != md5(password)) {
+        //  else if (password != data[0].PASSWORD){
+        res.send('Correo o contraseña no son correctos')
+      } 
+      else {
 
-        conn.end()
-        if (err) { res.send('Correo o contraseña no son correctos' + err) }
-        else {
-          if (data.length == 0) {
-            console.log("correo mal");
-            res.send('Correo incorrecto')
-          }
-          else if (bcrypt.compareSync(password, data[0].PASSWORD) != 1) {
-            //  else if (password != data[0].PASSWORD){
-            res.send('Correo o contraseña no son correctos')
-          } else {
+        //Se crea un token con el id el correo y el rol
+        var token = jwt.sign(
+          { id_usuario: data[0].ID_USUARIO, nombre_usuario: data[0].NOMBRE_USUARIO },
+          config.secret,
+          { expiresIn: 86400 }
+        )
+        //Se responde con el token de autenticacion
+        res.json({ auth: true, token: token })
+      }
 
-            //Se crea un token con el id el correo y el rol
-            var token = jwt.sign(
-              { id_usuario: data[0].ID_USUARIO, nombre_usuario: data[0].NOMBRE_USUARIO },
-              config.secret,
-              { expiresIn: 86400 }
-            )
-            //Se responde con el token de autenticacion
-            res.json({ auth: true, token: token })
-
-          }
-
-        }
-      })
     }
-  })
+    // connection.end()
+    // connection.end(function () {
+    //   console.log('Lista Usuarios ok');
+    // });
+  });
+
+  // connection.query(connection, (err, conn) => {
+  //   if (err) { console.log(err) }
+    // else {
+      
+      // connection.query(`SELECT * FROM Usuario WHERE correo = '${correo}'`, (err, data) => {
+
+      //   connection.end()
+      //   if (err) { res.send('Correo o contraseña no son correctos' + err) }
+      //   else {
+      //     if (data.length == 0) {
+      //       console.log("correo mal");
+      //       res.send('Correo incorrecto')
+      //     }
+      //     else if (bcrypt.compareSync(password, data[0].PASSWORD) != 1) {
+      //       //  else if (password != data[0].PASSWORD){
+      //       res.send('Correo o contraseña no son correctos')
+      //     } else {
+
+      //       //Se crea un token con el id el correo y el rol
+      //       var token = jwt.sign(
+      //         { id_usuario: data[0].ID_USUARIO, nombre_usuario: data[0].NOMBRE_USUARIO },
+      //         config.secret,
+      //         { expiresIn: 86400 }
+      //       )
+      //       //Se responde con el token de autenticacion
+      //       res.json({ auth: true, token: token })
+
+      //     }
+
+      //   }
+      // })
+  // })
 
   // ibmdb.open(connStr, (err, conn) => {
   //     if (err) { console.log(err) }
