@@ -1,6 +1,8 @@
-const ibmdb = require("ibm_db");
+// const ibmdb = require("ibm_db");
+// let connStr = require('../config/database');
+const dbconnection = require('../config/dbmysql');
+const connection = dbconnection();
 
-let connStr = require('../config/database');
 const ordenCtrl = {};
 
 // Método usado para cargar las ordenes
@@ -8,18 +10,28 @@ ordenCtrl.getOrden = (req, res) => {
 
     var query = `SELECT * FROM orden`;
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: data })
-
-            conn.close(function () {
-                console.log('done Listar Orden');
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done Lista orden');
         });
     });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done Listar Orden');
+    //         });
+    //     });
+    // });
 
 }
 
@@ -31,18 +43,28 @@ ordenCtrl.createOrden = (req, res) => {
 
     var query = `INSERT INTO orden (numeroOrden, descripcionOrden, Estado_idEstadoOrden) VALUES('${numeroOrden}', '${descripcionOrden}', 1)`;
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: 'Se creo la orden de manera satisfactoria!!!' })
-
-            conn.close(function () {
-                console.log('done Listar Orden');
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done crea orden');
         });
     });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: 'Se creo la orden de manera satisfactoria!!!' })
+
+    //         conn.close(function () {
+    //             console.log('done Listar Orden');
+    //         });
+    //     });
+    // });
 
 }
 
@@ -55,18 +77,28 @@ ordenCtrl.updateOrden = (req, res) => {
 
     var query = `UPDATE Orden SET numeroOrden = '${numeroOrden}', descripcionOrden = '${descripcionOrden}' WHERE idOrden = '${idOrden}'`;
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: 'Se actualizo la orden de manera satisfactoria!!!' })
-
-            conn.close(function () {
-                console.log('done Actualiza Orden');
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done actualiza orden');
         });
     });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: 'Se actualizo la orden de manera satisfactoria!!!' })
+
+    //         conn.close(function () {
+    //             console.log('done Actualiza Orden');
+    //         });
+    //     });
+    // });
 
 }
 
@@ -77,18 +109,28 @@ ordenCtrl.deleteOrden = (req, res) => {
 
     var query = `DELETE FROM Orden WHERE idOrden = '${idOrden}'`;
 
-    ibmdb.open(connStr, function (err, conn) {
-        if (err) return console.log(err);
+    connection.connect();
 
-        conn.query(query, function (err, data) {
-            if (err) res.json({ error: err })
-            else res.json({ data: 'Se elimino la orden de manera satisfactoria!!!' })
-
-            conn.close(function () {
-                console.log('done elimino Orden');
-            });
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        connection.end(function () {
+            console.log('Done elimina orden');
         });
     });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: 'Se elimino la orden de manera satisfactoria!!!' })
+
+    //         conn.close(function () {
+    //             console.log('done elimino Orden');
+    //         });
+    //     });
+    // });
 
 }
 
