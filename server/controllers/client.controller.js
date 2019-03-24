@@ -6,16 +6,17 @@ const clients = {};
 
 // se encarga de crear el cliente 
 clients.createClient = (req, res) => {
-    let nombreCliente = req.body.nombreCliente;
-    let celularCliente = req.body.celularCliente;
-    let direccionCliente = req.body.direccionCliente;
+    console.log("data",req.body);
+    let nombreCliente = req.body.NOMBRE_CLIENTE;
+    let celularCliente = req.body.NUMERO_CLIENTE;
+    let direccionCliente = req.body.DIRECCION_CLIENTE;
     let estadoEliminado = req.body.estadoEliminado || false;
 
     var query = `INSERT INTO Cliente (nombreCliente, celularCliente, direccionCliente, estadoEliminado) VALUES ('${nombreCliente}','${celularCliente}','${direccionCliente}','${estadoEliminado}')`;
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
-        else res.json(results);
+        else res.json({results:'El cliente se creo de manera satisfactoria'});
         console.log('Done Crea cientes');
     });
 
