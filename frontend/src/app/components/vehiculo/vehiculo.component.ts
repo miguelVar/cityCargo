@@ -87,6 +87,7 @@ export class VehiculoComponent implements OnInit {
   deleteTipoVehiculo(tipoVehiculo: Tipovehiculo) {
     this.tipoVehiculoService.deleteTipoVehiculo(tipoVehiculo)
       .subscribe(res=>{
+        this.getTipoVehiculo();
         console.log(res);
       });
   }
