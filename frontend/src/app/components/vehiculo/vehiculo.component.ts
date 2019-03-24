@@ -86,6 +86,9 @@ export class VehiculoComponent implements OnInit {
 
   deleteTipoVehiculo(tipoVehiculo: Tipovehiculo) {
     this.tipoVehiculoService.deleteTipoVehiculo(tipoVehiculo)
+      .subscribe(res=>{
+        console.log(res);
+      });
   }
 
   resertForm(form?: NgForm) {
