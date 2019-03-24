@@ -29,25 +29,26 @@
             <div class="row">
               <div class="input-field col-12">
                 <label><Strong><label id="lbl">*</label>Nombre del cliente</Strong></label>
-                <input class="form-control" id="input" type="text" name="NOMBRE_CLIENTE" #name="ngModel" [(ngModel)]="NOMBRE_CLIENTE" placeholder="Ingrese el nombre"
-                  required>
+                <input class="form-control" id="input" type="text" name="NOMBRE_CLIENTE" #name="ngModel"
+                  [(ngModel)]="NOMBRE_CLIENTE" placeholder="Ingrese el nombre" required>
               </div>
               <div class="input-field col-12">
                 <label><Strong>Número celular del cliente</Strong></label>
-                <input class="form-control" id="input" type="text" name="NUMERO_CLIENTE" #name="ngModel" [(ngModel)]="NUMERO_CLIENTE"
-                  placeholder="Ingrese el número">
+                <input class="form-control" id="input" type="text" name="NUMERO_CLIENTE" #name="ngModel"
+                  [(ngModel)]="NUMERO_CLIENTE" placeholder="Ingrese el número">
               </div>
               <div class="input-field col-12">
                 <label><Strong>Dirección del cliente</Strong></label>
-                <input class="form-control" id="input" type="text" name="DIRECCION_CLIENTE" #name="ngModel" [(ngModel)]="DIRECCION_CLIENTE"
-                  placeholder="Ingrese la dirección">
+                <input class="form-control" id="input" type="text" name="DIRECCION_CLIENTE" #name="ngModel"
+                  [(ngModel)]="DIRECCION_CLIENTE" placeholder="Ingrese la dirección">
               </div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-          <button [disabled]="!clientForm.valid" type="button" class="btn btn-outline-success" (click)="addClient(clientForm)">Guardar</button>
+          <button [disabled]="!clientForm.valid" type="button" class="btn btn-outline-success"
+            (click)="addClient(clientForm)">Guardar</button>
         </div>
       </div>
     </div>
@@ -69,7 +70,8 @@
           <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
         </div>
         <div class="col-4">
-          <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addcl">Agregar Clienteeeeeeeeee</button>&nbsp;
+          <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addcl">Agregar
+            Clienteeeeeeeeee</button>&nbsp;
           <button type="button" class="btn btn-outline-info" [routerLink]="['/deletedclients']">Ver
             Eliminados</button>
         </div>
@@ -79,8 +81,5 @@
     <br>
     <br>
   </div>
-
-
-  
 
 </div>
