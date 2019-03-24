@@ -25,7 +25,7 @@ export class VehiculoService {
   }
 
   restauraVehiculoEliminado(vehiculo: Vehiculo){
-    return this.http.put(this.URL_API + `/restauralogicovehiculo`,vehiculo);
+    return this.http.put(this.URL_API + `/restauralogicovehiculo`+`/${vehiculo.idVehiculo}` ,vehiculo);
   }
 
   postVehiculo(vehiculo: Vehiculo) {

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Vehiculo } from '../../models/vehiculo';
 import { VehiculoService } from 'src/app/services/vehiculo.service';
+import { NgForm } from '@angular/forms';
+
+declare var M: any;
 
 @Component({
   selector: 'app-vehiculo-eliminado',
@@ -21,6 +24,21 @@ export class VehiculoEliminadoComponent implements OnInit {
         console.log(res);
         this.vehiculoService.vehiculo = res as Vehiculo[];
       })
+  }
+
+  restauraVehiculo(vehiculo:Vehiculo){
+    console.log('dddddddddddddddddd', vehiculo);
+    this.vehiculoService.restauraVehiculoEliminado(vehiculo)
+      .subscribe(res=>{
+        M.toast({
+          html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                <h4 class="alert-heading">ÉXITO!!!</h4>
+                <p>El vehiculo ha sido restaurado satisfactoriamente</p>
+                <hr>
+            </div>`});
+        this.getVehiculoEliminado();
+      })
+
   }
   
 
