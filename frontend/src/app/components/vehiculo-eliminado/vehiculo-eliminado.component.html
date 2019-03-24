@@ -57,10 +57,9 @@
               </div>
               <div class="input-field col-12">
                 <div class="card-footer bg-transparent border-dark">
-                  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ex2">
-                    <i class="material-icons">edit</i>Restaurar
+                  <button class="btn btn-outline-primary" (click)="restauraVehiculo(v)"><i
+                      class="material-icons">edit</i>Restaurar
                   </button>&nbsp;
-                  <button (click)="restauraVehiculo(v)">Restuara</button>
                   <button type="button" class="btn btn-outline-danger" onclick="('modal-dialog')" data-toggle="modal"
                     data-target="#modal-eliminar-vehiculo">
                     <i class="material-icons">delete</i>Borrar
@@ -80,7 +79,7 @@
         <div class="modal-dialog modal-lg" id="modal-eliminar-vehiculo" role="document">
           <div class="modal-content">
             <div class="modal-body">
-              ¿Desea eliminar el Vehiculo?
+              ¿Desea eliminar definitivamente el Vehiculo?
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" data-dismiss="modal"
