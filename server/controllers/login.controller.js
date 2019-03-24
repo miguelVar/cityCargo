@@ -1,8 +1,10 @@
 const loginCtrl = {}
 
 var express = require('express');
-var ibmdb = require("ibm_db")
-let connStr = require("../config/database")
+// var ibmdb = require("ibm_db")
+// let connStr = require("../config/database")
+const dbconnection = require('../config/dbmysql');
+const connection = dbconnection();
 var router = express.Router();
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
@@ -12,23 +14,33 @@ var config = require('../models/config');
 // Metodo encargado de listar todos los usuarios
 loginCtrl.obtenerUsuarios = (req, res) => {
 
-  console.log(req.info);
+  var query = `SELECT * FROM Usuario`;
 
-  ibmdb.open(connStr, (err, conn) => {
+  connection.connect();
 
-    conn.query("SELECT * FROM Usuario", (err, data) => {
-      if (err) {
-        res.json({ error: err })
-        console.log("Hubo un error en la busqueda" + err);
-      }
-      else {
-        conn.close(() => {
-          console.log("Se ha cerrado la base de datos")
-        })
-        res.json({ data: data })
-      }
-    })
-  })
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({errorinfo:error});
+        else res.json(results);
+        connection.end(function(){
+            console.log('Lista Usuarios ok');
+        });
+    });
+
+  // ibmdb.open(connStr, (err, conn) => {
+
+  //   conn.query("SELECT * FROM Usuario", (err, data) => {
+  //     if (err) {
+  //       res.json({ error: err })
+  //       console.log("Hubo un error en la busqueda" + err);
+  //     }
+  //     else {
+  //       conn.close(() => {
+  //         console.log("Se ha cerrado la base de datos")
+  //       })
+  //       res.json({ data: data })
+  //     }
+  //   })
+  // })
 }
 
 loginCtrl.logout = (req, res)=>{
