@@ -4,14 +4,14 @@ export class Tipovehiculo {
 
         this.idTipoVehiculo = idTipoVehiculo;
         this.nombreTipo = nombreTipo;
-        this.descipcionTipo = descripcionTipo;
+        this.descripcionTipo = descripcionTipo;
         this.estadoEliminado = estadoEliminado;
 
     }
 
     idTipoVehiculo: number;
     nombreTipo: string;
-    descipcionTipo: string;
+    descripcionTipo: string;
     estadoEliminado: boolean;
 
 }

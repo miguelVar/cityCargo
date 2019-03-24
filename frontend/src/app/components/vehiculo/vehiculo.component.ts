@@ -57,6 +57,22 @@ export class VehiculoComponent implements OnInit {
     }
   }
 
+  editTipoVehiculo(tipovehiculo: Tipovehiculo) {
+    this.tipoVehiculoService.selectedTipoVehiculo = tipovehiculo;
+  }
+
+  eliminaTipoVehiculo(tipoVehiculo: Tipovehiculo) {
+    this.deleteTipoVehiculo(tipoVehiculo);
+  }
+
+  getTipoVehiculo1(tipoVehiculo: Tipovehiculo) {
+    this.tipoVehiculoService.selectedTipoVehiculo = tipoVehiculo;
+  }
+
+  deleteTipoVehiculo(tipoVehiculo: Tipovehiculo) {
+    this.tipoVehiculoService.deleteTipoVehiculo(tipoVehiculo)
+  }
+
   resertForm(form?: NgForm) {
     if (form)
       form.reset();

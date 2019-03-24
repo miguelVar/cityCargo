@@ -121,9 +121,8 @@
                 <div class="row">
                   <div class="input-field col-12">
                     <label><Strong><label id="lbl">*</label>Nombre Tipo de vehiculo</Strong></label>
-                    <input class="form-control" id="input" type="text" name="nombreTipo"
-                      placeholder="Ingrese el nombre" #name="ngModel"
-                      [(ngModel)]="tipoVehiculoService.selectedTipoVehiculo.nombreTipo" required>
+                    <input class="form-control" id="input" type="text" name="nombreTipo" placeholder="Ingrese el nombre"
+                      #name="ngModel" [(ngModel)]="tipoVehiculoService.selectedTipoVehiculo.nombreTipo" required>
                   </div>
                   <div class="input-field col-12">
                     <label><Strong>Descripción del vehículo</Strong></label>
@@ -136,7 +135,8 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-outline-success" (click)="addTipoVehiculo(tipovehiculoForm)">Guardar</button>
+              <button type="button" class="btn btn-outline-success"
+                (click)="addTipoVehiculo(tipovehiculoForm)">Guardar</button>
             </div>
           </div>
         </div>
@@ -183,16 +183,18 @@
                     <h4 id="tituloCard">{{t.nombreTipo}}</h4>
                   </div>
                   <div class="card-body text-dark">
-                    <h5 class="card-title"><strong>ID:</strong> {{t.nombreTipo}}</h5>
+                    <h5 class="card-title"><strong>ID:</strong> {{t.idTipoVehiculo}}</h5>
+                    <p class="card-text"><strong>Nombre:</strong> {{t.nombreTipo}} </p>
                     <p class="card-text"><strong>Descripción:</strong> {{t.descripcionTipo}} </p>
                     <br>
                   </div>
                   <div class="input-field col-12">
                     <div class="card-footer bg-transparent border-dark">
-                      <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ex">
+                      <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ex"
+                        (click)="editTipoVehiculo(t)">
                         <i class="material-icons">edit</i>Editar
                       </button>&nbsp;
-                      <button type="button" class="btn btn-outline-danger" onclick="('modal-dialog')"
+                      <button type="button" class="btn btn-outline-danger" (click)="getTipoVehiculo1(t)" onclick="('modal-dialog')"
                         data-toggle="modal" data-target="#modal-eliminar">
                         <i class="material-icons">delete</i>Borrar
                       </button>
@@ -204,32 +206,29 @@
                       <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel"><Strong>Editar Cliente</Strong></h5>
+                            <h5 class="modal-title" id="exampleModalLabel"><Strong>Editar Tipo de Vehiculo</Strong></h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-label="true">&times;</span>
                             </button>
                           </div>
                           <div class="modal-body">
-                            <form #clientForm="ngForm">
-                              <input class="form-control" id="input" type="hidden" name="ID_CLIENTE">
+                            <form #tipoVehiculoForm="ngForm">
+                              <input class="form-control" id="input" type="hidden" name="idTipoVehiculo"
+                                #idTipoVehiculo="ngModel"
+                                [(ngModel)]="tipoVehiculoService.selectedTipoVehiculo.idTipoVehiculo">
                               <div class="row">
                                 <div class="input-field col-12">
-                                  <label><Strong>Nombre del Cliente</Strong></label>
-                                  <input class="form-control" id="input" type="text" name="nombre_cliente"
+                                  <label><Strong>Nombre del Tipo de Vehiculo</Strong></label>
+                                  <input class="form-control" id="input" type="text" name="nombreTipo" #name="ngModel"
+                                    [(ngModel)]="tipoVehiculoService.selectedTipoVehiculo.nombreTipo"
                                     placeholder="Ingrese el nombre" required>
                                 </div>
                                 <div class="input-field col-12">
-                                  <label><Strong>Descripción del Cliente</Strong></label>
-                                  <textarea class="form-control" id="textarea" type="text" name="descripcion_cliente"
-                                    placeholder="Ingrese la descripción" required></textarea>
-                                </div>
-                                <div class="input-field col-12">
-                                  <label><Strong>Seleccione el usuario</Strong></label>
-                                  <select id="select" class="form-control" name="usuario_id_usuario" required>
-                                    <option value="" disabled>Seleccione el Usuario</option>
-                                    <option value="">
-                                    </option>
-                                  </select>
+                                  <label><Strong>Descripción del Tipo de Vehiculo</Strong></label>
+                                  <textarea class="form-control" id="textarea" type="text" name="descripcionTipo"
+                                    #name="ngModel"
+                                    [(ngModel)]="tipoVehiculoService.selectedTipoVehiculo.descripcionTipo"
+                                    placeholder="Ingrese la descripción"></textarea>
                                 </div>
                               </div>
                             </form>
@@ -237,8 +236,9 @@
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-                            <button [disabled]="!clientForm.valid" type="button" class="btn btn-outline-success"
-                              data-dismiss="modal">Guardar cambios</button>
+                            <button type="button" class="btn btn-outline-success" data-dismiss="modal"
+                              (click)="addTipoVehiculo(tipoVehiculoForm)">Guardar
+                              cambios</button>
                           </div>
                           <!------------------------------------->
                         </div>
@@ -257,10 +257,11 @@
             <div class="modal-dialog modal-lg" id="modal-eliminar" role="document">
               <div class="modal-content">
                 <div class="modal-body">
-                  ¿Desea eliminar el cliente?
+                  ¿Desea eliminar el Tipo de Vehiculo?
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" data-dismiss="modal">Eliminar</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    (click)="eliminaTipoVehiculo(tipoVehiculoService.selectedTipoVehiculo)">Eliminar</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>
               </div>

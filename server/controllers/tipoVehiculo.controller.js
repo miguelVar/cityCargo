@@ -94,6 +94,8 @@ tipoVehiculoCtrl.updateTipoVehiculo = (req, res) => {
 //Método para eliminar tipo vehiculo
 tipoVehiculoCtrl.deleteTipoVehiculo = (req, res) => {
 
+    console.log("entro eliminar en el back");
+
     let idTipoVehiculo = req.params.idTipoVehiculo;
 
     var query = `DELETE FROM TipoVehiculo WHERE idTipoVehiculo = '${idTipoVehiculo}'`;
