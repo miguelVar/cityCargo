@@ -1,17 +1,4 @@
--- MySQL Workbench Forward Engineering
-
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-
--- -----------------------------------------------------
--- Schema DBgestorCityCargo
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema DBgestorCityCargo
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `DBgestorCityCargo` DEFAULT CHARACTER SET utf8 ;
+CREATE DATABASE IF NOT EXISTS `DBgestorCityCargo` DEFAULT CHARACTER SET utf8 ;
 USE `DBgestorCityCargo` ;
 
 -- -----------------------------------------------------
@@ -24,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `DBgestorCityCargo`.`Cliente` (
   `direccionCliente` VARCHAR(45) NULL,
   `estadoEliminado` TINYINT NULL,
   PRIMARY KEY (`idCliente`),
-  UNIQUE INDEX `celular_UNIQUE` (`celularCliente` ASC) VISIBLE)
+  UNIQUE INDEX `celular_UNIQUE` (`celularCliente` ASC))
 ENGINE = InnoDB;
 
 
@@ -50,8 +37,8 @@ CREATE TABLE IF NOT EXISTS `DBgestorCityCargo`.`Vehiculo` (
   `TipoVehiculo_idTipoVehiculo` INT NOT NULL,
   `estadoEliminado` TINYINT NULL,
   PRIMARY KEY (`idVehiculo`),
-  UNIQUE INDEX `placa_UNIQUE` (`placaVehiculo` ASC) VISIBLE,
-  INDEX `fk_Vehiculo_TipoVehiculo1_idx` (`TipoVehiculo_idTipoVehiculo` ASC) VISIBLE,
+  UNIQUE INDEX `placa_UNIQUE` (`placaVehiculo` ASC),
+  INDEX `fk_Vehiculo_TipoVehiculo1_idx` (`TipoVehiculo_idTipoVehiculo` ASC),
   CONSTRAINT `fk_Vehiculo_TipoVehiculo1`
     FOREIGN KEY (`TipoVehiculo_idTipoVehiculo`)
     REFERENCES `DBgestorCityCargo`.`TipoVehiculo` (`idTipoVehiculo`)
@@ -79,8 +66,8 @@ CREATE TABLE IF NOT EXISTS `DBgestorCityCargo`.`Orden` (
   `descripcionOrden` VARCHAR(600) NULL,
   `Estado_idEstadoOrden` INT NOT NULL,
   PRIMARY KEY (`idOrden`),
-  UNIQUE INDEX `numeroOrden_UNIQUE` (`numeroOrden` ASC) VISIBLE,
-  INDEX `fk_Orden_Estado1_idx` (`Estado_idEstadoOrden` ASC) VISIBLE,
+  UNIQUE INDEX `numeroOrden_UNIQUE` (`numeroOrden` ASC),
+  INDEX `fk_Orden_Estado1_idx` (`Estado_idEstadoOrden` ASC),
   CONSTRAINT `fk_Orden_Estado1`
     FOREIGN KEY (`Estado_idEstadoOrden`)
     REFERENCES `DBgestorCityCargo`.`Estado` (`idEstadoOrden`)
@@ -95,7 +82,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `DBgestorCityCargo`.`Servicio` (
   `idServicio` INT NOT NULL AUTO_INCREMENT,
   `nombreServicio` VARCHAR(50) NOT NULL,
-  `descripcionServicio` VARCHAR(600) NULL,
+  `descripciónServicio` VARCHAR(600) NULL,
   `valorServicio` FLOAT NOT NULL,
   `horaInicioServicio` TIME NOT NULL,
   `horaFinServicio` VARCHAR(45) NOT NULL,
@@ -112,10 +99,10 @@ CREATE TABLE IF NOT EXISTS `DBgestorCityCargo`.`Servicio` (
   `Orden_idOrden` INT NOT NULL,
   `Estado_idEstadoOrden` INT NOT NULL,
   PRIMARY KEY (`idServicio`),
-  INDEX `fk_Servicio_Cliente1_idx` (`Cliente_idCliente` ASC) VISIBLE,
-  INDEX `fk_Servicio_Vehiculo1_idx` (`Vehiculo_idVehiculo` ASC) VISIBLE,
-  INDEX `fk_Servicio_Orden1_idx` (`Orden_idOrden` ASC) VISIBLE,
-  INDEX `fk_Servicio_Estado1_idx` (`Estado_idEstadoOrden` ASC) VISIBLE,
+  INDEX `fk_Servicio_Cliente1_idx` (`Cliente_idCliente` ASC),
+  INDEX `fk_Servicio_Vehiculo1_idx` (`Vehiculo_idVehiculo` ASC),
+  INDEX `fk_Servicio_Orden1_idx` (`Orden_idOrden` ASC),
+  INDEX `fk_Servicio_Estado1_idx` (`Estado_idEstadoOrden` ASC),
   CONSTRAINT `fk_Servicio_Cliente1`
     FOREIGN KEY (`Cliente_idCliente`)
     REFERENCES `DBgestorCityCargo`.`Cliente` (`idCliente`)
@@ -148,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `DBgestorCityCargo`.`ElementosTransporte` (
   `cantidadElemento` INT NOT NULL,
   `Servicio_idServicio` INT NOT NULL,
   PRIMARY KEY (`idElementosTransporte`),
-  INDEX `fk_ElementosTransporte_Servicio1_idx` (`Servicio_idServicio` ASC) VISIBLE,
+  INDEX `fk_ElementosTransporte_Servicio1_idx` (`Servicio_idServicio` ASC),
   CONSTRAINT `fk_ElementosTransporte_Servicio1`
     FOREIGN KEY (`Servicio_idServicio`)
     REFERENCES `DBgestorCityCargo`.`Servicio` (`idServicio`)
@@ -165,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `DBgestorCityCargo`.`Conductor` (
   `nombreConductor` VARCHAR(45) NOT NULL,
   `celularConductor` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`idConductor`),
-  UNIQUE INDEX `celularConductor_UNIQUE` (`celularConductor` ASC) VISIBLE)
+  UNIQUE INDEX `celularConductor_UNIQUE` (`celularConductor` ASC))
 ENGINE = InnoDB;
 
 
@@ -189,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `DBgestorCityCargo`.`Usuario` (
   `correo` VARCHAR(200) NOT NULL,
   `password` VARCHAR(200) NOT NULL,
   PRIMARY KEY (`idUsuario`),
-  UNIQUE INDEX `correo_UNIQUE` (`correo` ASC) VISIBLE)
+  UNIQUE INDEX `correo_UNIQUE` (`correo` ASC))
 ENGINE = InnoDB;
 
 
@@ -201,8 +188,8 @@ CREATE TABLE IF NOT EXISTS `DBgestorCityCargo`.`Vehiculo_has_Conductor` (
   `Conductor_idConductor` INT NOT NULL,
   `fecha` DATE NOT NULL,
   PRIMARY KEY (`Vehiculo_idVehiculo`, `Conductor_idConductor`),
-  INDEX `fk_Vehiculo_has_Conductor_Conductor1_idx` (`Conductor_idConductor` ASC) VISIBLE,
-  INDEX `fk_Vehiculo_has_Conductor_Vehiculo1_idx` (`Vehiculo_idVehiculo` ASC) VISIBLE,
+  INDEX `fk_Vehiculo_has_Conductor_Conductor1_idx` (`Conductor_idConductor` ASC),
+  INDEX `fk_Vehiculo_has_Conductor_Vehiculo1_idx` (`Vehiculo_idVehiculo` ASC),
   CONSTRAINT `fk_Vehiculo_has_Conductor_Vehiculo1`
     FOREIGN KEY (`Vehiculo_idVehiculo`)
     REFERENCES `DBgestorCityCargo`.`Vehiculo` (`idVehiculo`)
@@ -223,8 +210,8 @@ CREATE TABLE IF NOT EXISTS `DBgestorCityCargo`.`Rol_has_Usuario` (
   `Rol_idRol` INT NOT NULL,
   `Usuario_idUsuario` INT NOT NULL,
   PRIMARY KEY (`Rol_idRol`, `Usuario_idUsuario`),
-  INDEX `fk_Rol_has_Usuario_Usuario1_idx` (`Usuario_idUsuario` ASC) VISIBLE,
-  INDEX `fk_Rol_has_Usuario_Rol1_idx` (`Rol_idRol` ASC) VISIBLE,
+  INDEX `fk_Rol_has_Usuario_Usuario1_idx` (`Usuario_idUsuario` ASC),
+  INDEX `fk_Rol_has_Usuario_Rol1_idx` (`Rol_idRol` ASC),
   CONSTRAINT `fk_Rol_has_Usuario_Rol1`
     FOREIGN KEY (`Rol_idRol`)
     REFERENCES `DBgestorCityCargo`.`Rol` (`idRol`)
@@ -236,8 +223,3 @@ CREATE TABLE IF NOT EXISTS `DBgestorCityCargo`.`Rol_has_Usuario` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
