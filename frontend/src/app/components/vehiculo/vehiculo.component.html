@@ -41,22 +41,28 @@
               </button>
             </div>
             <div class="modal-body">
-              <form #clientForm="ngForm">
+              <form #vehiculoForm="ngForm">
                 <div class="row">
                   <div class="input-field col-12">
                     <label><Strong><label id="lbl">*</label>Número de placa</Strong></label>
-                    <input class="form-control" id="input" type="text" name="placaVehiculo"
-                      placeholder="Ingrese el nombre" required>
+                    <input class="form-control" id="input" type="text" name="placaVehiculo" #name="ngModel"
+                      [(ngModel)]="vehiculoService.selectedVehiculo.placaVehiculo" placeholder="Ingrese el nombre"
+                      required>
                   </div>
                   <div class="input-field col-12">
                     <label><Strong>Descripción del vehículo</Strong></label>
-                    <textarea class="form-control" id="textarea" type="text" name="descripcionVehiculo"
+                    <textarea class="form-control" id="textarea" type="text" name="descripcionVehiculo" #name="ngModel"
+                      [(ngModel)]="vehiculoService.selectedVehiculo.descripcionVehiculo"
                       placeholder="Ingrese el número"></textarea>
                   </div>
                   <div class="input-field col-12">
                     <label><Strong><label id="lbl">*</label>Tipo de vehículo</Strong></label>
-                    <select id="select" class="form-control" name="TipoVehiculo_idTipoVehiculo">
+                    <select id="select" class="form-control" name="TipoVehiculo_idTipoVehiculo" #name="ngModel"
+                      [(ngModel)]="tipoVehiculoService.selectedTipoVehiculo.idTipoVehiculo">
                       <option value="" disabled>Seleccione el tipo</option>
+                      <option *ngFor="let tv of tipoVehiculoService.tipovehiculo" value="{{tv.idTipoVehiculo}}">
+                        {{tv.nombreTipo}}
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -64,7 +70,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-              <button [disabled]="!clientForm.valid" type="button" class="btn btn-outline-success">Guardar</button>
+              <button type="button" class="btn btn-outline-success" (click)="addVehiculo(vehiculoForm)">Guardar</button>
             </div>
           </div>
         </div>
@@ -140,7 +146,7 @@
                             </button>
                           </div>
                           <div class="modal-body">
-                            <form #tipoVehiculoForm="ngForm">
+                            <form #vehiculoForm="ngForm">
                               <input class="form-control" id="input" type="text" name="idVehiculo"
                                 #idTipoVehiculo="ngModel" [(ngModel)]="vehiculoService.selectedVehiculo.idVehiculo">
                               <div class="row">
@@ -156,6 +162,18 @@
                                     #name="ngModel" [(ngModel)]="vehiculoService.selectedVehiculo.descripcionVehiculo"
                                     placeholder="Ingrese la descripción"></textarea>
                                 </div>
+                                <div class="input-field col-12">
+                                  <label><Strong><label id="lbl">*</label>Tipo de vehículo</Strong></label>
+                                  <select id="select" class="form-control" name="TipoVehiculo_idTipoVehiculo"
+                                    #name="ngModel"
+                                    [(ngModel)]="tipoVehiculoService.selectedTipoVehiculo.idTipoVehiculo">
+                                    <option value="" disabled>Seleccione el tipo</option>
+                                    <option *ngFor="let tv of tipoVehiculoService.tipovehiculo"
+                                      value="{{tv.idTipoVehiculo}}">
+                                      {{tv.nombreTipo}}
+                                    </option>
+                                  </select>
+                                </div>
                               </div>
                             </form>
                             <!---------------------------------->
@@ -163,7 +181,7 @@
                           <div class="modal-footer">
                             <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
                             <button type="button" class="btn btn-outline-success" data-dismiss="modal"
-                              (click)="addTipoVehiculo(tipoVehiculoForm)">Guardar
+                              (click)="addVehiculo(vehiculoForm)">Guardar
                               cambios</button>
                           </div>
                           <!------------------------------------->

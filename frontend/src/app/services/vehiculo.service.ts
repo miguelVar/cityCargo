@@ -12,11 +12,20 @@ export class VehiculoService {
 
   readonly URL_API = 'http://localhost:3000/api/vehiculo';
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.selectedVehiculo = new Vehiculo();
   }
 
   getVehiculos() {
     return this.http.get(this.URL_API);
+  }
+
+  postVehiculo(vehiculo: Vehiculo) {
+    return this.http.post(this.URL_API, vehiculo);
+  }
+
+  putVehiculo(vehiculo: Vehiculo) {
+    console.log("id actualizar" + vehiculo.idVehiculo);
+    return this.http.put(this.URL_API + `/${vehiculo.idVehiculo}`, vehiculo);
   }
 }

@@ -36,4 +36,5 @@ export class TipovehiculoService {
     console.log("id actualizar " + tipovehiculo.idTipoVehiculo);
     return this.http.put(this.URL_API + `/${tipovehiculo.idTipoVehiculo}`, tipovehiculo);
   }
+  
 }
