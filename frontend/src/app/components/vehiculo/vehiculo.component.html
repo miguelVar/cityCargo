@@ -117,24 +117,26 @@
               </button>
             </div>
             <div class="modal-body">
-              <form #clientForm="ngForm">
+              <form #tipovehiculoForm="ngForm">
                 <div class="row">
                   <div class="input-field col-12">
                     <label><Strong><label id="lbl">*</label>Nombre Tipo de vehiculo</Strong></label>
-                    <input class="form-control" id="input" type="text" name="NOMBRE_TIPO"
-                      placeholder="Ingrese el nombre" required>
+                    <input class="form-control" id="input" type="text" name="nombreTipo"
+                      placeholder="Ingrese el nombre" #name="ngModel"
+                      [(ngModel)]="tipoVehiculoService.selectedTipoVehiculo.nombreTipo" required>
                   </div>
                   <div class="input-field col-12">
                     <label><Strong>Descripción del vehículo</Strong></label>
-                    <textarea class="form-control" id="textarea" type="text" name="DESCRIPCION_TIPO"
-                      placeholder="Ingrese la descripción"></textarea>
+                    <textarea class="form-control" id="textarea" type="text" name="descripcionTipo"
+                      placeholder="Ingrese la descripción" #name="ngModel"
+                      [(ngModel)]="tipoVehiculoService.selectedTipoVehiculo.descipcionTipo"></textarea>
                   </div>
                 </div>
               </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-              <button [disabled]="!clientForm.valid" type="button" class="btn btn-outline-success">Guardar</button>
+              <button type="button" class="btn btn-outline-success" (click)="addTipoVehiculo(tipovehiculoForm)">Guardar</button>
             </div>
           </div>
         </div>
@@ -182,7 +184,7 @@
                   </div>
                   <div class="card-body text-dark">
                     <h5 class="card-title"><strong>ID:</strong> {{t.nombreTipo}}</h5>
-                    <p class="card-text"> {{t.descipcionTipo}} </p>
+                    <p class="card-text"><strong>Descripción:</strong> {{t.descripcionTipo}} </p>
                     <br>
                   </div>
                   <div class="input-field col-12">

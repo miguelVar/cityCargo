@@ -19,4 +19,13 @@ export class TipovehiculoService {
    getTipoVehiculos(){
      return this.http.get(this.URL_API);
    }
+
+   postTipoVehiculo(Tipovehiculo:Tipovehiculo){
+     return this.http.post(this.URL_API, Tipovehiculo);
+   }
+
+   putTipoVehiculo(tipovehiculo:Tipovehiculo){
+     console.log("id actualizar " + tipovehiculo.idTipoVehiculo);
+     return this.http.put(this.URL_API + `/${tipovehiculo.idTipoVehiculo}`, tipovehiculo);
+   }
 }
