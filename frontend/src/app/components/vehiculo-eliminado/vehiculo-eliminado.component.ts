@@ -26,10 +26,14 @@ export class VehiculoEliminadoComponent implements OnInit {
       })
   }
 
-  restauraVehiculo(vehiculo:Vehiculo){
+  getVehiculoEliminado1(vehiculo: Vehiculo) {
+    this.vehiculoService.selectedVehiculo = vehiculo;
+  }
+
+  restauraVehiculo(vehiculo: Vehiculo) {
     console.log('dddddddddddddddddd', vehiculo);
     this.vehiculoService.restauraVehiculoEliminado(vehiculo)
-      .subscribe(res=>{
+      .subscribe(res => {
         M.toast({
           html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
                 <h4 class="alert-heading">ÉXITO!!!</h4>
@@ -40,6 +44,23 @@ export class VehiculoEliminadoComponent implements OnInit {
       })
 
   }
-  
+
+  eliminaVehiculoFisico(vehiculo: Vehiculo) {
+    this.deleteVehiculoFisico(vehiculo);
+  }
+
+  deleteVehiculoFisico(vehiculo: Vehiculo) {
+    this.vehiculoService.deleteFisicoVehiculo(vehiculo)
+      .subscribe(res => {
+        M.toast({
+          html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                <h4 class="alert-heading">VEHICULO ELIMINADO!!!</h4>
+                <p>El vehiculo ha sido eliminado satisfactoriamente</p>
+                <hr>
+            </div>`});
+        this.getVehiculoEliminado();
+      });
+  }
+
 
 }

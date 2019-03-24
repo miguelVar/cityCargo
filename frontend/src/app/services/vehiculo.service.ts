@@ -21,11 +21,11 @@ export class VehiculoService {
   }
 
   getVehiculosEliminados() {
-    return this.http.get(this.URL_API+`/getVehiculosEliminados`);
+    return this.http.get(this.URL_API + `/getVehiculosEliminados`);
   }
 
-  restauraVehiculoEliminado(vehiculo: Vehiculo){
-    return this.http.put(this.URL_API + `/restauralogicovehiculo`+`/${vehiculo.idVehiculo}` ,vehiculo);
+  restauraVehiculoEliminado(vehiculo: Vehiculo) {
+    return this.http.put(this.URL_API + `/restauralogicovehiculo` + `/${vehiculo.idVehiculo}`, vehiculo);
   }
 
   postVehiculo(vehiculo: Vehiculo) {
@@ -40,6 +40,11 @@ export class VehiculoService {
   deleteVehiculo(vehiculo: Vehiculo) {
     console.log("id a eliminar " + vehiculo.idVehiculo);
     return this.http.put(this.URL_API + '/deletelogicovehiculo/' + `${vehiculo.idVehiculo}`, vehiculo);
+  }
+
+  deleteFisicoVehiculo(vehiculo: Vehiculo) {
+    console.log("id a eliminar " + vehiculo.idVehiculo);
+    return this.http.delete(this.URL_API + ''+ `/${vehiculo.idVehiculo}`)
   }
 
 }

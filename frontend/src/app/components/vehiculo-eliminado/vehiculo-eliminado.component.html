@@ -60,7 +60,7 @@
                   <button class="btn btn-outline-primary" (click)="restauraVehiculo(v)"><i
                       class="material-icons">edit</i>Restaurar
                   </button>&nbsp;
-                  <button type="button" class="btn btn-outline-danger" onclick="('modal-dialog')" data-toggle="modal"
+                  <button type="button" class="btn btn-outline-danger" (click)="getVehiculoEliminado1(v)" onclick="('modal-dialog')" data-toggle="modal"
                     data-target="#modal-eliminar-vehiculo">
                     <i class="material-icons">delete</i>Borrar
                   </button>
@@ -83,7 +83,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" data-dismiss="modal"
-                (click)="eliminaVehiculo(vehiculoService.selectedVehiculo)">Eliminar</button>
+                (click)="eliminaVehiculoFisico(vehiculoService.selectedVehiculo)">Eliminar</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             </div>
           </div>
