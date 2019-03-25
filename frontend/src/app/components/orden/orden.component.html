@@ -65,17 +65,6 @@
                 <textarea class="form-control" id="textarea" type="text" name="descripcionOrden" #name="ngModel"
                   [(ngModel)]="descripcionOrden" placeholder="Ingrese la descripción de la orden"></textarea>
               </div>
-              <div class="input-field col-12">
-                <label><Strong><label id="lbl">*</label>Estado de la orden</Strong></label>
-                <select id="select" class="form-control" name="idEstadoOrden" #name="ngModel"
-                  [(ngModel)]="estadoOrdenService.selectedEstadoOrden.idEstadoOrden">
-                  <option value="" disabled>Seleccione el tipo</option>
-                  <option *ngFor="let eo of estadoOrdenService.selectedEstadoOrden.idEstadoOrden"
-                    value="{{eo.idEstadoOrden}}">
-                    {{eo.estado}}
-                  </option>
-                </select>
-              </div>
             </div>
           </form>
         </div>
