@@ -15,7 +15,7 @@
 
 <div class="container">
 
-  <!--------------------------------INICIO MODAL AGREGAR CLIENTE----------------------------->
+  <!--------------------------------INICIO MODAL AGREGAR SERVICIO----------------------------->
   <!-- Modal -->
   <div class="modal fade" id="addcl" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -30,19 +30,65 @@
           <form #clientForm="ngForm">
             <div class="row">
               <div class="input-field col-12">
-                <label><Strong><label id="lbl">*</label>Nombre del cliente</Strong></label>
+                <label><Strong><label id="lbl">*</label>Nombre del Servicio</Strong></label>
                 <input class="form-control" id="input" type="text" name="NOMBRE_CLIENTE" placeholder="Ingrese el nombre"
                   required>
               </div>
               <div class="input-field col-12">
-                <label><Strong>Número celular del cliente</Strong></label>
+                <label><Strong>Descripción del Servicio</Strong></label>
                 <input class="form-control" id="input" type="text" name="NUMERO_CLIENTE"
                   placeholder="Ingrese el número">
               </div>
               <div class="input-field col-12">
-                <label><Strong>Dirección del cliente</Strong></label>
-                <input class="form-control" id="input" type="text" name="DIRECCION_CLIENTE"
+                <label><Strong>Valor del Servicio</Strong></label>
+                <input class="form-control" id="input" type="number" name="DIRECCION_CLIENTE"
                   placeholder="Ingrese la dirección">
+              </div>
+              <div class="input-field col-12">
+                  <label><Strong>Hora Inicio del Servicio</Strong></label>
+                  <input class="form-control" id="input" type="time" name="DIRECCION_CLIENTE"
+                    placeholder="Ingrese la dirección">
+              </div>
+              <div class="input-field col-12">
+                  <label><Strong>Hora fin del Servicio</Strong></label>
+                  <input class="form-control" id="input" type="time" name="DIRECCION_CLIENTE"
+                    placeholder="Ingrese la dirección">
+              </div>
+              <div class="input-field col-12">
+                  <label><Strong>Fecha Inicio del Servicio</Strong></label>
+                  <input class="form-control" id="input" type="date" name="DIRECCION_CLIENTE"
+                    placeholder="Ingrese la dirección">
+              </div>
+              <div class="input-field col-12">
+                  <label><Strong>Fecha Fin del Servicio</Strong></label>
+                  <input class="form-control" id="input" type="date" name="DIRECCION_CLIENTE"
+                    placeholder="Ingrese la dirección">
+              </div>
+              <div class="input-field col-12">
+                  <label><Strong>Observación del Servicio</Strong></label>
+                  <input class="form-control" id="input" type="text" name="DIRECCION_CLIENTE"
+                    placeholder="Ingrese la dirección">
+              </div>
+              <div class="input-field col-12">
+                  <label><Strong>Ciudad Origen</Strong></label>
+                  <input class="form-control" id="input" type="text" name="DIRECCION_CLIENTE"
+                    placeholder="Ingrese la dirección">
+              </div>
+              <div class="input-field col-12">
+                  <label><Strong>Ciudad Destino</Strong></label>
+                  <input class="form-control" id="input" type="text" name="DIRECCION_CLIENTE"
+                    placeholder="Ingrese la dirección">
+              </div>
+              <div class="input-field col-12">
+                  <label><Strong>Dirección Origen del Servicio</Strong></label>
+                  <input class="form-control" id="input" type="text" name="DIRECCION_CLIENTE"
+                    placeholder="Ingrese la dirección">
+              </div>
+
+              <div class="input-field col-12">
+                  <label><Strong>Dirección Destino del Servicio</Strong></label>
+                  <input class="form-control" id="input" type="text" name="DIRECCION_CLIENTE"
+                    placeholder="Ingrese la dirección">
               </div>
             </div>
           </form>
@@ -83,4 +129,164 @@
     <br>
   </div>
 
+
+  <!-- ------ -->
+
+   <!--------------------------------INICIO MODAL AGREGAR CLIENTE----------------------------->
+  <!-- Modal -->
+  <div class="modal fade" id="addcl" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-success">
+          <div class="modal-header">
+            <h5 id="titulomodal" class="modal-title" id="exampleModalLabel"><Strong>Agregar Cliente</Strong></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form #clientForm="ngForm">
+              <div class="row">
+                <div class="input-field col-12">
+                  <label><Strong><label id="lbl">*</label>Nombre del cliente</Strong></label>
+                  <input class="form-control" id="input" type="text" name="nombreCliente" #name="ngModel"
+                    [(ngModel)]="nombreCliente" placeholder="Ingrese el nombre" required>
+                </div>
+                <div class="input-field col-12">
+                  <label><Strong>Número celular del cliente</Strong></label>
+                  <input class="form-control" id="input" type="number" name="celularCliente" #name="ngModel"
+                    [(ngModel)]="celularCliente" placeholder="Ingrese el número">
+                </div>
+                <div class="input-field col-12">
+                  <label><Strong>Dirección del cliente</Strong></label>
+                  <input class="form-control" id="input" type="text" name="direccionCliente" #name="ngModel"
+                    [(ngModel)]="direccionCliente" placeholder="Ingrese la dirección">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+            <button [disabled]="!clientForm.valid" type="button" class="btn btn-outline-success"
+              (click)="addClient(clientForm)">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--------------------------------FIN MODAL AGREGAR CLIENTE--------------------------------->
+  
+    <!------------------------------------------------------------------------------->
+  
+    <div class="col-12">
+      <!--Inicio Card-->
+      <div class="card-group">
+        <div class="container">
+          <div class="row">
+            <div *ngFor="let c of serviceCity.services" class="col-sm-12 col-md-6 col-lg-4">
+              <div class="card border-dark">
+                <div class="card-header border-dark">
+                  <h4 id="tituloCard">{{c.nombreServicio}}</h4>
+                </div>
+                <div class="card-body text-dark">
+                  <h5 class="card-title"><strong>Id Cliente:</strong>{{c.ciudadOrigen}}</h5>
+                  <!-- <p class="card-text"><strong>Celular Cliente:</strong>{{c.celularCliente}}</p>
+                  <p class="card-text"><strong>Dirección Cliente:</strong>{{c.direccionCliente}} </p> -->
+                  <br>
+                </div>
+                <div class="input-field col-12">
+                  <div class="card-footer bg-transparent border-dark">
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ex2" (click)="editClient(c)">
+                      <i class="material-icons">edit</i>Editar
+                    </button>&nbsp;
+                    <button type="button" class="btn btn-outline-danger" onclick="('modal-dialog')" data-toggle="modal"
+                      data-target="#modal-eliminar-vehiculo" (click)="clientDeleteLogicData(c)">
+                      <i class="material-icons">delete</i>Borrar
+                    </button>
+                  </div>
+                  <!---->
+                  <!-------------------------->
+                  <div class="modal fade" id="ex2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel"><Strong>Editar Cliente</Strong></h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-label="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form #clientEditForm="ngForm">
+                            <input hidden class="form-control" id="input" type="text" name="idCliente" #name="ngModel" [(ngModel)]="clientService.selectedClient.idCliente">
+                            <!-- <div class="row">
+                              <div class="input-field col-12">
+                                <label><Strong>Placa del Vehiculo</Strong></label>
+                                <input class="form-control" id="input" type="text" name="placaVehiculo"
+                                  placeholder="Ingrese la placa" required>
+                              </div>
+                            </div> -->
+  
+                            <div class="input-field col-12">
+                                <label><Strong>Nombre del cliente</Strong></label>
+                                <input class="form-control" id="input" type="text" name="nombreCliente" #name="ngModel"
+                                  [(ngModel)]="clientService.selectedClient.nombreCliente" placeholder="Ingrese el nombre">
+                            </div>
+  
+  
+                            <div class="input-field col-12">
+                                <label><Strong>Celular del cliente</Strong></label>
+                                <input class="form-control" id="input" type="text" name="celularCliente" #name="ngModel"
+                                  [(ngModel)]="clientService.selectedClient.celularCliente" placeholder="Ingrese el celular">
+                            </div>
+  
+                            <div class="input-field col-12">
+                                <label><Strong>Dirección del cliente</Strong></label>
+                                <input class="form-control" id="input" type="text" name="direccionCliente" #name="ngModel"
+                                  [(ngModel)]="clientService.selectedClient.direccionCliente" placeholder="Ingrese la dirección">
+                            </div>
+                          </form>
+                          <!---------------------------------->
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                          <button type="button" class="btn btn-outline-success" data-dismiss="modal" (click)="addClient(clientEditForm)">Guardar
+                            cambios</button>
+                        </div>
+                        <!------------------------------------->
+                      </div>
+                    </div>
+                  </div>
+                  <!-------------------------->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!---->
+  
+        <div class="modal fade" id="modal-eliminar-vehiculo" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" id="modal-eliminar-vehiculo" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                ¿Desea eliminar el Cliente?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteLogicClient(clientService.selectedClient)">Eliminar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!--Fin Card-->
+      </div>
+      <div class="col">
+        <!---->
+      </div>
+    </div>
+
+
+
+
+  <!-- ----- -->
 </div>

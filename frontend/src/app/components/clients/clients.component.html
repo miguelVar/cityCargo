@@ -107,7 +107,7 @@
                     <i class="material-icons">edit</i>Editar
                   </button>&nbsp;
                   <button type="button" class="btn btn-outline-danger" onclick="('modal-dialog')" data-toggle="modal"
-                    data-target="#modal-eliminar-vehiculo">
+                    data-target="#modal-eliminar-vehiculo" (click)="clientDeleteLogicData(c)">
                     <i class="material-icons">delete</i>Borrar
                   </button>
                 </div>
@@ -124,7 +124,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form #tipoVehiculoForm="ngForm">
+                        <form #clientEditForm="ngForm">
                           <input hidden class="form-control" id="input" type="text" name="idCliente" #name="ngModel" [(ngModel)]="clientService.selectedClient.idCliente">
                           <!-- <div class="row">
                             <div class="input-field col-12">
@@ -137,7 +137,7 @@
                           <div class="input-field col-12">
                               <label><Strong>Nombre del cliente</Strong></label>
                               <input class="form-control" id="input" type="text" name="nombreCliente" #name="ngModel"
-                                [(ngModel)]="clientService.selectedClient.direccionCliente" placeholder="Ingrese el nombre">
+                                [(ngModel)]="clientService.selectedClient.nombreCliente" placeholder="Ingrese el nombre">
                           </div>
 
 
@@ -157,7 +157,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Guardar
+                        <button type="button" class="btn btn-outline-success" data-dismiss="modal" (click)="addClient(clientEditForm)">Guardar
                           cambios</button>
                       </div>
                       <!------------------------------------->
@@ -180,7 +180,7 @@
               ¿Desea eliminar el Cliente?
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Eliminar</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteLogicClient(clientService.selectedClient)">Eliminar</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             </div>
           </div>

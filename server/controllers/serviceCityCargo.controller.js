@@ -31,7 +31,7 @@ serviceCityCargo.createServiceCityCargo = (req, res) => {
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
-        else res.json(results);
+        else res.json({results:'Servicio agregado'});
         console.log('Done agrega servicio');
     });
 

@@ -10,6 +10,7 @@ import { OrdenComponent } from './components/orden/orden.component';
 import { ETransporteComponent } from './components/e-transporte/e-transporte.component';
 import { GuardService } from './services/guard.service';
 import { from } from 'rxjs';
+import { DeleteClientsComponent } from './components/delete-clients/delete-clients.component';
 
 const routes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [GuardService] },
@@ -20,6 +21,7 @@ const routes: Routes = [
     { path: 'orden', component: OrdenComponent },
     { path: 'etransporte', component:ETransporteComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'deletedclients', component:DeleteClientsComponent},
     { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ]
 
