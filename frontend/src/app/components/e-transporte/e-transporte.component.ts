@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ETransporte } from 'src/app/models/e-transporte';
 
+declare var M:any;
 @Component({
   selector: 'app-e-transporte',
   templateUrl: './e-transporte.component.html',
@@ -32,6 +33,14 @@ export class ETransporteComponent implements OnInit {
     this.serviceElementos.postElement(form.value)
       .subscribe(res=>{
         console.log('agregadoo', res);
+
+        M.toast({
+          html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                <h4 class="alert-heading">ELEMENTO AGREGADO!!</h4>
+                <p>El elemento ha sido agregado satisfactoriamente</p>
+                <hr>
+            </div>`});
+        this.getElements();
       })
 
   }
