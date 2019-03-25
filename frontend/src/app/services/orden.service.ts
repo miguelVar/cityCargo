@@ -29,4 +29,9 @@ export class OrdenService {
     return this.http.put(this.URL_API + `/${orden.idOrden}`, orden);
   }
 
+  deleteOrden(orden: Orden) {
+    console.log("id eliminar" + orden.idOrden);
+    return this.http.delete(this.URL_API + `/${orden.idOrden}`)
+  }
+
 }

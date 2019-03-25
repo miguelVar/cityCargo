@@ -44,7 +44,7 @@ export class VehiculoService {
 
   deleteFisicoVehiculo(vehiculo: Vehiculo) {
     console.log("id a eliminar " + vehiculo.idVehiculo);
-    return this.http.delete(this.URL_API + ''+ `/${vehiculo.idVehiculo}`)
+    return this.http.delete(this.URL_API + `/${vehiculo.idVehiculo}`)
   }
 
 }

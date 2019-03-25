@@ -65,6 +65,16 @@
                 <textarea class="form-control" id="textarea" type="text" name="descripcionOrden" #name="ngModel"
                   [(ngModel)]="descripcionOrden" placeholder="Ingrese la descripción de la orden"></textarea>
               </div>
+              <div class="input-field col-12">
+                <label><Strong><label id="lbl">*</label>Estado de la orden</Strong></label>
+                <select id="select" class="form-control" name="TipoVehiculo_idTipoVehiculo" #name="ngModel"
+                  [(ngModel)]="tipoVehiculoService.selectedTipoVehiculo.idTipoVehiculo">
+                  <option value="" disabled>Seleccione el tipo</option>
+                  <option *ngFor="let tv of tipoVehiculoService.tipovehiculo" value="{{tv.idTipoVehiculo}}">
+                    {{tv.nombreTipo}}
+                  </option>
+                </select>
+              </div>
             </div>
           </form>
         </div>
@@ -103,7 +113,7 @@
                     <i class="material-icons">edit</i>Editar
                   </button>&nbsp;
                   <button type="button" class="btn btn-outline-danger" onclick="('modal-dialog')"
-                    (click)="getConductor1(co)" data-toggle="modal" data-target="#modal-eliminar-vehiculo">
+                    (click)="getOrden1(or)" data-toggle="modal" data-target="#modal-eliminar-vehiculo">
                     <i class="material-icons">delete</i>Borrar
                   </button>
                 </div>
@@ -163,11 +173,11 @@
         <div class="modal-dialog modal-lg" id="modal-eliminar-vehiculo" role="document">
           <div class="modal-content">
             <div class="modal-body">
-              ¿Desea eliminar el Conductor?
+              ¿Desea eliminar definitivamente la orden?
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" data-dismiss="modal"
-                (click)="eliminaConductor(conductorService.selectedConductor)">Eliminar</button>
+                (click)="eliminaOrden(ordenService.selectedOrdent)">Eliminar</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             </div>
           </div>

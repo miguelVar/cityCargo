@@ -50,7 +50,7 @@ export class OrdenComponent implements OnInit {
                   <p>La orden se ha creado satisfactoriamente</p>
                   <hr>
               </div>`});
-              this.getOrden();
+          this.getOrden();
         });
     }
 
@@ -58,6 +58,27 @@ export class OrdenComponent implements OnInit {
 
   editOrden(orden: Orden) {
     this.ordenService.selectedOrdent = orden;
+  }
+
+  getOrden1(orden: Orden) {
+    this.ordenService.selectedOrdent = orden;
+  }
+
+  eliminaOrden(orden: Orden) {
+    this.deleteOrden(orden);
+  }
+
+  deleteOrden(orden: Orden) {
+    this.ordenService.deleteOrden(orden)
+      .subscribe(res => {
+        M.toast({
+          html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+              <h4 class="alert-heading">ORDEN ELIMINADA!!!</h4>
+              <p>La orden ha sido eliminada satisfactoriamente</p>
+              <hr>
+          </div>`});
+        this.getOrden();
+      });
   }
 
   resetForm(form?: NgForm) {
