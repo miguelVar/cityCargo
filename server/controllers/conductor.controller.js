@@ -8,7 +8,7 @@ const conductorCtrl = {};
 //Método para cargar conductores
 conductorCtrl.getConductor = (req, res) => {
 
-    var query = 'SELECT * FROM Conductor WHERE estadoEliminado = 0';
+    var query = 'SELECT * FROM Conductor';
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
@@ -34,7 +34,7 @@ conductorCtrl.getConductor = (req, res) => {
 //Método para cargar conductores eliminados logicamente
 conductorCtrl.getConductorEliminado = (req, res) => {
 
-    var query = 'SELECT * FROM Conductor WHERE estadoEliminado = 1';
+    var query = 'SELECT * FROM Conductor';
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
@@ -62,13 +62,13 @@ conductorCtrl.createConductor = (req, res) => {
 
     let nombreConductor = req.body.nombreConductor;
     let celularConductor = req.body.celularConductor;
-    let estadoEliminado = req.body.estadoEliminado || false;
+    // let estadoEliminado = req.body.estadoEliminado || false;
 
-    var query = `INSERT INTO Conductor (nombreConductor, celularConductor, estadoEliminado) VALUES('${nombreConductor}', '${celularConductor}', '${estadoEliminado}')`;
+    var query = `INSERT INTO Conductor (nombreConductor, celularConductor) VALUES('${nombreConductor}', '${celularConductor}')`;
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
-        else res.json(results);
+        else res.json({results:'conductor creado'});
         console.log('Done Crea conductor');
 
     });

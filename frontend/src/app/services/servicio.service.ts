@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Servicio } from '../models/servicio';
 import { Clients } from '../models/clients';
+import { Vehiculo } from '../models/vehiculo';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class ServicioService {
   selectedServiceCityCargo:Servicio;
   services:Servicio[];
   clientes:Clients[];
+  vehiculos:Vehiculo[];
   readonly URL_API='http://localhost:3000/api/servicecitycargo';
   
 

@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { ClientsService } from 'src/app/services/clients.service';
 import { Clients } from 'src/app/models/clients';
 import { Router } from '@angular/router';
+import { Vehiculo } from 'src/app/models/vehiculo';
 
 declare var M:any;
 
@@ -26,6 +27,7 @@ export class ServicioComponent implements OnInit {
   ngOnInit() {
     this.getServicios();
     this.getClients();
+    this.getVehiculos();
   }
 
   getServicios(){
@@ -82,7 +84,8 @@ export class ServicioComponent implements OnInit {
   getVehiculos(){
     this.serviceCity.getVehiculos()
       .subscribe(res=>{
-
+        this.serviceCity.vehiculos=res as Vehiculo[];
+        console.log('vehiculos', res);
       });
   }
 
