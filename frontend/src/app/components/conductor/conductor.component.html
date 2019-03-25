@@ -12,44 +12,7 @@
     </div>
   </div>
 </div>
-
 <div class="container">
-
-  <!--------------------------------INICIO MODAL AGREGAR CLIENTE----------------------------->
-  <!-- Modal -->
-  <div class="modal fade" id="addcl" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content border-success">
-        <div class="modal-header">
-          <h5 id="titulomodal" class="modal-title" id="exampleModalLabel"><Strong>Agregar Conductor</Strong></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form #clientForm="ngForm">
-            <div class="row">
-              <div class="input-field col-12">
-                <label><Strong><label id="lbl">*</label>Nombre del conductor</Strong></label>
-                <input class="form-control" id="input" type="text" name="NOMBRE_CLIENTE" placeholder="Ingrese el nombre"
-                  required>
-              </div>
-              <div class="input-field col-12">
-                <label><Strong>Número celular del conductor</Strong></label>
-                <input class="form-control" id="input" type="text" name="NUMERO_CLIENTE"
-                  placeholder="Ingrese el número">
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-          <button [disabled]="!clientForm.valid" type="button" class="btn btn-outline-success">Guardar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--------------------------------FIN MODAL AGREGAR CLIENTE--------------------------------->
 
   <div class="container">
     <div class="row col-12">
@@ -66,9 +29,9 @@
           <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
         </div>
         <div class="col-4">
-          <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addcl"
-            (click)="ClienteLogueado(clientService.idClient)">Agregar Conductor</button>&nbsp;
-          <button type="button" class="btn btn-outline-info" [routerLink]="['/deletedclients']">Ver
+          <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addcl">Agregar
+            Conductor</button>&nbsp;
+          <button type="button" class="btn btn-outline-info" [routerLink]="['/conductor-eliminado']">Ver
             Eliminados</button>
         </div>
       </div>
@@ -76,6 +39,146 @@
     </div>
     <br>
     <br>
+  </div>
+
+  <!--------------------------------INICIO MODAL AGREGAR CONDUCTOR----------------------------->
+  <!-- Modal -->
+  <div class="modal fade" id="addcl" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content border-success">
+        <div class="modal-header">
+          <h5 id="titulomodal" class="modal-title" id="exampleModalLabel"><Strong>Agregar Conductor</Strong></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #conductorForm="ngForm">
+            <div class="row">
+              <div class="input-field col-12">
+                <label><Strong><label id="lbl">*</label>Nombre del Conductor</Strong></label>
+                <input class="form-control" id="input" type="text" name="nombreConductor" #name="ngModel"
+                  [(ngModel)]="nombreConductor" placeholder="Ingrese el nombre" required>
+              </div>
+              <div class="input-field col-12">
+                <label><Strong><label id="lbl">*</label>Número celular del conductor</Strong></label>
+                <input class="form-control" id="input" type="text" name="celularConductor" #name="ngModel"
+                  [(ngModel)]="celularConductor" placeholder="Ingrese el número celular">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-outline-success" (click)="addConductor(conductorForm)">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--------------------------------FIN MODAL AGREGAR CONDUCTOR--------------------------------->
+
+  <!------------------------------------------------------------------------------->
+
+  <div class="col-12">
+    <!--Inicio Card-->
+    <div class="card-group">
+      <div class="container">
+        <div class="row">
+          <div *ngFor="let co of conductorService.conductor" class="col-sm-12 col-md-6 col-lg-4">
+
+            <div class="card border-dark">
+              <div class="card-header border-dark">
+                <h4 id="tituloCard">{{co.nombreConductor}}</h4>
+              </div>
+              <div class="card-body text-dark">
+                <h5 class="card-title"><strong>ID:</strong>{{co.idConductor}}</h5>
+                <p class="card-text"><strong>Nombre:</strong> {{co.nombreConductor}} </p>
+                <p class="card-text"><strong>Numero Celular:</strong> {{co.celularConductor}} </p>
+                <br>
+              </div>
+              <div class="input-field col-12">
+                <div class="card-footer bg-transparent border-dark">
+                  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ex2"
+                    (click)="editConductor(co)">
+                    <i class="material-icons">edit</i>Editar
+                  </button>&nbsp;
+                  <button type="button" class="btn btn-outline-danger" onclick="('modal-dialog')" (click)="getConductor1(co)" data-toggle="modal"
+                    data-target="#modal-eliminar-vehiculo">
+                    <i class="material-icons">delete</i>Borrar
+                  </button>
+                </div>
+                <!---->
+                <!-------------------------->
+                <div class="modal fade" id="ex2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><Strong>Editar Conductor</Strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-label="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form #conductorForm="ngForm">
+                          <input class="form-control" id="input" type="hidden" name="idConductor" #idConductor="ngModel"
+                            [(ngModel)]="conductorService.selectedConductor.idConductor">
+                          <div class="row">
+                            <div class="input-field col-12">
+                              <label><Strong><label id="lbl">*</label>Nombre del conductor</Strong></label>
+                              <input class="form-control" id="input" type="text" name="nombreConductor" #name="ngModel"
+                                [(ngModel)]="conductorService.selectedConductor.nombreConductor"
+                                placeholder="Ingrese el nombre" required>
+                            </div>
+                            <div class="input-field col-12">
+                              <label><Strong><label id="lbl">*</label>Número de celular</Strong></label>
+                              <input class="form-control" id="input" type="text" name="celularConductor" #name="ngModel"
+                                [(ngModel)]="conductorService.selectedConductor.celularConductor"
+                                placeholder="Ingrese el número de celular" required>
+                            </div>
+                          </div>
+                        </form>
+                        <!---------------------------------->
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-outline-success" data-dismiss="modal"
+                          (click)="addConductor(conductorForm)">Guardar
+                          cambios</button>
+                      </div>
+                      <!------------------------------------->
+                    </div>
+                  </div>
+                </div>
+                <!-------------------------->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!---->
+
+      <div class="modal fade" id="modal-eliminar-vehiculo" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" id="modal-eliminar-vehiculo" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              ¿Desea eliminar el Conductor?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal"
+                (click)="eliminaConductor(conductorService.selectedConductor)">Eliminar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Fin Card-->
+    </div>
+    <div class="col">
+      <!---->
+    </div>
   </div>
 
 </div>

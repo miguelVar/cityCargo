@@ -14,6 +14,9 @@ router.put('/:idConductor', conductorCtrl.updateConductor);
 //Elimina logico conductor
 router.put('/deletelogicoconductor/:idConductor', conductorCtrl.deleteLogicoConductor);
 
+//Lista Vehiculos Eliminados
+router.get('/getConductoresEliminados/', conductorCtrl.getConductorEliminado);
+
 //Restaura logico condutor
 router.put('/restauralogicoconductor/:idConductor', conductorCtrl.restauraLogicoConductor);
 

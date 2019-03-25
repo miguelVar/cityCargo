@@ -39,6 +39,35 @@ export class VehiculoComponent implements OnInit {
       });
   }
 
+  addVehiculo(form?: NgForm) {
+    if (form.value.idVehiculo) {
+      console.log(form.value);
+      this.vehiculoService.putVehiculo(form.value)
+        .subscribe(res => {
+          M.toast({
+            html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                  <h4 class="alert-heading">VEHICULO ACTUALIZADO</h4>
+                  <p>El vehiculo ha sido actualizado satisfactoriamente</p>
+                  <hr>
+              </div>`});
+          this.getVehiculo();
+        });
+    } else {
+      this.vehiculoService.postVehiculo(form.value)
+        .subscribe(res => {
+          this.resetFormVehiculo(form);
+          console.log(res);
+          M.toast({
+            html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                  <h4 class="alert-heading">VEHICULO CREADO</h4>
+                  <p>El vehiculo se ha creado satisfactoriamente</p>
+                  <hr>
+              </div>`});
+          this.getVehiculo();
+        });
+    }
+  }
+
   addTipoVehiculo(form?: NgForm) {
     if (form.value.idTipoVehiculo) {
       console.log(form.value);
@@ -72,7 +101,7 @@ export class VehiculoComponent implements OnInit {
     this.tipoVehiculoService.selectedTipoVehiculo = tipovehiculo;
   }
 
-  editVehiculo(vehiculo: Vehiculo){
+  editVehiculo(vehiculo: Vehiculo) {
     this.vehiculoService.selectedVehiculo = vehiculo;
   }
 
@@ -80,13 +109,30 @@ export class VehiculoComponent implements OnInit {
     this.deleteTipoVehiculo(tipoVehiculo);
   }
 
+  eliminaVehiculo(vehiculo: Vehiculo) {
+    this.deleteVehiculo(vehiculo);
+  }
+
   getTipoVehiculo1(tipoVehiculo: Tipovehiculo) {
     this.tipoVehiculoService.selectedTipoVehiculo = tipoVehiculo;
   }
 
+  getVehiculo1(vehiculo: Vehiculo) {
+    this.vehiculoService.selectedVehiculo = vehiculo;
+  }
+
   deleteTipoVehiculo(tipoVehiculo: Tipovehiculo) {
     this.tipoVehiculoService.deleteTipoVehiculo(tipoVehiculo)
-      .subscribe(res=>{
+      .subscribe(res => {
+        this.getTipoVehiculo();
+        console.log(res);
+      });
+  }
+
+  deleteVehiculo(vehiculo: Vehiculo) {
+    this.vehiculoService.deleteVehiculo(vehiculo)
+      .subscribe(res => {
+        this.getVehiculo();
         console.log(res);
       });
   }
@@ -95,6 +141,12 @@ export class VehiculoComponent implements OnInit {
     if (form)
       form.reset();
     this.tipoVehiculoService.selectedTipoVehiculo = new Tipovehiculo();
+  }
+
+  resetFormVehiculo(form?: NgForm) {
+    if (form)
+      form.reset();
+    this.vehiculoService.selectedVehiculo = new Vehiculo();
   }
 
 }

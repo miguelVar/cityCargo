@@ -12,11 +12,39 @@ export class VehiculoService {
 
   readonly URL_API = 'http://localhost:3000/api/vehiculo';
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.selectedVehiculo = new Vehiculo();
   }
 
   getVehiculos() {
     return this.http.get(this.URL_API);
   }
+
+  getVehiculosEliminados() {
+    return this.http.get(this.URL_API + `/getVehiculosEliminados`);
+  }
+
+  restauraVehiculoEliminado(vehiculo: Vehiculo) {
+    return this.http.put(this.URL_API + `/restauralogicovehiculo` + `/${vehiculo.idVehiculo}`, vehiculo);
+  }
+
+  postVehiculo(vehiculo: Vehiculo) {
+    return this.http.post(this.URL_API, vehiculo);
+  }
+
+  putVehiculo(vehiculo: Vehiculo) {
+    console.log("id actualizar" + vehiculo.idVehiculo);
+    return this.http.put(this.URL_API + `/${vehiculo.idVehiculo}`, vehiculo);
+  }
+
+  deleteVehiculo(vehiculo: Vehiculo) {
+    console.log("id a eliminar " + vehiculo.idVehiculo);
+    return this.http.put(this.URL_API + '/deletelogicovehiculo/' + `${vehiculo.idVehiculo}`, vehiculo);
+  }
+
+  deleteFisicoVehiculo(vehiculo: Vehiculo) {
+    console.log("id a eliminar " + vehiculo.idVehiculo);
+    return this.http.delete(this.URL_API + `/${vehiculo.idVehiculo}`)
+  }
+
 }

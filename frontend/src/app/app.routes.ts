@@ -8,22 +8,27 @@ import { ServicioComponent } from './components/servicio/servicio.component';
 import { ConductorComponent } from './components/conductor/conductor.component';
 import { OrdenComponent } from './components/orden/orden.component';
 import { ETransporteComponent } from './components/e-transporte/e-transporte.component';
+import { VehiculoEliminadoComponent } from './components/vehiculo-eliminado/vehiculo-eliminado.component';
+import { ConductorEliminadoComponent } from './components/conductor-eliminado/conductor-eliminado.component'
 import { GuardService } from './services/guard.service';
 import { from } from 'rxjs';
 import { DeleteClientsComponent } from './components/delete-clients/delete-clients.component';
 
 const routes: Routes = [
-    { path: 'home', component: HomeComponent, canActivate: [GuardService] },
-    { path: 'client', component: ClientsComponent },
-    { path: 'vehiculo', component: VehiculoComponent },
-    { path: 'servicio', component: ServicioComponent },
-    { path: 'servicio/:id', component: ServicioComponent },
-    { path: 'conductor', component: ConductorComponent },
-    { path: 'orden', component: OrdenComponent },
-    { path: 'etransporte', component:ETransporteComponent },
-    { path: 'etransporte/:id', component:ETransporteComponent },
+
     { path: 'login', component: LoginComponent },
+    { path: 'home', component: HomeComponent, canActivate: [GuardService] },
+    { path: 'client', component: ClientsComponent, canActivate: [GuardService] },
+    { path: 'vehiculo', component: VehiculoComponent, canActivate: [GuardService] },
+    { path: 'vehcul-eliminado', component: VehiculoEliminadoComponent, canActivate: [GuardService] },
+    { path: 'conductor-eliminado', component: ConductorEliminadoComponent, canActivate: [GuardService] },
+    { path: 'servicio', component: ServicioComponent, canActivate: [GuardService] },
+    { path: 'servicio/:id', component: ServicioComponent },
+    { path: 'conductor', component: ConductorComponent, canActivate: [GuardService] },
+    { path: 'orden', component: OrdenComponent, canActivate: [GuardService] },
+    { path: 'etransporte', component: ETransporteComponent, canActivate: [GuardService] },
     { path: 'deletedclients', component:DeleteClientsComponent},
+    { path: 'etransporte/:id', component:ETransporteComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ]
 
