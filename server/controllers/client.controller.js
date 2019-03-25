@@ -6,6 +6,7 @@ const clients = {};
 
 // se encarga de crear el cliente 
 clients.createClient = (req, res) => {
+    console.log("data",req.body);
     let nombreCliente = req.body.nombreCliente;
     let celularCliente = req.body.celularCliente;
     let direccionCliente = req.body.direccionCliente;
@@ -15,7 +16,7 @@ clients.createClient = (req, res) => {
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
-        else res.json(results);
+        else res.json({results:'El cliente se creo de manera satisfactoria'});
         console.log('Done Crea cientes');
     });
 
@@ -36,7 +37,31 @@ clients.createClient = (req, res) => {
 // se encarga de listar todos los clientes 
 clients.getClient = (req, res) => {
 
-    var query = `SELECT * FROM Cliente`;
+    var query = `SELECT * FROM Cliente WHERE estadoEliminado=false`;
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        console.log('Done lista cientes');
+    });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json(data);
+    //         conn.close(function () {
+    //             console.log('done Listar Clientes');
+    //         });
+    //     });
+    // });
+}
+
+// se encarga de listar todos los clientes 
+clients.getClientDeletedLogic = (req, res) => {
+
+    var query = `SELECT * FROM Cliente WHERE estadoEliminado=true`;
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
@@ -115,6 +140,7 @@ clients.deleteClient = (req, res) => {
 
 // se encarga de eliminar un cliente logicamente
 clients.deleteLogicClient = (req, res) => {
+    console.log('elimninar logico');
     let idClient = req.params.id;
     let estadoEliminado = req.body.estadoEliminado == 0 ? 1 : 0;
 

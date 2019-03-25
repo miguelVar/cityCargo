@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ETransporteService } from 'src/app/services/e-transporte.service';
 
 @Component({
   selector: 'app-e-transporte',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ETransporteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private serviceElementos:ETransporteService) { 
+
+  }
 
   ngOnInit() {
+
+  }
+
+
+  addElement(){
+    
   }
 
 }

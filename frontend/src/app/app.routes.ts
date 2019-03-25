@@ -12,8 +12,10 @@ import { VehiculoEliminadoComponent } from './components/vehiculo-eliminado/vehi
 import { ConductorEliminadoComponent } from './components/conductor-eliminado/conductor-eliminado.component'
 import { GuardService } from './services/guard.service';
 import { from } from 'rxjs';
+import { DeleteClientsComponent } from './components/delete-clients/delete-clients.component';
 
 const routes: Routes = [
+
     { path: 'login', component: LoginComponent },
     { path: 'home', component: HomeComponent, canActivate: [GuardService] },
     { path: 'client', component: ClientsComponent, canActivate: [GuardService] },
@@ -21,9 +23,12 @@ const routes: Routes = [
     { path: 'vehcul-eliminado', component: VehiculoEliminadoComponent, canActivate: [GuardService] },
     { path: 'conductor-eliminado', component: ConductorEliminadoComponent, canActivate: [GuardService] },
     { path: 'servicio', component: ServicioComponent, canActivate: [GuardService] },
+    { path: 'servicio/:id', component: ServicioComponent },
     { path: 'conductor', component: ConductorComponent, canActivate: [GuardService] },
     { path: 'orden', component: OrdenComponent, canActivate: [GuardService] },
     { path: 'etransporte', component: ETransporteComponent, canActivate: [GuardService] },
+    { path: 'deletedclients', component:DeleteClientsComponent},
+    { path: 'etransporte/:id', component:ETransporteComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ]
 
