@@ -14,6 +14,7 @@ import { ETransporte } from 'src/app/models/e-transporte';
 export class ETransporteComponent implements OnInit {
 
   ruta:string[];
+  tamarray:number;
 
   constructor(private serviceElementos:ETransporteService, private serviceCity:ServicioService, private route:Router) { 
     this.ruta=this.route.url.split('/');
@@ -44,11 +45,25 @@ export class ETransporteComponent implements OnInit {
   }
 
   getElements(){
-    this.serviceElementos.getElementos()
+    if(this.ruta.length==3){
+      this.serviceElementos.getElementos(this.ruta[2])
       .subscribe(res=>{
         console.log("Elementos", res);
         this.serviceElementos.elementos=res as ETransporte[];
+        this.tamarray=this.serviceElementos.elementos.length;
       });
+
+    }else{
+
+      this.serviceElementos.getElementosLink()
+      .subscribe(res=>{
+        console.log("Elementos", res);
+        this.serviceElementos.elementos=res as ETransporte[];
+        this.tamarray=this.serviceElementos.elementos.length;
+      });
+
+    }
+
   }
 
   asignaServicio(){
