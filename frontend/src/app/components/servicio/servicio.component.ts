@@ -16,6 +16,7 @@ declare var M:any;
 export class ServicioComponent implements OnInit {
 
   ruta:string[];
+  tamarray:number;
 
   constructor(private serviceCity:ServicioService, private clientService:ClientsService, private route:Router) { 
 
@@ -35,6 +36,8 @@ export class ServicioComponent implements OnInit {
         .subscribe(res=>{
           console.log("dataaaa",res);
           this.serviceCity.services=res as Servicio[];
+          this.tamarray=this.serviceCity.services.length;
+          console.log('ramanoooooooo', this.tamarray);
   
         });
 
