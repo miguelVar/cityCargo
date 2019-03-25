@@ -58,7 +58,33 @@ serviceCityCargo.getServiceCityCargo = (req, res) => {
 
     let idCliente=parseInt(req.params.id);
 
-    var query = `SELECT * FROM Servicio WHERE Cliente_idCliente=${idCliente}`;
+        var query = `SELECT * FROM Servicio WHERE Cliente_idCliente=${idCliente}`;
+    
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        console.log('Done Lista servicio');
+    });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json(data);
+    //         conn.close(function () {
+    //             console.log('done Listar servicios');
+    //         });
+    //     });
+    // });
+
+}
+
+serviceCityCargo.getServiceCityCargoLink = (req, res) => {
+
+        var query = `SELECT * FROM Servicio`;
+    
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });

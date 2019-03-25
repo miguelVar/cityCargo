@@ -6,6 +6,7 @@ const serviceCityCargoCtrl = require('../controllers/serviceCityCargo.controller
 
 router.post('/',serviceCityCargoCtrl.createServiceCityCargo);
 router.get('/vehiculos',serviceCityCargoCtrl.getVehiculosCityCargo);
+router.get('/link',serviceCityCargoCtrl.getServiceCityCargoLink);
 router.get('/:id',serviceCityCargoCtrl.getServiceCityCargo);
 router.put('/:id',serviceCityCargoCtrl.updateServiceCityCargo);
 router.delete('/:id',serviceCityCargoCtrl.deleteServiceCityCargo);

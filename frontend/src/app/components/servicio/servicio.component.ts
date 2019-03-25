@@ -28,13 +28,28 @@ export class ServicioComponent implements OnInit {
   }
 
   getServicios(){
-    console.log('id cliente ', this.ruta[2]);
-    this.serviceCity.getServices(this.ruta[2])
-      .subscribe(res=>{
-        console.log("dataaaa",res);
-        this.serviceCity.services=res as Servicio[];
+    console.log('sfdsf', this.ruta.length);
+    if(this.ruta.length==3){
+      console.log('id cliente ', this.ruta[2]);
+      this.serviceCity.getServices(this.ruta[2])
+        .subscribe(res=>{
+          console.log("dataaaa",res);
+          this.serviceCity.services=res as Servicio[];
+  
+        });
 
-      });
+    }else{
+
+      this.serviceCity.getServicesLink()
+        .subscribe(res=>{
+          console.log("dataaaa",res);
+          this.serviceCity.services=res as Servicio[];
+  
+        });
+
+
+    }
+  
   }
 
   addService(form?:NgForm){

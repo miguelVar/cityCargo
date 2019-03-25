@@ -22,6 +22,9 @@ export class ServicioService {
   getServices(idCliente:string){
     return this.http.get(this.URL_API+`/${idCliente}`);
   }
+  getServicesLink(){
+    return this.http.get(this.URL_API+`/link`);
+  }
   getVehiculos(){
     return this.http.get(this.URL_API+`/vehiculos`);
   }

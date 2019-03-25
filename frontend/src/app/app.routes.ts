@@ -21,6 +21,7 @@ const routes: Routes = [
     { path: 'conductor', component: ConductorComponent },
     { path: 'orden', component: OrdenComponent },
     { path: 'etransporte', component:ETransporteComponent },
+    { path: 'etransporte/:id', component:ETransporteComponent },
     { path: 'login', component: LoginComponent },
     { path: 'deletedclients', component:DeleteClientsComponent},
     { path: '**', pathMatch: 'full', redirectTo: 'login' }
