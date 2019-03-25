@@ -7,11 +7,14 @@ import { Clients } from '../models/clients';
 })
 export class ClientsService {
 
+  
+  selectedClient:Clients;
   clients:Clients[];
 
   readonly URL_API='http://localhost:3000/api/clients';
 
   constructor(private http:HttpClient) {
+    this.selectedClient=new Clients();
 
    }
 

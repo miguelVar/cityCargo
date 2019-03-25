@@ -38,8 +38,15 @@ export class ClientsComponent implements OnInit {
                 <p>El cliente ha sido agregado satisfactoriamente</p>
                 <hr>
             </div>`});
+        this.getClients();
       })
 
+  }
+
+  editClient(client:Clients){
+    console.log('dsfsd', client);
+    this.clientService.selectedClient=client;
+    console.log('Solo',this.clientService.selectedClient.nombreCliente);
   }
 
 }

@@ -7,9 +7,9 @@ const clients = {};
 // se encarga de crear el cliente 
 clients.createClient = (req, res) => {
     console.log("data",req.body);
-    let nombreCliente = req.body.NOMBRE_CLIENTE;
-    let celularCliente = req.body.NUMERO_CLIENTE;
-    let direccionCliente = req.body.DIRECCION_CLIENTE;
+    let nombreCliente = req.body.nombreCliente;
+    let celularCliente = req.body.celularCliente;
+    let direccionCliente = req.body.direccionCliente;
     let estadoEliminado = req.body.estadoEliminado || false;
 
     var query = `INSERT INTO Cliente (nombreCliente, celularCliente, direccionCliente, estadoEliminado) VALUES ('${nombreCliente}','${celularCliente}','${direccionCliente}','${estadoEliminado}')`;

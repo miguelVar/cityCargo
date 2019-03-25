@@ -1,14 +1,13 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-
 export class Clients {
 
-    constructor(NOMBRE_CLIENTE='', CELULAR_CLIENTE='', DIRECCION_CLIENTE=''){
-        this.NOMBRE_CLIENTE=NOMBRE_CLIENTE;
-        this.CELULAR_CLIENTE=CELULAR_CLIENTE;
-        this.DIRECCION_CLIENTE=DIRECCION_CLIENTE;
+    constructor(idcliente=0,nombreCliente='', celularCliente='', direccionCliente=''){
+        this.idCliente=idcliente;
+        this.nombreCliente=nombreCliente;
+        this.celularCliente=celularCliente;
+        this.direccionCliente=direccionCliente;
     }
-
-    NOMBRE_CLIENTE:string;
-    CELULAR_CLIENTE:string;
-    DIRECCION_CLIENTE:string;
+    idCliente:number;
+    nombreCliente:string;
+    celularCliente:string;
+    direccionCliente:string;
 }
