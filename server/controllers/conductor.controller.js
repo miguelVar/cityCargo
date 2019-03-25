@@ -8,7 +8,33 @@ const conductorCtrl = {};
 //Método para cargar conductores
 conductorCtrl.getConductor = (req, res) => {
 
-    var query = 'SELECT * FROM Conductor';
+    var query = 'SELECT * FROM Conductor WHERE estadoEliminado = 0';
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        console.log('Done Lista conductor');
+    });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json({ data: data })
+
+    //         conn.close(function () {
+    //             console.log('done Listar conductor');
+    //         });
+    //     });
+    // });
+
+}
+
+//Método para cargar conductores eliminados logicamente
+conductorCtrl.getConductorEliminado = (req, res) => {
+
+    var query = 'SELECT * FROM Conductor WHERE estadoEliminado = 1';
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
