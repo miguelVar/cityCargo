@@ -13,6 +13,8 @@ declare var M: any;
 })
 export class OrdenComponent implements OnInit {
 
+  tamarray: number;
+
   constructor(private ordenService: OrdenService) { }
 
   ngOnInit() {
@@ -24,6 +26,8 @@ export class OrdenComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
         this.ordenService.orden = res as Orden[];
+        this.tamarray = this.ordenService.orden.length;
+        console.log("tamarrayOrden", this.tamarray);
       })
   }
 
