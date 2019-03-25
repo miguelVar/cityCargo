@@ -15,11 +15,40 @@ declare var M: any;
 })
 export class VehiculoComponent implements OnInit {
 
+  vehiculo: Vehiculo[] = [];
+
   constructor(private tipoVehiculoService: TipovehiculoService, private vehiculoService: VehiculoService) { }
 
   ngOnInit() {
     this.getTipoVehiculo();
     this.getVehiculo();
+  }
+
+  buscar(input, select) {
+    var busqueda: Vehiculo[] = [], i;
+    var look = 0;
+    for (i = 0; i < this.vehiculo.length; i++) {
+      if (select == 1) {
+        if (this.vehiculo[i].placaVehiculo.toUpperCase().indexOf(input.toUpperCase()) > -1) {
+          busqueda.push(this.vehiculo[i]);
+          this.vehiculoService.vehiculo = busqueda;
+          look++;
+        }
+        if (look < 1) {
+          this.vehiculoService.vehiculo = [];
+        }
+      }
+      else if (select == 2) {
+        if (this.vehiculo[i].idVehiculo.toString().indexOf(input.toUpperCase()) > -1) {
+          busqueda.push(this.vehiculo[i]);
+          this.vehiculoService.vehiculo = busqueda;
+          look++;
+        }
+        if (look < 1) {
+          this.vehiculoService.vehiculo = [];
+        }
+      }
+    }
   }
 
   getVehiculo() {

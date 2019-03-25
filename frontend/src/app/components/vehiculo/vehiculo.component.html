@@ -82,11 +82,12 @@
           <div class="input-group col-12">
             <div class="col-2">
               <select id="select" class="form-control" #mySelect>
-                <option value=1>Nombre</option>
+                <option value=1>Placa</option>
                 <option value=2>ID</option>
               </select>
             </div>
-            <input id="input" class="form-control" placeholder="Buscar..." #myInput style="border-radius: 0rem;"
+            <input id="input" class="form-control" placeholder="Buscar..." #myInput
+              (keyup)="this.buscar(myInput.value,mySelect.value)" style="border-radius: 0rem;"
               title="Ingrese el campo para filtrar" aria-describedby="basic-addon2">
             <div class="input-group-append">
               <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
@@ -264,7 +265,7 @@
       </div>
       <!--------------------------------FIN MODAL AGREGAR TIPO VEHICULO--------------------------------->
 
-      <div class="container">
+      <!-- <div class="container">
         <div class="row col-12">
           <div class="input-group col-12">
             <div class="col-2">
@@ -287,7 +288,7 @@
         </div>
         <br>
         <br>
-      </div>
+      </div> -->
 
       <!------------------------------------------------------------------------------->
 
