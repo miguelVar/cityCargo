@@ -38,4 +38,8 @@ export class ConductorService {
     return this.http.put(this.URL_API + '/deletelogicoconductor/' + `${conductor.idConductor}`, conductor)
   }
 
+  restauraConductorEliminado(conductor: Conductor) {
+    return this.http.put(this.URL_API + `/restauralogicoconductor` + `/${conductor.idConductor}`, conductor);
+  }
+
 }

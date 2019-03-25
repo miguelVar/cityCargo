@@ -47,7 +47,7 @@
           <div *ngFor="let co of conductorService.conductor" class="col-sm-12 col-md-6 col-lg-4">
             <div class="card border-dark">
               <div class="card-header border-dark">
-                <h4 id="tituloCard">{{co.idConductor}}</h4>
+                <h4 id="tituloCard">{{co.nombreConductor}}</h4>
               </div>
               <div class="card-body text-dark">
                 <h5 class="card-title"><strong>ID:</strong> {{co.idConductor}}</h5>
@@ -57,7 +57,7 @@
               </div>
               <div class="input-field col-12">
                 <div class="card-footer bg-transparent border-dark">
-                  <button class="btn btn-outline-primary" (click)="restauraVehiculo(v)"><i
+                  <button class="btn btn-outline-primary" (click)="restauraConductor(co)"><i
                       class="material-icons">edit</i>Restaurar
                   </button>&nbsp;
                   <button type="button" class="btn btn-outline-danger" (click)="getVehiculoEliminado1(v)"
