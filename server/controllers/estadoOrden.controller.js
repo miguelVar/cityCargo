@@ -30,3 +30,5 @@ estadoOrdenCtrl.getEstadoOrden = (req, res) => {
     // });
 
 }
+
+module.exports = estadoOrdenCtrl

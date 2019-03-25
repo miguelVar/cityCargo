@@ -3,6 +3,8 @@ import { OrdenService } from 'src/app/services/orden.service';
 import { Orden } from '../../models/orden';
 import { NgForm } from '@angular/forms';
 import { from } from 'rxjs';
+import { EstadoOrdenService } from 'src/app/services/estado-orden.service';
+import { EstadoOrden } from 'src/app/models/estado-orden';
 
 declare var M: any;
 
@@ -13,10 +15,19 @@ declare var M: any;
 })
 export class OrdenComponent implements OnInit {
 
-  constructor(private ordenService: OrdenService) { }
+  constructor(private ordenService: OrdenService, private estadoOrdenService: EstadoOrdenService) { }
 
   ngOnInit() {
     this.getOrden();
+    this.getEstadoOrden();
+  }
+
+  getEstadoOrden() {
+    this.estadoOrdenService.getEstadoOrden()
+      .subscribe(res => {
+        console.log(res);
+        this.estadoOrdenService.estadoOrden = res as EstadoOrden[];
+      });
   }
 
   getOrden() {
