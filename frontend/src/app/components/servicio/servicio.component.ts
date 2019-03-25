@@ -99,4 +99,11 @@ export class ServicioComponent implements OnInit {
       });
   }
 
+  asignaCliente(){
+    if(this.ruta.length==3){
+      this.serviceCity.selectedServiceCityCargo.Cliente_idCliente=parseInt(this.ruta[2]);
+    }
+
+  }
+
 }

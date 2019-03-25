@@ -8,6 +8,7 @@ const transportElement = {};
 
 // se encarga de crear los elementos a transportar
 transportElement.createTransportElement = (req, res) => {
+    console.log('data elemento', req.body);
     let nombreElemento = req.body.nombreElemento;
     let cantidadElemento = req.body.cantidadElemento;
     let Servicio_idServicio = req.body.Servicio_idServicio;
@@ -16,7 +17,7 @@ transportElement.createTransportElement = (req, res) => {
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
-        else res.json(results);
+        else res.json({results:'Elemento creado'});
         console.log('Done crea elementos transporte');
     });
 
