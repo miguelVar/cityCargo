@@ -32,4 +32,10 @@ export class ConductorService {
   postConductor(conductor: Conductor) {
     return this.http.post(this.URL_API, conductor);
   }
+
+  deleteConductor(conductor: Conductor) {
+    console.log("id eliminar" + conductor.idConductor);
+    return this.http.put(this.URL_API + '/deletelogicoconductor/' + `${conductor.idConductor}`, conductor)
+  }
+
 }

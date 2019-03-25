@@ -56,7 +56,23 @@ export class ConductorComponent implements OnInit {
     }
   }
 
-  editConductor(conductor: Conductor){
+  editConductor(conductor: Conductor) {
+    this.conductorService.selectedConductor = conductor;
+  }
+
+  eliminaConductor(conductor: Conductor) {
+    this.deleteConductor(conductor);
+  }
+
+  deleteConductor(conductor: Conductor) {
+    this.conductorService.deleteConductor(conductor)
+      .subscribe(res => {
+        this.getConductor();
+        console.log(res);
+      });
+  }
+
+  getConductor1(conductor: Conductor) {
     this.conductorService.selectedConductor = conductor;
   }
 

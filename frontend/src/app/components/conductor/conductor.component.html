@@ -102,7 +102,7 @@
                     (click)="editConductor(co)">
                     <i class="material-icons">edit</i>Editar
                   </button>&nbsp;
-                  <button type="button" class="btn btn-outline-danger" onclick="('modal-dialog')" data-toggle="modal"
+                  <button type="button" class="btn btn-outline-danger" onclick="('modal-dialog')" (click)="getConductor1(co)" data-toggle="modal"
                     data-target="#modal-eliminar-vehiculo">
                     <i class="material-icons">delete</i>Borrar
                   </button>
@@ -163,10 +163,11 @@
         <div class="modal-dialog modal-lg" id="modal-eliminar-vehiculo" role="document">
           <div class="modal-content">
             <div class="modal-body">
-              ¿Desea eliminar el Cliente?
+              ¿Desea eliminar el Conductor?
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Eliminar</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal"
+                (click)="eliminaConductor(conductorService.selectedConductor)">Eliminar</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             </div>
           </div>
