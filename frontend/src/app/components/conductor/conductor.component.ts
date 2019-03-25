@@ -51,9 +51,13 @@ export class ConductorComponent implements OnInit {
                   <p>El conductor se ha creado satisfactoriamente</p>
                   <hr>
               </div>`});
-              this.getConductor();
+          this.getConductor();
         });
     }
+  }
+
+  editConductor(conductor: Conductor){
+    this.conductorService.selectedConductor = conductor;
   }
 
   resetForm(form?: NgForm) {

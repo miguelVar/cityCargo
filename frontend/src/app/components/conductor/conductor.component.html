@@ -63,7 +63,7 @@
               <div class="input-field col-12">
                 <label><Strong><label id="lbl">*</label>Número celular del conductor</Strong></label>
                 <input class="form-control" id="input" type="text" name="celularConductor" #name="ngModel"
-                  [(ngModel)]="celularConductor" placeholder="Ingrese el número">
+                  [(ngModel)]="celularConductor" placeholder="Ingrese el número celular">
               </div>
             </div>
           </form>
@@ -92,12 +92,14 @@
               </div>
               <div class="card-body text-dark">
                 <h5 class="card-title"><strong>ID:</strong>{{co.idConductor}}</h5>
-                <p class="card-text"><strong>Nombre:</strong> {{co.celularConductor}} </p>
+                <p class="card-text"><strong>Nombre:</strong> {{co.nombreConductor}} </p>
+                <p class="card-text"><strong>Numero Celular:</strong> {{co.celularConductor}} </p>
                 <br>
               </div>
               <div class="input-field col-12">
                 <div class="card-footer bg-transparent border-dark">
-                  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ex2">
+                  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ex2"
+                    (click)="editConductor(co)">
                     <i class="material-icons">edit</i>Editar
                   </button>&nbsp;
                   <button type="button" class="btn btn-outline-danger" onclick="('modal-dialog')" data-toggle="modal"
@@ -112,19 +114,27 @@
                   <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"><Strong>Editar Cliente</Strong></h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><Strong>Editar Conductor</Strong></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-label="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form #tipoVehiculoForm="ngForm">
-                          <input class="form-control" id="input" type="text" name="idVehiculo">
+                        <form #conductorForm="ngForm">
+                          <input class="form-control" id="input" type="hidden" name="idConductor" #idConductor="ngModel"
+                            [(ngModel)]="conductorService.selectedConductor.idConductor">
                           <div class="row">
                             <div class="input-field col-12">
-                              <label><Strong>Placa del Vehiculo</Strong></label>
-                              <input class="form-control" id="input" type="text" name="placaVehiculo"
-                                placeholder="Ingrese la placa" required>
+                              <label><Strong><label id="lbl">*</label>Nombre del conductor</Strong></label>
+                              <input class="form-control" id="input" type="text" name="nombreConductor" #name="ngModel"
+                                [(ngModel)]="conductorService.selectedConductor.nombreConductor"
+                                placeholder="Ingrese el nombre" required>
+                            </div>
+                            <div class="input-field col-12">
+                              <label><Strong><label id="lbl">*</label>Número de celular</Strong></label>
+                              <input class="form-control" id="input" type="text" name="celularConductor" #name="ngModel"
+                                [(ngModel)]="conductorService.selectedConductor.celularConductor"
+                                placeholder="Ingrese el número de celular" required>
                             </div>
                           </div>
                         </form>
@@ -132,7 +142,8 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-outline-success" data-dismiss="modal">Guardar
+                        <button type="button" class="btn btn-outline-success" data-dismiss="modal"
+                          (click)="addConductor(conductorForm)">Guardar
                           cambios</button>
                       </div>
                       <!------------------------------------->
