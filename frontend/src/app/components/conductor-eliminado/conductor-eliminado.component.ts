@@ -26,6 +26,27 @@ export class ConductorEliminadoComponent implements OnInit {
       });
   }
 
+  getConductorEliminado1(conductor: Conductor) {
+    this.conductorService.selectedConductor = conductor;
+  }
+
+  eliminaConductorFisico(conductor: Conductor) {
+    this.deleteConductorFisico(conductor);
+  }
+
+  deleteConductorFisico(conductor: Conductor) {
+    this.conductorService.deleteFisidoConductor(conductor)
+      .subscribe(res => {
+        M.toast({
+          html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+              <h4 class="alert-heading">CONDUCTOR ELIMINADO!!!</h4>
+              <p>El conductor ha sido eliminado satisfactoriamente</p>
+              <hr>
+          </div>`});
+        this.getConductorEliminado();
+      })
+  }
+
   restauraConductor(conductor: Conductor) {
     console.log('dddddddddddddddddd', conductor);
     this.conductorService.restauraConductorEliminado(conductor)

@@ -60,7 +60,7 @@
                   <button class="btn btn-outline-primary" (click)="restauraConductor(co)"><i
                       class="material-icons">edit</i>Restaurar
                   </button>&nbsp;
-                  <button type="button" class="btn btn-outline-danger" (click)="getVehiculoEliminado1(v)"
+                  <button type="button" class="btn btn-outline-danger" (click)="getConductorEliminado1(co)"
                     onclick="('modal-dialog')" data-toggle="modal" data-target="#modal-eliminar-vehiculo">
                     <i class="material-icons">delete</i>Borrar
                   </button>
@@ -79,11 +79,11 @@
         <div class="modal-dialog modal-lg" id="modal-eliminar-vehiculo" role="document">
           <div class="modal-content">
             <div class="modal-body">
-              ¿Desea eliminar definitivamente el Vehiculo?
+              ¿Desea eliminar definitivamente el Conductor?
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" data-dismiss="modal"
-                (click)="eliminaVehiculoFisico(vehiculoService.selectedVehiculo)">Eliminar</button>
+                (click)="eliminaConductorFisico(conductorService.selectedConductor)">Eliminar</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             </div>
           </div>

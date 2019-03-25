@@ -42,4 +42,9 @@ export class ConductorService {
     return this.http.put(this.URL_API + `/restauralogicoconductor` + `/${conductor.idConductor}`, conductor);
   }
 
+  deleteFisidoConductor(conductor: Conductor) {
+    console.log("id a eliminar " + conductor.idConductor);
+    return this.http.delete(this.URL_API + '' + `/${conductor.idConductor}`)
+  }
+
 }
