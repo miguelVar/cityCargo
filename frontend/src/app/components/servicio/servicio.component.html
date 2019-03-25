@@ -102,6 +102,17 @@
                   </select>
               </div>
 
+              <label><Strong><label id="lbl">*</label>Vehiculo</Strong></label>
+              <div class="input-field col-12">
+                <select id="select" class="form-control" name="Cliente_idCliente" #name="ngModel"
+                  [(ngModel)]="serviceCity.selectedServiceCityCargo.Cliente_idCliente">
+                  <option value="" disabled>Seleccione el Cliente</option>
+                  <option *ngFor="let us of serviceCity.clientes" value={{us.idCliente}}>
+                    {{us.nombreCliente}}
+                  </option>
+                  </select>
+              </div>
+
               
             </div>
           </form>

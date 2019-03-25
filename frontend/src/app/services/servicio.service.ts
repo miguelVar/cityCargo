@@ -22,6 +22,9 @@ export class ServicioService {
   getServices(idCliente:string){
     return this.http.get(this.URL_API+`/${idCliente}`);
   }
+  getVehiculos(){
+    return this.http.get(this.URL_API+`/vehiculos`);
+  }
 
   postService(service:Servicio){
     return this.http.post(this.URL_API,service);

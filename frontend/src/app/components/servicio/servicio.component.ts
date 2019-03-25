@@ -61,4 +61,11 @@ export class ServicioComponent implements OnInit {
       });
   }
 
+  getVehiculos(){
+    this.serviceCity.getVehiculos()
+      .subscribe(res=>{
+
+      });
+  }
+
 }
