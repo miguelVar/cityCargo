@@ -53,30 +53,24 @@
           </button>
         </div>
         <div class="modal-body">
-          <form #clientForm="ngForm">
+          <form #conductorForm="ngForm">
             <div class="row">
               <div class="input-field col-12">
-                <label><Strong><label id="lbl">*</label>Nombre del cliente</Strong></label>
-                <input class="form-control" id="input" type="text" name="NOMBRE_CLIENTE" #name="ngModel"
-                  [(ngModel)]="NOMBRE_CLIENTE" placeholder="Ingrese el nombre" required>
+                <label><Strong><label id="lbl">*</label>Nombre del Conductor</Strong></label>
+                <input class="form-control" id="input" type="text" name="nombreConductor" #name="ngModel"
+                  [(ngModel)]="nombreConductor" placeholder="Ingrese el nombre" required>
               </div>
               <div class="input-field col-12">
-                <label><Strong>Número celular del cliente</Strong></label>
-                <input class="form-control" id="input" type="text" name="NUMERO_CLIENTE" #name="ngModel"
-                  [(ngModel)]="NUMERO_CLIENTE" placeholder="Ingrese el número">
-              </div>
-              <div class="input-field col-12">
-                <label><Strong>Dirección del cliente</Strong></label>
-                <input class="form-control" id="input" type="text" name="DIRECCION_CLIENTE" #name="ngModel"
-                  [(ngModel)]="DIRECCION_CLIENTE" placeholder="Ingrese la dirección">
+                <label><Strong><label id="lbl">*</label>Número celular del conductor</Strong></label>
+                <input class="form-control" id="input" type="text" name="celularConductor" #name="ngModel"
+                  [(ngModel)]="celularConductor" placeholder="Ingrese el número">
               </div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-          <button [disabled]="!clientForm.valid" type="button" class="btn btn-outline-success"
-            (click)="addClient(clientForm)">Guardar</button>
+          <button type="button" class="btn btn-outline-success" (click)="addConductor(conductorForm)">Guardar</button>
         </div>
       </div>
     </div>

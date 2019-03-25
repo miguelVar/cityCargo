@@ -20,7 +20,16 @@ export class ConductorService {
     return this.http.get(this.URL_API);
   }
 
-  getConductorEliminado(){
+  getConductorEliminado() {
     return this.http.get(this.URL_API + `/getConductoresEliminados`);
+  }
+
+  putConductor(conductor: Conductor) {
+    console.log("id actualizar" + conductor.idConductor);
+    return this.http.put(this.URL_API + `/${conductor.idConductor}`, conductor)
+  }
+
+  postConductor(conductor: Conductor) {
+    return this.http.post(this.URL_API, conductor);
   }
 }
