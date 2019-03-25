@@ -14,16 +14,16 @@ import { GuardService } from './services/guard.service';
 import { from } from 'rxjs';
 
 const routes: Routes = [
-    { path: 'home', component: HomeComponent, canActivate: [GuardService] },
-    { path: 'client', component: ClientsComponent },
-    { path: 'vehiculo', component: VehiculoComponent },
-    { path: 'vehcul-eliminado', component: VehiculoEliminadoComponent },
-    { path: 'conductor-eliminado', component: ConductorEliminadoComponent },
-    { path: 'servicio', component: ServicioComponent },
-    { path: 'conductor', component: ConductorComponent },
-    { path: 'orden', component: OrdenComponent },
-    { path: 'etransporte', component: ETransporteComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'home', component: HomeComponent, canActivate: [GuardService] },
+    { path: 'client', component: ClientsComponent, canActivate: [GuardService] },
+    { path: 'vehiculo', component: VehiculoComponent, canActivate: [GuardService] },
+    { path: 'vehcul-eliminado', component: VehiculoEliminadoComponent, canActivate: [GuardService] },
+    { path: 'conductor-eliminado', component: ConductorEliminadoComponent, canActivate: [GuardService] },
+    { path: 'servicio', component: ServicioComponent, canActivate: [GuardService] },
+    { path: 'conductor', component: ConductorComponent, canActivate: [GuardService] },
+    { path: 'orden', component: OrdenComponent, canActivate: [GuardService] },
+    { path: 'etransporte', component: ETransporteComponent, canActivate: [GuardService] },
     { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ]
 
