@@ -9,6 +9,7 @@ import { ConductorComponent } from './components/conductor/conductor.component';
 import { OrdenComponent } from './components/orden/orden.component';
 import { ETransporteComponent } from './components/e-transporte/e-transporte.component';
 import { VehiculoEliminadoComponent } from './components/vehiculo-eliminado/vehiculo-eliminado.component';
+import { ConductorEliminadoComponent } from './components/conductor-eliminado/conductor-eliminado.component'
 import { GuardService } from './services/guard.service';
 import { from } from 'rxjs';
 
@@ -17,6 +18,7 @@ const routes: Routes = [
     { path: 'client', component: ClientsComponent },
     { path: 'vehiculo', component: VehiculoComponent },
     { path: 'vehcul-eliminado', component: VehiculoEliminadoComponent },
+    { path: 'conductor-eliminado', component: ConductorEliminadoComponent },
     { path: 'servicio', component: ServicioComponent },
     { path: 'conductor', component: ConductorComponent },
     { path: 'orden', component: OrdenComponent },
