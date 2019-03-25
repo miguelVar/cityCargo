@@ -17,6 +17,7 @@ const routes: Routes = [
     { path: 'client', component: ClientsComponent },
     { path: 'vehiculo', component: VehiculoComponent },
     { path: 'servicio', component: ServicioComponent },
+    { path: 'servicio/:id', component: ServicioComponent },
     { path: 'conductor', component: ConductorComponent },
     { path: 'orden', component: OrdenComponent },
     { path: 'etransporte', component:ETransporteComponent },

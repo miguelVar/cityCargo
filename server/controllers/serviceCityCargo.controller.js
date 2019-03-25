@@ -9,6 +9,8 @@ const serviceCityCargo = {};
 
 serviceCityCargo.createServiceCityCargo = (req, res) => {
 
+    console.log('dataaaaaa servicio', req.body);
+
     let nombreServicio = req.body.nombreServicio;
     let descripcionServicio = req.body.descripcionServicio;
     let valorServicio = req.body.valorServicio;
@@ -21,11 +23,11 @@ serviceCityCargo.createServiceCityCargo = (req, res) => {
     let ciudadDestino = req.body.ciudadDestino;
     let direccionOrigenServicio = req.body.direccionOrigenServicio;
     let direccionDestinoServicio = req.body.direccionDestinoServicio;
-    let estadoEliminado = req.body.estadoEliminado;
-    let Cliente_idCliente = req.body.Cliente_idCliente;
-    let Vehiculo_idVehiculo = req.body.Vehiculo_idVehiculo;
-    let Orden_idOrden = req.body.Orden_idOrden;
-    let Estado_idEstadoOrden = req.body.Estado_idEstadoOrden;
+    let estadoEliminado = req.body.estadoEliminado|| false;
+    let Cliente_idCliente = req.body.Cliente_idCliente || 1;
+    let Vehiculo_idVehiculo = req.body.Vehiculo_idVehiculo||1;
+    let Orden_idOrden = req.body.Orden_idOrden ||1;
+    let Estado_idEstadoOrden = req.body.Estado_idEstadoOrden ||1;
 
     var query = `INSERT INTO Servicio (nombreServicio, descripcionServicio, valorServicio, horaInicioServicio, horaFinServicio,fechaInicioServicio, fechaFinServicio,observacion,ciudadOrigen,ciudadDestino, direccionOrigenServicio,direccionDestinoServicio, estadoEliminado,Cliente_idCliente,Vehiculo_idVehiculo,Orden_idOrden,Estado_idEstadoOrden) VALUES ('${nombreServicio}','${descripcionServicio}','${valorServicio}','${horaInicioServicio}','${horaFinServicio}','${fechaInicioServicio}','${fechaFinServicio}','${observacion}','${ciudadOrigen}','${ciudadDestino}','${direccionOrigenServicio}','${direccionDestinoServicio}','${estadoEliminado}','${Cliente_idCliente}','${Vehiculo_idVehiculo}','${Orden_idOrden}','${Estado_idEstadoOrden}')`;
 
@@ -54,7 +56,9 @@ serviceCityCargo.createServiceCityCargo = (req, res) => {
 
 serviceCityCargo.getServiceCityCargo = (req, res) => {
 
-    var query = `SELECT * FROM Servicio`;
+    let idCliente=parseInt(req.params.id);
+
+    var query = `SELECT * FROM Servicio WHERE Cliente_idCliente=${idCliente}`;
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });

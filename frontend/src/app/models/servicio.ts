@@ -2,10 +2,11 @@ import { Time } from '@angular/common';
 
 export class Servicio {
 
-    constructor(nombreServicio='',descripcionServicio='',valorServicio=0,horaInicioServicio=null,horaFinServicio=null,fechaInicioServicio=null,
+    constructor(idServicio=0,nombreServicio='',descripcionServicio='',valorServicio=0,horaInicioServicio=null,horaFinServicio=null,fechaInicioServicio=null,
         fechaFinServicio=null,observacion='',ciudadOrigen='',ciudadDestino='',direccionOrigenServicio='', direccionDestinoServicio='',
         estadoEliminado=false, Cliente_idCliente=0, Vehiculo_idVehiculo=0, Orden_idOrden=0, Estado_idEstadoOrden=0){
 
+            this.idServicio=idServicio;
             this.nombreServicio=nombreServicio;
             this.descripcionServicio=descripcionServicio;
             this.valorServicio=valorServicio;
@@ -27,7 +28,7 @@ export class Servicio {
 
     }
 
-
+    idServicio:number;
     nombreServicio:string;
 	descripcionServicio:string;
 	valorServicio:number;
@@ -44,5 +45,5 @@ export class Servicio {
 	Cliente_idCliente:number;
 	Vehiculo_idVehiculo:number;
 	Orden_idOrden:number;
-	Estado_idEstadoOrden:number;
+    Estado_idEstadoOrden:number;
 }
