@@ -133,6 +133,30 @@ serviceCityCargo.getVehiculosCityCargo = (req, res) => {
 
 }
 
+serviceCityCargo.getOrdenesCityCargo = (req, res) => {
+
+    var query = `SELECT * FROM orden`;
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        console.log('Done Lista orden');
+    });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json(data);
+    //         conn.close(function () {
+    //             console.log('done Listar servicios');
+    //         });
+    //     });
+    // });
+
+}
+
 
 
 // se encarga de actualizar el servicio

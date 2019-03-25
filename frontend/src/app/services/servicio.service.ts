@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Servicio } from '../models/servicio';
 import { Clients } from '../models/clients';
 import { Vehiculo } from '../models/vehiculo';
+import { Orden } from '../models/orden';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class ServicioService {
   services:Servicio[];
   clientes:Clients[];
   vehiculos:Vehiculo[];
+  ordenes:Orden[];
   readonly URL_API='http://localhost:3000/api/servicecitycargo';
   
 
@@ -30,6 +32,10 @@ export class ServicioService {
   getVehiculos(){
     return this.http.get(this.URL_API+`/vehiculos`);
   }
+  getOrdenes(){
+    return this.http.get(this.URL_API+`/orden`);
+  }
+
 
   postService(service:Servicio){
     return this.http.post(this.URL_API,service);

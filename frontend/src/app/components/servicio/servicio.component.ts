@@ -6,6 +6,7 @@ import { ClientsService } from 'src/app/services/clients.service';
 import { Clients } from 'src/app/models/clients';
 import { Router } from '@angular/router';
 import { Vehiculo } from 'src/app/models/vehiculo';
+import { Orden } from 'src/app/models/orden';
 
 declare var M:any;
 
@@ -28,6 +29,7 @@ export class ServicioComponent implements OnInit {
     this.getServicios();
     this.getClients();
     this.getVehiculos();
+    this.getOrdenes();
   }
 
   getServicios(){
@@ -86,6 +88,14 @@ export class ServicioComponent implements OnInit {
       .subscribe(res=>{
         this.serviceCity.vehiculos=res as Vehiculo[];
         console.log('vehiculos', res);
+      });
+  }
+
+  getOrdenes(){
+    this.serviceCity.getOrdenes()
+      .subscribe(res=>{
+        this.serviceCity.ordenes=res as Orden[];
+        console.log('ordenes', res);
       });
   }
 
