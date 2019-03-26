@@ -79,6 +79,8 @@ export class ServicioComponent implements OnInit {
     // console.log('fecha inicio', fecha.substring(0,10));
 
   }
+
+
   getServicios(){
     console.log('sfdsf', this.ruta.length);
     if(this.ruta.length==3){
@@ -202,6 +204,18 @@ export class ServicioComponent implements OnInit {
       this.serviceCity.selectedServiceCityCargo.Cliente_idCliente=parseInt(this.ruta[2]);
     }
 
+  }
+
+  serviceDeleteLogicData(servicio:Servicio){
+    this.serviceCity.selectedServiceCityCargo=servicio;
+  }
+
+  deleteLogicService(servicio:Servicio){
+    this.serviceCity.putDeletedLogicService(servicio)
+      .subscribe(res=>{
+        console.log('borrado', res);
+        this.getServicios();
+      })
   }
 
 

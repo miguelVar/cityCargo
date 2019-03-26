@@ -20,6 +20,7 @@ import { ETransporteComponent } from './components/e-transporte/e-transporte.com
 import { DeleteClientsComponent } from './components/delete-clients/delete-clients.component';
 import { VehiculoEliminadoComponent } from './components/vehiculo-eliminado/vehiculo-eliminado.component';
 import { ConductorEliminadoComponent } from './components/conductor-eliminado/conductor-eliminado.component';
+import { DeleteServicesComponent } from './components/delete-services/delete-services.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ConductorEliminadoComponent } from './components/conductor-eliminado/co
     ETransporteComponent,
     DeleteClientsComponent,
     VehiculoEliminadoComponent,
-    ConductorEliminadoComponent
+    ConductorEliminadoComponent,
+    DeleteServicesComponent
   ],
   imports: [
     BrowserModule,

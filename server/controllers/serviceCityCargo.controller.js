@@ -58,7 +58,7 @@ serviceCityCargo.getServiceCityCargo = (req, res) => {
 
     let idCliente=parseInt(req.params.id);
 
-        var query = `SELECT * FROM Servicio WHERE Cliente_idCliente=${idCliente}`;
+        var query = `SELECT * FROM Servicio WHERE Cliente_idCliente=${idCliente} and estadoEliminado=false`;
     
 
     connection.query(query, function (error, results) {
@@ -83,7 +83,7 @@ serviceCityCargo.getServiceCityCargo = (req, res) => {
 
 serviceCityCargo.getServiceCityCargoLink = (req, res) => {
 
-        var query = `SELECT * FROM Servicio`;
+        var query = `SELECT * FROM Servicio where estadoEliminado=false`;
     
 
     connection.query(query, function (error, results) {
@@ -154,6 +154,19 @@ serviceCityCargo.getOrdenesCityCargo = (req, res) => {
     //         });
     //     });
     // });
+
+}
+
+
+serviceCityCargo.getServicesDeleted = (req, res) => {
+
+    var query = `SELECT * FROM servicio where estadoEliminado=true`;
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        console.log('Done Lista orden');
+    });
 
 }
 

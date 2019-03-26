@@ -155,7 +155,7 @@
         </div>
         <div class="col-4">
           <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addcl" (click)="asignaCliente()">Agregar Servicio</button>&nbsp;
-          <button type="button" class="btn btn-outline-info" [routerLink]="['/deletedclients']">Ver
+          <button type="button" class="btn btn-outline-info" [routerLink]="['/deletedServices']">Ver
             Eliminados</button>
         </div>
       </div>
@@ -207,7 +207,7 @@
                     <i class="material-icons">edit</i>Editar
                   </button>&nbsp;
                   <button type="button" class="btn btn-outline-danger" onclick="('modal-dialog')" data-toggle="modal"
-                    data-target="#modal-eliminar-vehiculo" (click)="clientDeleteLogicData(c)">
+                    data-target="#modal-eliminar-vehiculo" (click)="serviceDeleteLogicData(c)">
                     <i class="material-icons">delete</i>Borrar
                   </button>&nbsp;
 
@@ -367,7 +367,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" data-dismiss="modal"
-                (click)="deleteLogicClient(clientService.selectedClient)">Eliminar</button>
+                (click)="deleteLogicService(serviceCity.selectedServiceCityCargo)">Eliminar</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
             </div>
           </div>
