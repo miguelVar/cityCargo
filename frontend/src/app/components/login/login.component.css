@@ -1,5 +1,5 @@
   body {
-    background: #00598a;
+    background: #43A530;
     padding-top: 25px;
     padding-bottom: 40px;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -27,18 +27,7 @@
   }
   
   #btnLogin{
-    background-color: #00598a;
-    color: white;
-    font-size: 1rem;
-    border-radius: 5rem;
-    letter-spacing: .1rem;
-    font-weight: bold;
-    padding: 1rem;
-    transition: all 0.2s; 
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  }
-  #btnRegister{
-    background-color: grey;
+    background-color: black;
     color: white;
     font-size: 1rem;
     border-radius: 5rem;
