@@ -12,6 +12,8 @@ declare var M: any;
 })
 export class ClientsComponent implements OnInit {
 
+  inicio: Clients[] = [];
+
   constructor(private clientService:ClientsService) { }
 
   ngOnInit() {
@@ -19,10 +21,39 @@ export class ClientsComponent implements OnInit {
   }
 
 
+  buscar(input, select) {
+    var busqueda: Clients[] = [], i;
+    var look = 0;
+    for (i = 0; i < this.inicio.length; i++) {
+      if (select == 1) {
+        if (this.inicio[i].nombreCliente.toUpperCase().indexOf(input.toUpperCase()) > -1) {
+          busqueda.push(this.inicio[i]);
+          this.clientService.clients = busqueda;
+          look++;
+        }
+        if (look < 1) {
+          this.clientService.clients = [];
+        }
+      }
+      else if (select == 2) {
+        if (this.inicio[i].idCliente.toString().indexOf(input.toUpperCase()) > -1) {
+          busqueda.push(this.inicio[i]);
+          this.clientService.clients = busqueda;
+          look++;
+        }
+        if (look < 1) {
+          this.clientService.clients = [];
+        }
+      }
+    }
+  }
+
+
   getClients(){
     this.clientService.getClients()
       .subscribe(res=>{
         this.clientService.clients=res as Clients[];
+        this.inicio = res as Clients[];
         console.log('Data front', res);
       });
   }
