@@ -135,7 +135,7 @@ serviceCityCargo.getVehiculosCityCargo = (req, res) => {
 
 serviceCityCargo.getOrdenesCityCargo = (req, res) => {
 
-    var query = `SELECT * FROM orden`;
+    var query = `SELECT * FROM orden where Estado_idEstadoOrden=1`;
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
@@ -160,13 +160,12 @@ serviceCityCargo.getOrdenesCityCargo = (req, res) => {
 serviceCityCargo.finalizarServicio=(req,res)=>{
 
     let idServicio=req.params.id;
-    let idOrden=req.body.Orden_idOrden;
     var query = `UPDATE servicio set Estado_idEstadoOrden=2 WHERE idServicio=${idServicio}`;
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json({results:'Actualizado estado'});
-        console.log('Done Lista estado');
+        console.log('Done servicio finalizado');
     });
 
 
@@ -181,7 +180,7 @@ serviceCityCargo.actualizarEstadoOrden=(req,res)=>{
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
         else res.json({results:'Actualizado estado'});
-        console.log('Done Lista estado');
+        console.log('Done orden finalizada');
     });
 
 
