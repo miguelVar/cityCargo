@@ -60,7 +60,7 @@ export class ETransporteComponent implements OnInit {
   }
 
 
-  resetForm(form?:NgForm){
+  resetForm(form?: NgForm) {
     if(form){
       form.reset();
     }
@@ -79,7 +79,6 @@ export class ETransporteComponent implements OnInit {
                   <hr>
               </div>`});
           this.getElements();
-          this.resetForm(form);
 
         });
 
@@ -96,7 +95,8 @@ export class ETransporteComponent implements OnInit {
                 <hr>
             </div>`});
         this.getElements();
-        this.resetForm(form);
+        // this.resetForm(form);
+        this.getElementsList();
       })
 
     }
@@ -104,6 +104,23 @@ export class ETransporteComponent implements OnInit {
 
   }
 
+
+  deleleElement(elemento:ETransporte){
+    this.serviceElementos.selectedElement=elemento;
+  }
+  deleteFisicaElement(elemento:ETransporte){
+    this.serviceElementos.deleteElement(elemento)
+      .subscribe(res=>{
+        console.log('eliminado', res);
+        M.toast({
+          html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                <h4 class="alert-heading">ELEMENTO ELIMINADO!!</h4>
+                <p>El elemento ha sido eliminado satisfactoriamente</p>
+                <hr>
+            </div>`});
+        this.getElements();
+      })
+  }
   editElements(elemento:ETransporte){
     console.log('data editar', elemento);
     this.serviceElementos.selectedElement=elemento;

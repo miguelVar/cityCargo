@@ -62,7 +62,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-          <button [disabled]="!elementForm.valid" type="button" class="btn btn-outline-success" (click)="addElement(elementForm)">Guardar</button>
+          <button [disabled]="!elementForm.valid" type="button" class="btn btn-outline-success" data-dismiss="modal" (click)="addElement(elementForm)">Guardar</button>
         </div>
       </div>
     </div>
@@ -126,7 +126,7 @@
                       <i class="material-icons">edit</i>Editar
                     </button>&nbsp;
                     <button type="button" class="btn btn-outline-danger" onclick="('modal-dialog')" data-toggle="modal"
-                      data-target="#modal-eliminar-vehiculo" (click)="clientDeleteLogicData(c)">
+                      data-target="#modal-eliminar-vehiculo" (click)="deleleElement(c)">
                       <i class="material-icons">delete</i>Borrar
                     </button>
                   </div>
@@ -201,10 +201,10 @@
           <div class="modal-dialog modal-lg" id="modal-eliminar-vehiculo" role="document">
             <div class="modal-content">
               <div class="modal-body">
-                ¿Desea eliminar el Cliente?
+                ¿Desea eliminar el elemento?
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteLogicClient(clientService.selectedClient)">Eliminar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteFisicaElement(serviceElementos.selectedElement)">Eliminar</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
               </div>
             </div>

@@ -36,6 +36,10 @@ export class ETransporteService {
     console.log("eeeeee",elemento.idElementosTransporte);
     return this.http.put(this.URL_API+`/${elemento.idElementosTransporte}`,elemento);
   }
+
+  deleteElement(elemento:ETransporte){
+    return this.http.delete(this.URL_API+`/${elemento.idElementosTransporte}`);
+  }
   postElement(elemento:ETransporte){
     console.log('se fue', elemento);
     return this.http.post(this.URL_API,elemento);

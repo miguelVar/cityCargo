@@ -125,7 +125,6 @@ export class ServicioComponent implements OnInit {
               </div>`});
 
               this.getServicios();
-              this.resetForm(form);
         });
 
     }else{
@@ -141,7 +140,7 @@ export class ServicioComponent implements OnInit {
             </div>`});
 
             this.getServicios();
-            this.resetForm(form);
+            // this.resetForm(form);
       });
       
     }
