@@ -79,6 +79,8 @@ export class ServicioComponent implements OnInit {
     // console.log('fecha inicio', fecha.substring(0,10));
 
   }
+
+
   getServicios(){
     console.log('sfdsf', this.ruta.length);
     if(this.ruta.length==3){
@@ -202,6 +204,24 @@ export class ServicioComponent implements OnInit {
       this.serviceCity.selectedServiceCityCargo.Cliente_idCliente=parseInt(this.ruta[2]);
     }
 
+  }
+
+  serviceDeleteLogicData(servicio:Servicio){
+    this.serviceCity.selectedServiceCityCargo=servicio;
+  }
+
+  deleteLogicService(servicio:Servicio){
+    this.serviceCity.putDeletedLogicService(servicio)
+      .subscribe(res=>{
+        console.log('borrado', res);
+        M.toast({
+          html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                <h4 class="alert-heading">SERVICIO ELIMINADO!!</h4>
+                <p>El servicio ha sido eliminado satisfactoriamente</p>
+                <hr>
+            </div>`});
+        this.getServicios();
+      })
   }
 
 

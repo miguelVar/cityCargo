@@ -15,6 +15,7 @@ export class ServicioService {
   clientes:Clients[];
   vehiculos:Vehiculo[];
   ordenes:Orden[];
+  servicesDeleted:Servicio[];
   readonly URL_API='http://localhost:3000/api/servicecitycargo';
   
 
@@ -35,8 +36,15 @@ export class ServicioService {
   getOrdenes(){
     return this.http.get(this.URL_API+`/orden`);
   }
+  getServicesDeletedLogi(){
+    return this.http.get(this.URL_API+`/servicesdeletedlogic`);
+  }
   putServicio(servicio:Servicio){
     return this.http.put(this.URL_API+`/${servicio.idServicio}`,servicio);
+  }
+  putDeletedLogicService(servicio:Servicio){
+    return this.http.put(this.URL_API+"/deletelogic"+`/${servicio.idServicio}`, servicio);
+
   }
   finalizarServicio(servicio:Servicio){
     return this.http.put(this.URL_API+"/finalizar"+`/${servicio.idServicio}`, servicio);
