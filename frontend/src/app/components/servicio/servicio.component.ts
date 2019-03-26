@@ -75,6 +75,12 @@ export class ServicioComponent implements OnInit {
       });
   }
 
+  detallesServicio(servicio:Servicio){
+    this.serviceCity.selectedServiceCityCargo=servicio;
+    console.log('data ver detalles ', this.serviceCity.selectedServiceCityCargo);
+
+  }
+
   getClients(){
     this.clientService.getClients()
       .subscribe(res=>{

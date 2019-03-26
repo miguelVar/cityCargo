@@ -27,6 +27,10 @@ export class ETransporteService {
   getElementosLink(){
     return this.http.get(this.URL_API);
   }
+  putElemento(elemento:ETransporte){
+    console.log("eeeeee",elemento.idElementosTransporte);
+    return this.http.put(this.URL_API+`/${elemento.idElementosTransporte}`,elemento);
+  }
   postElement(elemento:ETransporte){
     console.log('se fue', elemento);
     return this.http.post(this.URL_API,elemento);

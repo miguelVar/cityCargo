@@ -116,7 +116,7 @@
                 </div>
                 <div class="input-field col-12">
                   <div class="card-footer bg-transparent border-dark">
-                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ex2" (click)="editClient(c)">
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ex2" (click)="editElements(c)">
                       <i class="material-icons">edit</i>Editar
                     </button>&nbsp;
                     <button type="button" class="btn btn-outline-danger" onclick="('modal-dialog')" data-toggle="modal"
@@ -131,14 +131,14 @@
                     <div class="modal-dialog modal-lg" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel"><Strong>Editar Cliente</Strong></h5>
+                          <h5 class="modal-title" id="exampleModalLabel"><Strong>Editar Elemento</Strong></h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-label="true">&times;</span>
                           </button>
                         </div>
                         <div class="modal-body">
-                          <form #clientEditForm="ngForm">
-                            <input hidden class="form-control" id="input" type="text" name="idCliente" #name="ngModel" [(ngModel)]="serviceElementos.selectedElement.idCliente">
+                          <form #elementEditForm="ngForm">
+                            <input hidden class="form-control" id="input" type="text" name="idElementosTransporte" #name="ngModel" [(ngModel)]="serviceElementos.selectedElement.idElementosTransporte">
                             <!-- <div class="row">
                               <div class="input-field col-12">
                                 <label><Strong>Placa del Vehiculo</Strong></label>
@@ -148,29 +148,34 @@
                             </div> -->
   
                             <div class="input-field col-12">
-                                <label><Strong>Nombre del cliente</Strong></label>
-                                <input class="form-control" id="input" type="text" name="nombreCliente" #name="ngModel"
-                                  [(ngModel)]="serviceElementos.selectedElement.nombreCliente" placeholder="Ingrese el nombre">
+                                <label><Strong>Nombre del Elemento</Strong></label>
+                                <input class="form-control" id="input" type="text" name="nombreElemento" #name="ngModel"
+                                  [(ngModel)]="serviceElementos.selectedElement.nombreElemento" placeholder="Ingrese el nombre">
+                            </div>
+
+                            <div class="input-field col-12">
+                                <label><Strong>Cantidad del Elemento</Strong></label>
+                                <input class="form-control" id="input" type="text" name="cantidadElemento" #name="ngModel"
+                                  [(ngModel)]="serviceElementos.selectedElement.cantidadElemento" placeholder="Ingrese el nombre">
+                            </div>
+
+                            <label><Strong><label id="lbl">*</label>Servicio</Strong></label>
+                            <div class="input-field col-12">
+                              <select id="select" class="form-control" name="Servicio_idServicio" #name="ngModel"
+                                [(ngModel)]="serviceElementos.selectedElement.Servicio_idServicio">
+                                <option value="" disabled>Seleccione la orden</option>
+                                <option *ngFor="let us of serviceElementos.servicios" value={{us.idServicio}}>
+                                  {{us.nombreServicio}}
+                                </option>
+                                </select>
                             </div>
   
-<!--   
-                            <div class="input-field col-12">
-                                <label><Strong>Celular del cliente</Strong></label>
-                                <input class="form-control" id="input" type="text" name="celularCliente" #name="ngModel"
-                                  [(ngModel)]="clientService.selectedClient.celularCliente" placeholder="Ingrese el celular">
-                            </div>
-  
-                            <div class="input-field col-12">
-                                <label><Strong>Dirección del cliente</Strong></label>
-                                <input class="form-control" id="input" type="text" name="direccionCliente" #name="ngModel"
-                                  [(ngModel)]="clientService.selectedClient.direccionCliente" placeholder="Ingrese la dirección">
-                            </div> -->
                           </form>
                           <!---------------------------------->
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-                          <button type="button" class="btn btn-outline-success" data-dismiss="modal" (click)="addClient(clientEditForm)">Guardar
+                          <button type="button" class="btn btn-outline-success" data-dismiss="modal" (click)="addElement(elementEditForm)">Guardar
                             cambios</button>
                         </div>
                         <!------------------------------------->

@@ -91,6 +91,7 @@ transportElement.getTransportElementLink = (req, res) => {
 
 // se encarga de actualizar un elemento a transportar
 transportElement.updateTransportElement = (req, res) => {
+    console.log('data', req.body);
     let idElemento = req.params.id;
     let nombreElemento = req.body.nombreElemento;
     let cantidadElemento = req.body.cantidadElemento;

@@ -32,63 +32,63 @@
               <div class="input-field col-12">
                 <label><Strong><label id="lbl">*</label>Nombre del Servicio</Strong></label>
                 <input class="form-control" id="input" type="text" name="nombreServicio" #name="ngModel"
-                  [(ngModel)]="nombreServicio" placeholder="Ingrese el nombre" required>
+                  [(ngModel)]="serviceCity.selectedServiceCityCargo.nombreServicio" placeholder="Ingrese el nombre" required>
               </div>
               <div class="input-field col-12">
                 <label><Strong>Descripción del Servicio</Strong></label>
                 <input class="form-control" id="input" type="text" name="descripcionServicio" #name="ngModel"
-                  [(ngModel)]="descripcionServicio" placeholder="Ingrese el número">
+                  [(ngModel)]="serviceCity.selectedServiceCityCargo.descripcionServicio" placeholder="Ingrese el número">
               </div>
               <div class="input-field col-12">
                 <label><Strong>Valor del Servicio</Strong></label>
                 <input class="form-control" id="input" type="number" name="valorServicio" #name="ngModel"
-                  [(ngModel)]="valorServicio" placeholder="Ingrese la dirección">
+                  [(ngModel)]="serviceCity.selectedServiceCityCargo.valorServicio" placeholder="Ingrese la dirección">
               </div>
               <div class="input-field col-12">
                 <label><Strong>Hora Inicio del Servicio</Strong></label>
                 <input class="form-control" id="input" type="time" name="horaInicioServicio" #name="ngModel"
-                  [(ngModel)]="horaInicioServicio" placeholder="Ingrese la dirección">
+                  [(ngModel)]="serviceCity.selectedServiceCityCargo.horaInicioServicio" placeholder="Ingrese la dirección">
               </div>
               <div class="input-field col-12">
                 <label><Strong>Hora fin del Servicio</Strong></label>
                 <input class="form-control" id="input" type="time" name="horaFinServicio" #name="ngModel"
-                  [(ngModel)]="horaFinServicio" placeholder="Ingrese la dirección">
+                  [(ngModel)]="serviceCity.selectedServiceCityCargo.horaFinServicio" placeholder="Ingrese la dirección">
               </div>
               <div class="input-field col-12">
                 <label><Strong>Fecha Inicio del Servicio</Strong></label>
                 <input class="form-control" id="input" type="date" name="fechaInicioServicio" #name="ngModel"
-                  [(ngModel)]="fechaInicioServicio" placeholder="Ingrese la dirección">
+                  [(ngModel)]="serviceCity.selectedServiceCityCargo.fechaInicioServicio" placeholder="Ingrese la dirección">
               </div>
               <div class="input-field col-12">
                 <label><Strong>Fecha Fin del Servicio</Strong></label>
                 <input class="form-control" id="input" type="date" name="fechaFinServicio" #name="ngModel"
-                  [(ngModel)]="fechaFinServicio" placeholder="Ingrese la dirección">
+                  [(ngModel)]="serviceCity.selectedServiceCityCargo.fechaFinServicio" placeholder="Ingrese la dirección">
               </div>
               <div class="input-field col-12">
                 <label><Strong>Observación del Servicio</Strong></label>
                 <input class="form-control" id="input" type="text" name="observacion" #name="ngModel"
-                  [(ngModel)]="observacion" placeholder="Ingrese la dirección">
+                  [(ngModel)]="serviceCity.selectedServiceCityCargo.observacion" placeholder="Ingrese la dirección">
               </div>
               <div class="input-field col-12">
                 <label><Strong>Ciudad Origen</Strong></label>
                 <input class="form-control" id="input" type="text" name="ciudadOrigen" #name="ngModel"
-                  [(ngModel)]="ciudadOrigen" placeholder="Ingrese la dirección">
+                  [(ngModel)]="serviceCity.selectedServiceCityCargo.ciudadOrigen" placeholder="Ingrese la dirección">
               </div>
               <div class="input-field col-12">
                 <label><Strong>Ciudad Destino</Strong></label>
                 <input class="form-control" id="input" type="text" name="ciudadDestino" #name="ngModel"
-                  [(ngModel)]="ciudadDestino" placeholder="Ingrese la dirección">
+                  [(ngModel)]="serviceCity.selectedServiceCityCargo.ciudadDestino" placeholder="Ingrese la dirección">
               </div>
               <div class="input-field col-12">
                 <label><Strong>Dirección Origen del Servicio</Strong></label>
                 <input class="form-control" id="input" type="text" name="direccionOrigenServicio" #name="ngModel"
-                [(ngModel)]="direccionOrigenServicio"  placeholder="Ingrese la dirección">
+                [(ngModel)]="serviceCity.selectedServiceCityCargo.direccionOrigenServicio"  placeholder="Ingrese la dirección">
               </div>
 
               <div class="input-field col-12">
                 <label><Strong>Dirección Destino del Servicio</Strong></label>
                 <input class="form-control" id="input" type="text" name="direccionDestinoServicio" #name="ngModel"
-                [(ngModel)]="direccionDestinoServicio" placeholder="Ingrese la dirección">
+                [(ngModel)]="serviceCity.selectedServiceCityCargo.direccionDestinoServicio" placeholder="Ingrese la dirección">
               </div>
 
               <label><Strong><label id="lbl">*</label>Nombre del Cliente</Strong></label>
@@ -130,7 +130,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-          <button [disabled]="!serviceForm.valid" type="button" class="btn btn-outline-success"
+          <button type="button" class="btn btn-outline-success"
             (click)="addService(serviceForm)">Guardar</button>
         </div>
       </div>
@@ -208,6 +208,11 @@
                   <button type="button" class="btn btn-outline-danger" onclick="('modal-dialog')" data-toggle="modal"
                     data-target="#modal-eliminar-vehiculo" (click)="clientDeleteLogicData(c)">
                     <i class="material-icons">delete</i>Borrar
+                  </button>&nbsp;
+
+                  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#detalles"
+                    (click)="detallesServicio(c)">
+                    <i class="material-icons">edit</i>Ver detalles
                   </button>
 
                 </div>
@@ -299,6 +304,137 @@
       <!---->
     </div>
   </div>
+
+
+
+  <!-- ---- -->
+
+  <div class="modal fade" id="detalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><Strong>Editar Cliente</Strong></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-label="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                          <form #serviceForm="ngForm">
+                              <div class="row">
+                                <div class="input-field col-12">
+                                  <label><Strong><label id="lbl">*</label>Nombre del Servicio</Strong></label>
+                                  <input class="form-control" id="input" type="text" name="nombreServicio" #name="ngModel"
+                                    [(ngModel)]="serviceCity.selectedServiceCityCargo.nombreServicio" placeholder="Ingrese el nombre" required>
+                                </div>
+                                <div class="input-field col-12">
+                                  <label><Strong>Descripción del Servicio</Strong></label>
+                                  <input class="form-control" id="input" type="text" name="descripcionServicio" #name="ngModel"
+                                    [(ngModel)]="serviceCity.selectedServiceCityCargo.descripcionServicio" placeholder="Ingrese el número">
+                                </div>
+                                <div class="input-field col-12">
+                                  <label><Strong>Valor del Servicio</Strong></label>
+                                  <input class="form-control" id="input" type="number" name="valorServicio" #name="ngModel"
+                                    [(ngModel)]="serviceCity.selectedServiceCityCargo.valorServicio" placeholder="Ingrese la dirección">
+                                </div>
+                                <div class="input-field col-12">
+                                  <label><Strong>Hora Inicio del Servicio</Strong></label>
+                                  <input class="form-control" id="input" type="time" name="horaInicioServicio" #name="ngModel"
+                                    [(ngModel)]="serviceCity.selectedServiceCityCargo.horaInicioServicio" placeholder="Ingrese la dirección">
+                                </div>
+                                <div class="input-field col-12">
+                                  <label><Strong>Hora fin del Servicio</Strong></label>
+                                  <input class="form-control" id="input" type="time" name="horaFinServicio" #name="ngModel"
+                                    [(ngModel)]="serviceCity.selectedServiceCityCargo.horaFinServicio" placeholder="Ingrese la dirección">
+                                </div>
+                                <div class="input-field col-12">
+                                  <label><Strong>Fecha Inicio del Servicio</Strong></label>
+                                  <input class="form-control" id="input" type="datetime" name="fechaInicioServicio" #name="ngModel"
+                                    [(ngModel)]="serviceCity.selectedServiceCityCargo.fechaInicioServicio" placeholder="Ingrese la dirección">
+                                </div>
+                                <div class="input-field col-12">
+                                  <label><Strong>Fecha Fin del Servicio</Strong></label>
+                                  <input class="form-control" id="input" type="datetime" name="fechaFinServicio" #name="ngModel"
+                                    [(ngModel)]="serviceCity.selectedServiceCityCargo.fechaFinServicio" placeholder="Ingrese la dirección">
+                                </div>
+                                <div class="input-field col-12">
+                                  <label><Strong>Observación del Servicio</Strong></label>
+                                  <input class="form-control" id="input" type="text" name="observacion" #name="ngModel"
+                                    [(ngModel)]="serviceCity.selectedServiceCityCargo.observacion" placeholder="Ingrese la dirección">
+                                </div>
+                                <div class="input-field col-12">
+                                  <label><Strong>Ciudad Origen</Strong></label>
+                                  <input class="form-control" id="input" type="text" name="ciudadOrigen" #name="ngModel"
+                                    [(ngModel)]="serviceCity.selectedServiceCityCargo.ciudadOrigen" placeholder="Ingrese la dirección">
+                                </div>
+                                <div class="input-field col-12">
+                                  <label><Strong>Ciudad Destino</Strong></label>
+                                  <input class="form-control" id="input" type="text" name="ciudadDestino" #name="ngModel"
+                                    [(ngModel)]="serviceCity.selectedServiceCityCargo.ciudadDestino" placeholder="Ingrese la dirección">
+                                </div>
+                                <div class="input-field col-12">
+                                  <label><Strong>Dirección Origen del Servicio</Strong></label>
+                                  <input class="form-control" id="input" type="text" name="direccionOrigenServicio" #name="ngModel"
+                                  [(ngModel)]="serviceCity.selectedServiceCityCargo.direccionOrigenServicio"  placeholder="Ingrese la dirección">
+                                </div>
+                  
+                                <div class="input-field col-12">
+                                  <label><Strong>Dirección Destino del Servicio</Strong></label>
+                                  <input class="form-control" id="input" type="text" name="direccionDestinoServicio" #name="ngModel"
+                                  [(ngModel)]="serviceCity.selectedServiceCityCargo.direccionDestinoServicio" placeholder="Ingrese la dirección">
+                                </div>
+                  
+                                <label><Strong><label id="lbl">*</label>Nombre del Cliente</Strong></label>
+                                <div class="input-field col-12">
+                                  <select id="select" class="form-control" name="Cliente_idCliente" #name="ngModel"
+                                    [(ngModel)]="serviceCity.selectedServiceCityCargo.Cliente_idCliente">
+                                    <option value="" disabled>Seleccione el Cliente</option>
+                                    <option *ngFor="let us of serviceCity.clientes" value={{us.idCliente}}>
+                                      {{us.nombreCliente}}
+                                    </option>
+                                    </select>
+                                </div>
+                  
+                                <label><Strong><label id="lbl">*</label>Vehiculo</Strong></label>
+                                <div class="input-field col-12">
+                                  <select id="select" class="form-control" name="Vehiculo_idVehiculo" #name="ngModel"
+                                    [(ngModel)]="serviceCity.selectedServiceCityCargo.Vehiculo_idVehiculo">
+                                    <option value="" disabled>Seleccione el Vehiculo</option>
+                                    <option *ngFor="let us of serviceCity.vehiculos" value={{us.idVehiculo}}>
+                                      {{us.placaVehiculo}}
+                                    </option>
+                                    </select>
+                                </div>
+                  
+                                <label><Strong><label id="lbl">*</label>Número de Orden</Strong></label>
+                                <div class="input-field col-12">
+                                  <select id="select" class="form-control" name="Orden_idOrden" #name="ngModel"
+                                    [(ngModel)]="serviceCity.selectedServiceCityCargo.Orden_idOrden">
+                                    <option value="" disabled>Seleccione la orden</option>
+                                    <option *ngFor="let us of serviceCity.ordenes" value={{us.idOrden}}>
+                                      {{us.numeroOrden}}
+                                    </option>
+                                    </select>
+                                </div>
+                  
+                                
+                              </div>
+                            </form>
+                        <!---------------------------------->
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                        <!-- <button type="button" class="btn btn-outline-success" data-dismiss="modal"
+                          (click)="addClient(clientEditForm)">Guardar
+                          cambios</button> -->
+                      </div>
+                      <!------------------------------------->
+                    </div>
+                  </div>
+                </div>
+
+
+  <!-- --- -->
 
 
 

@@ -30,7 +30,22 @@ export class ETransporteComponent implements OnInit {
 
   addElement(form?:NgForm){
     console.log('data elemento', form.value);
-    this.serviceElementos.postElement(form.value)
+    if(form.value.idElementosTransporte){
+      this.serviceElementos.putElemento(form.value)
+        .subscribe(res=>{
+          M.toast({
+            html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                  <h4 class="alert-heading">ELEMENTO ACTUALIZADO!!</h4>
+                  <p>El elemento ha sido actualizado satisfactoriamente</p>
+                  <hr>
+              </div>`});
+          this.getElements();
+
+        });
+
+    }else{
+
+      this.serviceElementos.postElement(form.value)
       .subscribe(res=>{
         console.log('agregadoo', res);
 
@@ -43,6 +58,14 @@ export class ETransporteComponent implements OnInit {
         this.getElements();
       })
 
+    }
+  
+
+  }
+
+  editElements(elemento:ETransporte){
+    console.log('data editar', elemento);
+    this.serviceElementos.selectedElement=elemento;
   }
 
   getServices(){
