@@ -61,6 +61,17 @@ export class ServicioComponent implements OnInit {
     }
   }
 
+
+  editService(servicio:Servicio){
+    this.serviceCity.selectedServiceCityCargo=servicio;
+    let fechaInicio=String(this.serviceCity.selectedServiceCityCargo.fechaInicioServicio).substring(0,10);
+    this.serviceCity.selectedServiceCityCargo.fechaInicioServicio=fechaInicio;
+    let fechaFin=String(this.serviceCity.selectedServiceCityCargo.fechaFinServicio).substring(0,10);
+    this.serviceCity.selectedServiceCityCargo.fechaFinServicio=fechaFin;
+    console.log('fecha inicio', this.serviceCity.selectedServiceCityCargo.fechaInicioServicio);
+    // console.log('fecha inicio', fecha.substring(0,10));
+
+  }
   getServicios(){
     console.log('sfdsf', this.ruta.length);
     if(this.ruta.length==3){
@@ -93,7 +104,23 @@ export class ServicioComponent implements OnInit {
 
   addService(form?:NgForm){
     console.log('Dat sera', form.value);
-    this.serviceCity.postService(form.value)
+    if(form.value.idServicio){
+      this.serviceCity.putServicio(form.value)
+        .subscribe(res=>{
+
+          M.toast({
+            html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                  <h4 class="alert-heading">SERVICIO ACTUALIZADO!!</h4>
+                  <p>El servicio ha sido actualizado satisfactoriamente</p>
+                  <hr>
+              </div>`});
+
+              this.getServicios();
+        });
+
+    }else{
+
+      this.serviceCity.postService(form.value)
       .subscribe(res=>{
         console.log('Registrado');
         M.toast({
@@ -105,6 +132,9 @@ export class ServicioComponent implements OnInit {
 
             this.getServicios();
       });
+      
+    }
+   
   }
 
   detallesServicio(servicio:Servicio){

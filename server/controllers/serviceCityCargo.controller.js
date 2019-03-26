@@ -210,7 +210,7 @@ serviceCityCargo.updateServiceCityCargo = (req, res) => {
     let Cliente_idCliente = req.body.Cliente_idCliente;
     let Vehiculo_idVehiculo = req.body.Vehiculo_idVehiculo;
     let Orden_idOrden = req.body.Orden_idOrden;
-    let Estado_idEstadoOrden = req.body.Estado_idEstadoOrden;
+    let Estado_idEstadoOrden = req.body.Estado_idEstadoOrden || 1;
 
     var query = `UPDATE Servicio SET nombreServicio='${nombreServicio}'
         , descripcionServicio='${descripcionServicio}'
