@@ -35,7 +35,12 @@ export class ServicioService {
   getOrdenes(){
     return this.http.get(this.URL_API+`/orden`);
   }
-
+  finalizarServicio(servicio:Servicio){
+    return this.http.put(this.URL_API+"/finalizar"+`/${servicio.idServicio}`, servicio);
+  }
+  actulizarEstadoOrden(service:Servicio){
+    return this.http.put(this.URL_API+`/actorden`,service);
+  }
 
   postService(service:Servicio){
     return this.http.post(this.URL_API,service);

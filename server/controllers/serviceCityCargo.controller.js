@@ -157,6 +157,36 @@ serviceCityCargo.getOrdenesCityCargo = (req, res) => {
 
 }
 
+serviceCityCargo.finalizarServicio=(req,res)=>{
+
+    let idServicio=req.params.id;
+    let idOrden=req.body.Orden_idOrden;
+    var query = `UPDATE servicio set Estado_idEstadoOrden=2 WHERE idServicio=${idServicio}`;
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json({results:'Actualizado estado'});
+        console.log('Done Lista estado');
+    });
+
+
+}
+
+serviceCityCargo.actualizarEstadoOrden=(req,res)=>{
+    let idOrden=req.body.Orden_idOrden;
+
+    console.log("id orden ",idOrden);
+    var query = `UPDATE orden set Estado_idEstadoOrden=2 WHERE idOrden=${idOrden}`;
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json({results:'Actualizado estado'});
+        console.log('Done Lista estado');
+    });
+
+
+}
+
 
 
 // se encarga de actualizar el servicio

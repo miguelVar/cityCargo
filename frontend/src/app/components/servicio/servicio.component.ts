@@ -81,6 +81,26 @@ export class ServicioComponent implements OnInit {
 
   }
 
+  finalizarServicio(service:Servicio){
+    this.serviceCity.finalizarServicio(service)
+      .subscribe(res=>{
+        console.log('estado actualizado', res);
+        M.toast({
+          html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                <h4 class="alert-heading">ESTADO ACTUALIZADO!!</h4>
+                <p>El estado ha sido actualizado satisfactoriamente</p>
+                <hr>
+            </div>`});
+        this.serviceCity.actulizarEstadoOrden(service)
+          .subscribe(res=>{
+            console.log('Estado orden atualiado', res);
+
+          });
+
+      });
+
+  }
+
   getClients(){
     this.clientService.getClients()
       .subscribe(res=>{
