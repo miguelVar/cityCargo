@@ -12,6 +12,8 @@ declare var M:any;
 export class DeleteServicesComponent implements OnInit {
 
   tamarray:number;
+  inicio:Servicio[]=[];
+
   constructor(private serviceCity:ServicioService) { 
 
   }
@@ -20,6 +22,34 @@ export class DeleteServicesComponent implements OnInit {
     this.servicesDeleted();
   }
 
+  buscar(input, select) {
+    var busqueda: Servicio[] = [], i;
+    var look = 0;
+    for (i = 0; i < this.inicio.length; i++) {
+      if (select == 1) {
+        if (this.inicio[i].nombreServicio.toUpperCase().indexOf(input.toUpperCase()) > -1) {
+          busqueda.push(this.inicio[i]);
+          this.serviceCity.servicesDeleted = busqueda;
+          look++;
+        }
+        if (look < 1) {
+          this.serviceCity.servicesDeleted = [];
+        }
+      }
+      else if (select == 2) {
+        if (this.inicio[i].idServicio.toString().indexOf(input.toUpperCase()) > -1) {
+          busqueda.push(this.inicio[i]);
+          this.serviceCity.servicesDeleted = busqueda;
+          look++;
+        }
+        if (look < 1) {
+          this.serviceCity.servicesDeleted = [];
+        }
+      }
+    }
+  }
+
+
 
   servicesDeleted(){
     this.serviceCity.getServicesDeletedLogi()
@@ -27,6 +57,7 @@ export class DeleteServicesComponent implements OnInit {
         console.log('servicios eliminados ', res);
         this.serviceCity.servicesDeleted=res as Servicio[];
         this.tamarray=this.serviceCity.servicesDeleted.length;
+        this.inicio=res as Servicio[];
       })
   }
 
