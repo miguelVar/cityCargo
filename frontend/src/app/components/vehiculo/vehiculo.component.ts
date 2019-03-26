@@ -56,6 +56,7 @@ export class VehiculoComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
         this.vehiculoService.vehiculo = res as Vehiculo[];
+        this.vehiculo = res as Vehiculo[];
       })
   }
 
