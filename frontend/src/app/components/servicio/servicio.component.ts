@@ -61,7 +61,6 @@ export class ServicioComponent implements OnInit {
     }
   }
 
-
   editService(servicio:Servicio){
     this.serviceCity.selectedServiceCityCargo=servicio;
     let fechaInicio=String(this.serviceCity.selectedServiceCityCargo.fechaInicioServicio).substring(0,10);
