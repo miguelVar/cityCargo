@@ -147,8 +147,9 @@
             <option value=2>ID</option>
           </select>
         </div>
-        <input id="input" class="form-control" placeholder="Buscar..." #myInput style="border-radius: 0rem;"
-          title="Ingrese el campo para filtrar" aria-describedby="basic-addon2">
+        <input id="input" class="form-control" placeholder="Buscar..." #myInput
+            (keyup)="this.buscar(myInput.value,mySelect.value)" style="border-radius: 0rem;"
+            title="Ingrese el campo para filtrar" aria-describedby="basic-addon2">
         <div class="input-group-append">
           <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
         </div>

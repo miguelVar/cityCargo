@@ -19,6 +19,7 @@ export class ServicioComponent implements OnInit {
 
   ruta:string[];
   tamarray:number;
+  inicio: Servicio[] = [];
 
   constructor(private serviceCity:ServicioService, private clientService:ClientsService, private route:Router) { 
 
@@ -32,6 +33,34 @@ export class ServicioComponent implements OnInit {
     this.getOrdenes();
   }
 
+  
+  buscar(input, select) {
+    var busqueda: Servicio[] = [], i;
+    var look = 0;
+    for (i = 0; i < this.inicio.length; i++) {
+      if (select == 1) {
+        if (this.inicio[i].nombreServicio.toUpperCase().indexOf(input.toUpperCase()) > -1) {
+          busqueda.push(this.inicio[i]);
+          this.serviceCity.services = busqueda;
+          look++;
+        }
+        if (look < 1) {
+          this.serviceCity.services = [];
+        }
+      }
+      else if (select == 2) {
+        if (this.inicio[i].idServicio.toString().indexOf(input.toUpperCase()) > -1) {
+          busqueda.push(this.inicio[i]);
+          this.serviceCity.services = busqueda;
+          look++;
+        }
+        if (look < 1) {
+          this.serviceCity.services = [];
+        }
+      }
+    }
+  }
+
   getServicios(){
     console.log('sfdsf', this.ruta.length);
     if(this.ruta.length==3){
@@ -40,8 +69,10 @@ export class ServicioComponent implements OnInit {
         .subscribe(res=>{
           console.log("dataaaa",res);
           this.serviceCity.services=res as Servicio[];
+          this.inicio=res as Servicio[];
           this.tamarray=this.serviceCity.services.length;
           console.log('ramanoooooooo', this.tamarray);
+
   
         });
 
@@ -51,6 +82,7 @@ export class ServicioComponent implements OnInit {
         .subscribe(res=>{
           console.log("dataaaa",res);
           this.serviceCity.services=res as Servicio[];
+          this.inicio=res as Servicio[];
   
         });
 
