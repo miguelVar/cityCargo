@@ -34,8 +34,8 @@ export class Servicio {
 	valorServicio:number;
 	horaInicioServicio:Time;
 	horaFinServicio:Time;
-	fechaInicioServicio:Date;
-	fechaFinServicio:Date;
+	fechaInicioServicio:string;
+	fechaFinServicio:string;
 	observacion:string;
 	ciudadOrigen:string;
 	ciudadDestino:string;

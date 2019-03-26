@@ -8,6 +8,7 @@ const transportElement = {};
 
 // se encarga de crear los elementos a transportar
 transportElement.createTransportElement = (req, res) => {
+    console.log('data elemento', req.body);
     let nombreElemento = req.body.nombreElemento;
     let cantidadElemento = req.body.cantidadElemento;
     let Servicio_idServicio = req.body.Servicio_idServicio;
@@ -16,7 +17,7 @@ transportElement.createTransportElement = (req, res) => {
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
-        else res.json(results);
+        else res.json({results:'Elemento creado'});
         console.log('Done crea elementos transporte');
     });
 
@@ -37,6 +38,35 @@ transportElement.createTransportElement = (req, res) => {
 
 // se encarga de listar los elementos a transportar
 transportElement.getTransportElement = (req, res) => {
+
+    idServicio=req.params.id;
+
+    var query = `SELECT * FROM ElementosTransporte where Servicio_idServicio=${idServicio}`;
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        console.log('Done lista elementos transporte');
+    });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json(data)
+    //         conn.close(function () {
+    //             console.log('done Listar elementos a transportar');
+    //         });
+    //     });
+    // });
+}
+
+
+// se encarga de listar los elementos a transportar cuando se da click directamnete en elementos
+transportElement.getTransportElementLink = (req, res) => {
+
+    idServicio=req.params.id;
 
     var query = `SELECT * FROM ElementosTransporte`;
 
@@ -59,9 +89,23 @@ transportElement.getTransportElement = (req, res) => {
     // });
 }
 
+// se encarga de listar los elementos a transportar para facilitar el registro, para ls opciones del input de nombre dle elemento
+transportElement.getTransportElementList = (req, res) => {
+
+    idServicio=req.params.id;
+
+    var query = `SELECT * FROM ElementosTransporte group by nombreElemento`;
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        console.log('Done lista elementos transporte');
+    });
+}
 
 // se encarga de actualizar un elemento a transportar
 transportElement.updateTransportElement = (req, res) => {
+    console.log('data', req.body);
     let idElemento = req.params.id;
     let nombreElemento = req.body.nombreElemento;
     let cantidadElemento = req.body.cantidadElemento;

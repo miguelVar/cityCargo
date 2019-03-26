@@ -133,6 +133,59 @@ serviceCityCargo.getVehiculosCityCargo = (req, res) => {
 
 }
 
+serviceCityCargo.getOrdenesCityCargo = (req, res) => {
+
+    var query = `SELECT * FROM orden where Estado_idEstadoOrden=1`;
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        console.log('Done Lista orden');
+    });
+
+    // ibmdb.open(connStr, function (err, conn) {
+    //     if (err) return console.log(err);
+
+    //     conn.query(query, function (err, data) {
+    //         if (err) res.json({ error: err })
+    //         else res.json(data);
+    //         conn.close(function () {
+    //             console.log('done Listar servicios');
+    //         });
+    //     });
+    // });
+
+}
+
+serviceCityCargo.finalizarServicio=(req,res)=>{
+
+    let idServicio=req.params.id;
+    var query = `UPDATE servicio set Estado_idEstadoOrden=2 WHERE idServicio=${idServicio}`;
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json({results:'Actualizado estado'});
+        console.log('Done servicio finalizado');
+    });
+
+
+}
+
+serviceCityCargo.actualizarEstadoOrden=(req,res)=>{
+    let idOrden=req.body.Orden_idOrden;
+
+    console.log("id orden ",idOrden);
+    var query = `UPDATE orden set Estado_idEstadoOrden=2 WHERE idOrden=${idOrden}`;
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json({results:'Actualizado estado'});
+        console.log('Done orden finalizada');
+    });
+
+
+}
+
 
 
 // se encarga de actualizar el servicio
@@ -157,7 +210,7 @@ serviceCityCargo.updateServiceCityCargo = (req, res) => {
     let Cliente_idCliente = req.body.Cliente_idCliente;
     let Vehiculo_idVehiculo = req.body.Vehiculo_idVehiculo;
     let Orden_idOrden = req.body.Orden_idOrden;
-    let Estado_idEstadoOrden = req.body.Estado_idEstadoOrden;
+    let Estado_idEstadoOrden = req.body.Estado_idEstadoOrden || 1;
 
     var query = `UPDATE Servicio SET nombreServicio='${nombreServicio}'
         , descripcionServicio='${descripcionServicio}'

@@ -23,8 +23,9 @@
             <option value=2>ID</option>
           </select>
         </div>
-        <input id="input" class="form-control" placeholder="Buscar..." #myInput style="border-radius: 0rem;"
-          title="Ingrese el campo para filtrar" aria-describedby="basic-addon2">
+        <input id="input" class="form-control" placeholder="Buscar..." #myInput
+            (keyup)="this.buscar(myInput.value,mySelect.value)" style="border-radius: 0rem;"
+            title="Ingrese el campo para filtrar" aria-describedby="basic-addon2">
         <div class="input-group-append">
           <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
         </div>
@@ -196,4 +197,11 @@
     </div>
   </div>
 
+
+
+  <div class="text-center">
+      <div *ngIf="!yaCargo()" class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+        <span class="sr-only">Loading...</span>
+      </div>
+  </div>
 </div>
