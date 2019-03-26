@@ -35,6 +35,12 @@ export class ServicioComponent implements OnInit {
     this.getOrdenes();
   }
 
+  resetForm(form?:NgForm){
+    if(form){
+      form.reset();
+    }
+  }
+
   
   buscar(input, select) {
     var busqueda: Servicio[] = [], i;
@@ -119,6 +125,7 @@ export class ServicioComponent implements OnInit {
               </div>`});
 
               this.getServicios();
+              this.resetForm(form);
         });
 
     }else{
@@ -134,6 +141,7 @@ export class ServicioComponent implements OnInit {
             </div>`});
 
             this.getServicios();
+            this.resetForm(form);
       });
       
     }

@@ -23,6 +23,12 @@ export class ClientsComponent implements OnInit {
     this.getClients();
   }
 
+  resetForm(form?:NgForm){
+    if(form){
+      form.reset();
+    }
+  }
+
 
   buscar(input, select) {
     var busqueda: Clients[] = [], i;
@@ -100,6 +106,7 @@ export class ClientsComponent implements OnInit {
               </div>`});
 
               this.getClients();
+              this.resetForm(form);
 
         });
 
@@ -115,6 +122,7 @@ export class ClientsComponent implements OnInit {
                 <hr>
             </div>`});
         this.getClients();
+        this.resetForm(form);
       })
 
     }
