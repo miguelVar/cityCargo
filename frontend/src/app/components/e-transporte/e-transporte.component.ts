@@ -16,6 +16,7 @@ export class ETransporteComponent implements OnInit {
 
   ruta:string[];
   tamarray:number;
+  inicio:ETransporte[]=[];
 
   constructor(private serviceElementos:ETransporteService, private serviceCity:ServicioService, private route:Router) { 
     this.ruta=this.route.url.split('/');
@@ -25,6 +26,34 @@ export class ETransporteComponent implements OnInit {
     this.getServices();
     this.getElements();
 
+  }
+
+  
+  buscar(input, select) {
+    var busqueda: ETransporte[] = [], i;
+    var look = 0;
+    for (i = 0; i < this.inicio.length; i++) {
+      if (select == 1) {
+        if (this.inicio[i].nombreElemento.toUpperCase().indexOf(input.toUpperCase()) > -1) {
+          busqueda.push(this.inicio[i]);
+          this.serviceElementos.elementos = busqueda;
+          look++;
+        }
+        if (look < 1) {
+          this.serviceElementos.elementos = [];
+        }
+      }
+      else if (select == 2) {
+        if (this.inicio[i].idElementosTransporte.toString().indexOf(input.toUpperCase()) > -1) {
+          busqueda.push(this.inicio[i]);
+          this.serviceElementos.elementos= busqueda;
+          look++;
+        }
+        if (look < 1) {
+          this.serviceElementos.elementos = [];
+        }
+      }
+    }
   }
 
 
@@ -82,6 +111,7 @@ export class ETransporteComponent implements OnInit {
       .subscribe(res=>{
         console.log("Elementos", res);
         this.serviceElementos.elementos=res as ETransporte[];
+        this.inicio=res as ETransporte[];
         this.tamarray=this.serviceElementos.elementos.length;
       });
 
@@ -91,6 +121,7 @@ export class ETransporteComponent implements OnInit {
       .subscribe(res=>{
         console.log("Elementos", res);
         this.serviceElementos.elementos=res as ETransporte[];
+        this.inicio=res as ETransporte[];
         this.tamarray=this.serviceElementos.elementos.length;
       });
 
