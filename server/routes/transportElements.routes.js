@@ -6,6 +6,7 @@ const trasnsportElementCtrl = require('../controllers/transportElements.controll
 
 router.post('/',trasnsportElementCtrl.createTransportElement);
 router.get('/',trasnsportElementCtrl.getTransportElementLink);
+router.get('/list',trasnsportElementCtrl.getTransportElementList);
 router.get('/:id',trasnsportElementCtrl.getTransportElement);
 router.put('/:id',trasnsportElementCtrl.updateTransportElement);
 router.delete('/:id',trasnsportElementCtrl.deleteTransportElement);

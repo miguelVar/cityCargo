@@ -12,6 +12,7 @@ export class ETransporteService {
   selectedElement:ETransporte;
   servicios:Servicio[];
   elementos:ETransporte[];
+  opcElements:ETransporte[];
 
   readonly URL_API='http://localhost:3000/api/transportElement';
 
@@ -26,6 +27,10 @@ export class ETransporteService {
 
   getElementosLink(){
     return this.http.get(this.URL_API);
+  }
+
+  getElementosList(){
+    return this.http.get(this.URL_API+"/list");
   }
   putElemento(elemento:ETransporte){
     console.log("eeeeee",elemento.idElementosTransporte);

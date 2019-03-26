@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import { ETransporte } from 'src/app/models/e-transporte';
 
 declare var M:any;
+let cargo=false;
 @Component({
   selector: 'app-e-transporte',
   templateUrl: './e-transporte.component.html',
@@ -23,8 +24,10 @@ export class ETransporteComponent implements OnInit {
   }
 
   ngOnInit() {
+    cargo=false;
     this.getServices();
     this.getElements();
+    this.getElementsList();
 
   }
 
@@ -57,6 +60,13 @@ export class ETransporteComponent implements OnInit {
   }
 
 
+  resetForm(form?:NgForm){
+    if(form){
+      form.reset();
+    }
+  }
+
+
   addElement(form?:NgForm){
     console.log('data elemento', form.value);
     if(form.value.idElementosTransporte){
@@ -69,6 +79,7 @@ export class ETransporteComponent implements OnInit {
                   <hr>
               </div>`});
           this.getElements();
+          this.resetForm(form);
 
         });
 
@@ -85,6 +96,7 @@ export class ETransporteComponent implements OnInit {
                 <hr>
             </div>`});
         this.getElements();
+        this.resetForm(form);
       })
 
     }
@@ -113,6 +125,7 @@ export class ETransporteComponent implements OnInit {
         this.serviceElementos.elementos=res as ETransporte[];
         this.inicio=res as ETransporte[];
         this.tamarray=this.serviceElementos.elementos.length;
+        cargo=true;
       });
 
     }else{
@@ -123,14 +136,31 @@ export class ETransporteComponent implements OnInit {
         this.serviceElementos.elementos=res as ETransporte[];
         this.inicio=res as ETransporte[];
         this.tamarray=this.serviceElementos.elementos.length;
+        cargo=true;
       });
 
     }
 
   }
 
+  getElementsList(){
+    this.serviceElementos.getElementosList()
+      .subscribe(res=>{
+        this.serviceElementos.opcElements=res as ETransporte[];
+        console.log('opc elementos', res);
+      })
+  }
+
   asignaServicio(){
     this.serviceElementos.selectedElement.Servicio_idServicio=parseInt(this.ruta[2]);
+  }
+
+  yaCargo() {
+    if (cargo == false) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 }

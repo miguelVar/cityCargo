@@ -5,6 +5,7 @@ import { Clients } from 'src/app/models/clients';
 import { from } from 'rxjs';
 
 declare var M: any;
+let Cargo = false;
 @Component({
   selector: 'app-clients',
   templateUrl: './clients.component.html',
@@ -13,10 +14,12 @@ declare var M: any;
 export class ClientsComponent implements OnInit {
 
   inicio: Clients[] = [];
+  
 
   constructor(private clientService:ClientsService) { }
 
   ngOnInit() {
+    Cargo=false;
     this.getClients();
   }
 
@@ -55,6 +58,7 @@ export class ClientsComponent implements OnInit {
         this.clientService.clients=res as Clients[];
         this.inicio = res as Clients[];
         console.log('Data front', res);
+        Cargo=true;
       });
   }
 
@@ -121,6 +125,14 @@ export class ClientsComponent implements OnInit {
     console.log('dsfsd', client);
     this.clientService.selectedClient=client;
     console.log('Solo',this.clientService.selectedClient.nombreCliente);
+  }
+
+  yaCargo() {
+    if (Cargo == false) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 }

@@ -9,6 +9,7 @@ import { Vehiculo } from 'src/app/models/vehiculo';
 import { Orden } from 'src/app/models/orden';
 
 declare var M:any;
+let Cargo=false;
 
 @Component({
   selector: 'app-servicio',
@@ -27,6 +28,7 @@ export class ServicioComponent implements OnInit {
   }
 
   ngOnInit() {
+    Cargo=false;
     this.getServicios();
     this.getClients();
     this.getVehiculos();
@@ -82,6 +84,7 @@ export class ServicioComponent implements OnInit {
           this.inicio=res as Servicio[];
           this.tamarray=this.serviceCity.services.length;
           console.log('ramanoooooooo', this.tamarray);
+          Cargo=true;
 
   
         });
@@ -93,6 +96,7 @@ export class ServicioComponent implements OnInit {
           console.log("dataaaa",res);
           this.serviceCity.services=res as Servicio[];
           this.inicio=res as Servicio[];
+          Cargo=true;
   
         });
 
@@ -191,6 +195,15 @@ export class ServicioComponent implements OnInit {
       this.serviceCity.selectedServiceCityCargo.Cliente_idCliente=parseInt(this.ruta[2]);
     }
 
+  }
+
+
+  yaCargo() {
+    if (Cargo == false) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 }

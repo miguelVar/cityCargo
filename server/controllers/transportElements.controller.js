@@ -89,6 +89,20 @@ transportElement.getTransportElementLink = (req, res) => {
     // });
 }
 
+// se encarga de listar los elementos a transportar para facilitar el registro, para ls opciones del input de nombre dle elemento
+transportElement.getTransportElementList = (req, res) => {
+
+    idServicio=req.params.id;
+
+    var query = `SELECT * FROM ElementosTransporte group by nombreElemento`;
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        console.log('Done lista elementos transporte');
+    });
+}
+
 // se encarga de actualizar un elemento a transportar
 transportElement.updateTransportElement = (req, res) => {
     console.log('data', req.body);

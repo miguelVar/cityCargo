@@ -13,6 +13,11 @@
   </div>
 </div>
 
+
+<datalist id="elements">
+  <option *ngFor="let us of serviceElementos.opcElements" value={{us.nombreElemento}}></option>
+</datalist>
+
 <div class="container">
 
   <!--------------------------------INICIO MODAL AGREGAR ELEMENTO----------------------------->
@@ -31,8 +36,9 @@
             <div class="row">
               <div class="input-field col-12">
                 <label><Strong><label id="lbl">*</label>Nombre del elemento</Strong></label>
-                <input class="form-control" id="input" type="text" name="nombreElemento" placeholder="Ingrese el nombre" #name="ngModel" [(ngModel)]="nombreElemento"
+                <input list="elements" class="form-control" id="input" type="text" name="nombreElemento" placeholder="Ingrese el nombre" #name="ngModel" [(ngModel)]="nombreElemento"
                   required>
+                  
               </div>
               <div class="input-field col-12">
                 <label><Strong>Cantidad de elementos</Strong></label>
@@ -112,8 +118,7 @@
                   <h5 class="card-title"><strong>Cantidad Elemento: </strong>{{c.cantidadElemento}}</h5>
                   <p class="card-text"><strong>Servicio: </strong>{{c.Servicio_idServicio}}</p>
                   <!-- <p class="card-text"><strong>Dirección Cliente:</strong>{{c.direccionCliente}} </p> -->
-                  <br>
-                  <a routerLink="/servicio/{{c.idCliente}}"><i class="fa fa-eye"></i>Ver Servicios</a>
+   
                 </div>
                 <div class="input-field col-12">
                   <div class="card-footer bg-transparent border-dark">
@@ -156,7 +161,7 @@
 
                             <div class="input-field col-12">
                                 <label><Strong>Cantidad del Elemento</Strong></label>
-                                <input class="form-control" id="input" type="text" name="cantidadElemento" #name="ngModel"
+                                <input class="form-control" id="input" type="number" name="cantidadElemento" #name="ngModel"
                                   [(ngModel)]="serviceElementos.selectedElement.cantidadElemento" placeholder="Ingrese el nombre">
                             </div>
 
@@ -211,6 +216,14 @@
       <div class="col">
         <!---->
       </div>
+    </div>
+
+
+
+    <div class="text-center">
+        <div *ngIf="!yaCargo()" class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+          <span class="sr-only">Loading...</span>
+        </div>
     </div>
 
 
