@@ -14,6 +14,7 @@ import { GuardService } from './services/guard.service';
 import { from } from 'rxjs';
 import { DeleteClientsComponent } from './components/delete-clients/delete-clients.component';
 import { DeleteServicesComponent } from './components/delete-services/delete-services.component';
+import { EndservicesComponent } from './components/endservices/endservices.component';
 
 const routes: Routes = [
 
@@ -25,6 +26,7 @@ const routes: Routes = [
     { path: 'conductor-eliminado', component: ConductorEliminadoComponent, canActivate: [GuardService] },
     { path: 'servicio', component: ServicioComponent, canActivate: [GuardService] },
     { path: 'deletedServices', component:DeleteServicesComponent, canActivate: [GuardService]},
+    { path: 'endServices', component:EndservicesComponent, canActivate: [GuardService]},
     { path: 'servicio/:id', component: ServicioComponent },
     { path: 'conductor', component: ConductorComponent, canActivate: [GuardService] },
     { path: 'orden', component: OrdenComponent, canActivate: [GuardService] },

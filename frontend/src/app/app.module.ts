@@ -21,6 +21,7 @@ import { DeleteClientsComponent } from './components/delete-clients/delete-clien
 import { VehiculoEliminadoComponent } from './components/vehiculo-eliminado/vehiculo-eliminado.component';
 import { ConductorEliminadoComponent } from './components/conductor-eliminado/conductor-eliminado.component';
 import { DeleteServicesComponent } from './components/delete-services/delete-services.component';
+import { EndservicesComponent } from './components/endservices/endservices.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { DeleteServicesComponent } from './components/delete-services/delete-ser
     DeleteClientsComponent,
     VehiculoEliminadoComponent,
     ConductorEliminadoComponent,
-    DeleteServicesComponent
+    DeleteServicesComponent,
+    EndservicesComponent
   ],
   imports: [
     BrowserModule,
