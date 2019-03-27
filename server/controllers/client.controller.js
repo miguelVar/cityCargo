@@ -83,6 +83,19 @@ clients.getClientDeletedLogic = (req, res) => {
 }
 
 
+// se encarga de contar todos los telefenos que son iguales
+clients.getCountTel = (req, res) => {
+    let cel=req.params.cel
+    var query = `SELECT COUNT(*) as num FROM Cliente WHERE celularCliente='${cel}'`;
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        console.log('Done lista cientes');
+    });
+}
+
+
 // se encarga de actualizar el cliente 
 clients.updateClient = (req, res) => {
     let idClient = req.params.id;

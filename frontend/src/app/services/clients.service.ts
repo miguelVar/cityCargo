@@ -25,7 +25,9 @@ export class ClientsService {
   getclientsDeletedLogic(){
     return this.http.get(this.URL_API+"/deletedClient");
   }
-
+  getCountTel(client:Clients){
+    return this.http.get(this.URL_API+"/counttel"+`/${client.celularCliente}`);
+  }
    postClient( cliente:Clients){
     return this.http.post(this.URL_API,cliente)
   }

@@ -90,6 +90,27 @@ export class ClientsComponent implements OnInit {
 
   }
 
+  getCountTel(form?:NgForm){
+    let tam:number;
+    this.clientService.getCountTel(form.value)
+      .subscribe(res=>{
+        console.log('dato numeor de telefono ',res[0].num);
+        tam=parseInt(res[0].num);
+        if(tam==0){
+          this.addClient(form);
+        }else{
+
+           M.toast({
+            html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                  <h4 class="alert-heading">Celular ya REGISTRADO!!</h4>
+                  <p>El celular ya ha sido registrado con anterioridad</p>
+                  <hr>
+              </div>`});
+
+        }
+      })
+  }
+
 
   addClient(form?: NgForm){
     console.log("datos", form.value);
