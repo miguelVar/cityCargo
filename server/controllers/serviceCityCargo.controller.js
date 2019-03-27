@@ -27,7 +27,7 @@ serviceCityCargo.createServiceCityCargo = (req, res) => {
     let Cliente_idCliente = req.body.Cliente_idCliente || 1;
     let Vehiculo_idVehiculo = req.body.Vehiculo_idVehiculo||1;
     let Orden_idOrden = req.body.Orden_idOrden ||1;
-    let Estado_idEstadoOrden = req.body.Estado_idEstadoOrden ||1;
+    let Estado_idEstadoOrden = req.body.Estado_idEstadoOrden || 2;
 
     var query = `INSERT INTO Servicio (nombreServicio, descripcionServicio, valorServicio, horaInicioServicio, horaFinServicio,fechaInicioServicio, fechaFinServicio,observacion,ciudadOrigen,ciudadDestino, direccionOrigenServicio,direccionDestinoServicio, estadoEliminado,Cliente_idCliente,Vehiculo_idVehiculo,Orden_idOrden,Estado_idEstadoOrden) VALUES ('${nombreServicio}','${descripcionServicio}','${valorServicio}','${horaInicioServicio}','${horaFinServicio}','${fechaInicioServicio}','${fechaFinServicio}','${observacion}','${ciudadOrigen}','${ciudadDestino}','${direccionOrigenServicio}','${direccionDestinoServicio}','${estadoEliminado}','${Cliente_idCliente}','${Vehiculo_idVehiculo}','${Orden_idOrden}','${Estado_idEstadoOrden}')`;
 
@@ -58,7 +58,7 @@ serviceCityCargo.getServiceCityCargo = (req, res) => {
 
     let idCliente=parseInt(req.params.id);
 
-        var query = `SELECT * FROM Servicio WHERE Cliente_idCliente=${idCliente} and estadoEliminado=false and Estado_idEstadoOrden=1`;
+        var query = `SELECT * FROM Servicio WHERE Cliente_idCliente=${idCliente} and estadoEliminado=false and Estado_idEstadoOrden = 2`;
     
 
     connection.query(query, function (error, results) {
@@ -83,7 +83,7 @@ serviceCityCargo.getServiceCityCargo = (req, res) => {
 
 serviceCityCargo.getServiceCityCargoLink = (req, res) => {
 
-        var query = `SELECT * FROM Servicio where estadoEliminado=false and Estado_idEstadoOrden=1`;
+        var query = `SELECT * FROM Servicio where estadoEliminado=false and Estado_idEstadoOrden = 2`;
     
 
     connection.query(query, function (error, results) {
@@ -135,7 +135,7 @@ serviceCityCargo.getVehiculosCityCargo = (req, res) => {
 
 serviceCityCargo.getOrdenesCityCargo = (req, res) => {
 
-    var query = `SELECT * FROM orden where Estado_idEstadoOrden=1`;
+    var query = `SELECT * FROM orden where Estado_idEstadoOrden = 2`;
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
@@ -173,7 +173,7 @@ serviceCityCargo.getServicesDeleted = (req, res) => {
 
 serviceCityCargo.getServicesFinalizados = (req, res) => {
 
-    var query = `SELECT * FROM servicio where Estado_idEstadoOrden=2`;
+    var query = `SELECT * FROM servicio where Estado_idEstadoOrden = 3`;
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
@@ -186,7 +186,7 @@ serviceCityCargo.getServicesFinalizados = (req, res) => {
 serviceCityCargo.finalizarServicio=(req,res)=>{
 
     let idServicio=req.params.id;
-    var query = `UPDATE servicio set Estado_idEstadoOrden=2 WHERE idServicio=${idServicio}`;
+    var query = `UPDATE servicio set Estado_idEstadoOrden = 3 WHERE idServicio=${idServicio}`;
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
@@ -201,7 +201,7 @@ serviceCityCargo.actualizarEstadoOrden=(req,res)=>{
     let idOrden=req.body.Orden_idOrden;
 
     console.log("id orden ",idOrden);
-    var query = `UPDATE orden set Estado_idEstadoOrden=2 WHERE idOrden=${idOrden}`;
+    var query = `UPDATE orden set Estado_idEstadoOrden = 3 WHERE idOrden=${idOrden}`;
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });

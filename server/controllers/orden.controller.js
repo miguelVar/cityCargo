@@ -49,7 +49,7 @@ ordenCtrl.createOrden = (req, res) => {
     let numeroOrden = req.body.numeroOrden;
     let descripcionOrden = req.body.descripcionOrden;
 
-    var query = `INSERT INTO orden (numeroOrden, descripcionOrden, Estado_idEstadoOrden) VALUES('${numeroOrden}', '${descripcionOrden}', 1)`;
+    var query = `INSERT INTO orden (numeroOrden, descripcionOrden, Estado_idEstadoOrden) VALUES('${numeroOrden}', '${descripcionOrden}', 2)`;
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
