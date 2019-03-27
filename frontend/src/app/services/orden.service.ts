@@ -20,6 +20,9 @@ export class OrdenService {
     return this.http.get(this.URL_API);
   }
 
+  getCountOrden(orden:Orden) {
+    return this.http.get(this.URL_API+"/countorden"+`/${orden.numeroOrden}`);
+  }
   postOrden(orden: Orden) {
     return this.http.post(this.URL_API, orden);
   }

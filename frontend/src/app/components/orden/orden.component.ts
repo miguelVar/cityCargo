@@ -62,6 +62,25 @@ export class OrdenComponent implements OnInit {
         console.log("tamarrayOrden", this.tamarray);
       })
   }
+  getCountNumOrden(form?:NgForm){
+    let num:number;
+    this.ordenService.getCountOrden(form.value)
+      .subscribe(res=>{
+        num=parseInt(res[0].num)
+        if(num==0){
+          this.addOrden(form);
+        }else{
+
+          M.toast({
+            html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                <h4 class="alert-heading">NÚMERO DE ORDEN YA REGISTRADA</h4>
+                <p>El número de orden que esta ingresando ya se encuentra registrada</p>
+                <hr>
+            </div>`});
+
+        }
+      });
+  }
 
   addOrden(form?: NgForm) {
     if (form.value.idOrden) {

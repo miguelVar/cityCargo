@@ -31,6 +31,18 @@ ordenCtrl.getOrden = (req, res) => {
 
 }
 
+ordenCtrl.getCountOrden = (req, res) => {
+    let numOrden=req.params.id;
+    var query = `SELECT COUNT(*) as num FROM orden where numeroOrden='${numOrden}'`;
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        console.log('Done Lista orden');
+    });
+
+}
+
 // Método encargado de crear ordenes
 ordenCtrl.createOrden = (req, res) => {
 
