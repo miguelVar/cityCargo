@@ -14,6 +14,7 @@ let Cargo = false;
 export class ConductorEliminadoComponent implements OnInit {
 
   tamarray:number;
+  inicio:Conductor[]=[];
 
   constructor(private conductorService: ConductorService) { }
 
@@ -22,11 +23,40 @@ export class ConductorEliminadoComponent implements OnInit {
     this.getConductorEliminado();
   }
 
+
+  buscar(input, select) {
+    var busqueda: Conductor[] = [], i;
+    var look = 0;
+    for (i = 0; i < this.inicio.length; i++) {
+      if (select == 1) {
+        if (this.inicio[i].nombreConductor.toUpperCase().indexOf(input.toUpperCase()) > -1) {
+          busqueda.push(this.inicio[i]);
+          this.conductorService.conductor = busqueda;
+          look++;
+        }
+        if (look < 1) {
+          this.conductorService.conductor = [];
+        }
+      }
+      else if (select == 2) {
+        if (this.inicio[i].idConductor.toString().indexOf(input.toUpperCase()) > -1) {
+          busqueda.push(this.inicio[i]);
+          this.conductorService.conductor = busqueda;
+          look++;
+        }
+        if (look < 1) {
+          this.conductorService.conductor = [];
+        }
+      }
+    }
+  }
+
   getConductorEliminado() {
     this.conductorService.getConductorEliminado()
       .subscribe(res => {
         console.log(res);
         this.conductorService.conductor = res as Conductor[];
+        this.inicio=res as Conductor[];
         this.tamarray = this.conductorService.conductor.length;
         Cargo = true;
       });
