@@ -31,6 +31,22 @@ vehiculoCtrl.getVehiculo = (req, res) => {
 
 }
 
+
+// Método para cargar los vehiculos
+vehiculoCtrl.getCountPlaca = (req, res) => {
+    let placa=req.params.placa;
+
+    var query = `SELECT COUNT(*) AS num FROM Vehiculo WHERE placaVehiculo ='${placa}'`;
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        console.log('Done lista vehiculo eliminado');
+    });
+
+}
+
+
 // Método para cargar los vehiculos
 vehiculoCtrl.getVehiculoEliminado = (req, res) => {
 

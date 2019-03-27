@@ -5,6 +5,8 @@ const vehiculoCtrl = require('../controllers/vehiculo.controller');
 //Lista vehiculo
 router.get('/', vehiculoCtrl.getVehiculo);
 
+router.get('/countplaca/:placa', vehiculoCtrl.getCountPlaca);
+
 //Crea Vehiculo
 router.post('/', vehiculoCtrl.createVehiculo);
 

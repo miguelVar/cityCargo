@@ -24,6 +24,10 @@ export class VehiculoService {
     return this.http.get(this.URL_API + `/getVehiculosEliminados`);
   }
 
+  getCountPlaca(vehiculo:Vehiculo) {
+    return this.http.get(this.URL_API + `/countplaca`+`/${vehiculo.placaVehiculo}`);
+  }
+
   restauraVehiculoEliminado(vehiculo: Vehiculo) {
     return this.http.put(this.URL_API + `/restauralogicovehiculo` + `/${vehiculo.idVehiculo}`, vehiculo);
   }
