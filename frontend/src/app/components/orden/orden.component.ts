@@ -72,7 +72,7 @@ export class OrdenComponent implements OnInit {
         }else{
 
           M.toast({
-            html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+            html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
                 <h4 class="alert-heading">NÚMERO DE ORDEN YA REGISTRADA</h4>
                 <p>El número de orden que esta ingresando ya se encuentra registrada</p>
                 <hr>

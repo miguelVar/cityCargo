@@ -20,6 +20,11 @@ export class ConductorService {
     return this.http.get(this.URL_API);
   }
 
+
+  getCountCel(conductor:Conductor) {
+    return this.http.get(this.URL_API+"/countcel"+`/${conductor.celularConductor}`);
+  }
+
   getConductorEliminado() {
     return this.http.get(this.URL_API + `/getConductoresEliminados`);
   }

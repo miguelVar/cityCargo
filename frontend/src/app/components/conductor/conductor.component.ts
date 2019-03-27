@@ -63,6 +63,27 @@ export class ConductorComponent implements OnInit {
       });
   }
 
+
+  getCountCel(form?:NgForm){
+    let num:number;
+    this.conductorService.getCountCel(form.value)
+      .subscribe(res=>{
+        num=parseInt(res[0].num);
+        if(num==0){
+          this.addConductor(form);
+        }else{
+
+          M.toast({
+            html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                  <h4 class="alert-heading">NÚMERO DE CELULAR YA REGISTRADO</h4>
+                  <p>El número de celular ya se encuentra registrado</p>
+                  <hr>
+              </div>`});
+
+        }
+      })
+  }
+
   addConductor(form?: NgForm) {
     if (form.value.idConductor) {
       console.log(form.value);

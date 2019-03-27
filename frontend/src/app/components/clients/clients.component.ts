@@ -101,7 +101,7 @@ export class ClientsComponent implements OnInit {
         }else{
 
            M.toast({
-            html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+            html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
                   <h4 class="alert-heading">Celular ya REGISTRADO!!</h4>
                   <p>El celular ya ha sido registrado con anterioridad</p>
                   <hr>

@@ -4,6 +4,7 @@ const conductorCtrl = require('../controllers/conductor.controller');
 
 //Lista conductor
 router.get('/', conductorCtrl.getConductor);
+router.get('/countcel/:id', conductorCtrl.getConductor);
 
 //Crea conductor
 router.post('/', conductorCtrl.createConductor);

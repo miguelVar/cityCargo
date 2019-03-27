@@ -31,6 +31,20 @@ conductorCtrl.getConductor = (req, res) => {
 
 }
 
+conductorCtrl.getCountCel = (req, res) => {
+
+    let numcel=req.params.id;
+
+    var query = `SELECT COUNT(*) as num FROM Conductor WHERE celularConductor='${numcel}'`;
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        console.log('Done Lista conductor');
+    });
+
+}
+
 //Método para cargar conductores eliminados logicamente
 conductorCtrl.getConductorEliminado = (req, res) => {
 
