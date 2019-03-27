@@ -11,6 +11,7 @@ declare var M:any;
 export class DeleteClientsComponent implements OnInit {
 
   inicio:Clients[]=[];
+  tamarray: number;
 
   constructor(private clientService:ClientsService) { }
 
@@ -71,6 +72,7 @@ export class DeleteClientsComponent implements OnInit {
         console.log('date deleted', res);
         this.clientService.clientsDeleted=res as Clients[];
         this.inicio=res as Clients[];
+        this.tamarray = this.clientService.clientsDeleted.length;
       });
   }
 
