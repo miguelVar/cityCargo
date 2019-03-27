@@ -15,6 +15,7 @@ let Cargo = false;
 export class OrdenComponent implements OnInit {
 
   tamarray: number;
+  inicio:Orden[]=[];
 
   constructor(private ordenService: OrdenService) { }
 
@@ -23,11 +24,39 @@ export class OrdenComponent implements OnInit {
     this.getOrden();
   }
 
+  buscar(input, select) {
+    var busqueda: Orden[] = [], i;
+    var look = 0;
+    for (i = 0; i < this.inicio.length; i++) {
+      if (select == 1) {
+        if (this.inicio[i].numeroOrden.toUpperCase().indexOf(input.toUpperCase()) > -1) {
+          busqueda.push(this.inicio[i]);
+          this.ordenService.orden = busqueda;
+          look++;
+        }
+        if (look < 1) {
+          this.ordenService.orden = [];
+        }
+      }
+      else if (select == 2) {
+        if (this.inicio[i].idOrden.toString().indexOf(input.toUpperCase()) > -1) {
+          busqueda.push(this.inicio[i]);
+          this.ordenService.orden = busqueda;
+          look++;
+        }
+        if (look < 1) {
+          this.ordenService.orden = [];
+        }
+      }
+    }
+  }
+
   getOrden() {
     this.ordenService.getOrdenes()
       .subscribe(res => {
         console.log(res);
         this.ordenService.orden = res as Orden[];
+        this.inicio=res as Orden[];
         this.tamarray = this.ordenService.orden.length;
         Cargo = true;
         console.log("tamarrayOrden", this.tamarray);
