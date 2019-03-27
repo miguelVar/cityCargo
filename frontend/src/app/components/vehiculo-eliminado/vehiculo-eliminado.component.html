@@ -19,14 +19,14 @@
     <div class="row col-12">
       <div class="input-group col-12">
         <div class="col-2">
-            <select id="select" class="form-control" #mySelect>
-                <option value=1>Nombre</option>
-                <option value=2>ID</option>
-              </select>
-            </div>
-            <input id="input" class="form-control" placeholder="Buscar..." #myInput
-                (keyup)="this.buscar(myInput.value,mySelect.value)" style="border-radius: 0rem;"
-                title="Ingrese el campo para filtrar" aria-describedby="basic-addon2">
+          <select id="select" class="form-control" #mySelect>
+            <option value=1>Nombre</option>
+            <option value=2>ID</option>
+          </select>
+        </div>
+        <input id="input" class="form-control" placeholder="Buscar..." #myInput
+          (keyup)="this.buscar(myInput.value,mySelect.value)" style="border-radius: 0rem;"
+          title="Ingrese el campo para filtrar" aria-describedby="basic-addon2">
         <div class="input-group-append">
           <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
         </div>
@@ -45,6 +45,9 @@
     <div class="card-group">
       <div class="container">
         <div class="row">
+          <div *ngIf="tamarray==0">
+            <h3>No Hay Vehiculos Eliminados Para Mostrar</h3>
+          </div>
           <div *ngFor="let v of vehiculoService.vehiculo" class="col-sm-12 col-md-6 col-lg-4">
             <div class="card border-dark">
               <div class="card-header border-dark">

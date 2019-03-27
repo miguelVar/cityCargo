@@ -14,39 +14,13 @@ export class VehiculoEliminadoComponent implements OnInit {
 
   vehiculoEliminado: Vehiculo[] = [];
   inicio:Vehiculo[]=[];
+  tamarray:number;
 
   constructor(private vehiculoService: VehiculoService) { }
 
   ngOnInit() {
     this.getVehiculoEliminado();
   }
-
-  // buscar(input2, select2) {
-  //   var busqueda: Vehiculo[] = [], i;
-  //   var look = 0;
-  //   for (i = 0; i < this.vehiculoEliminado.length; i++) {
-  //     if (select2 == 1) {
-  //       if (this.vehiculoEliminado[i].placaVehiculo.toUpperCase().indexOf(input2.toUpperCase()) > -1) {
-  //         busqueda.push(this.vehiculoEliminado[i]);
-  //         this.vehiculoService.vehiculo = busqueda;
-  //         look++;
-  //       }
-  //       if (look > 1) {
-  //         this.vehiculoService.vehiculo = [];
-  //       }
-  //     }
-  //     else if (select2 == 2) {
-  //       if (this.vehiculoEliminado[i].idVehiculo.toString().indexOf(input2.toUpperCase()) > -1) {
-  //         busqueda.push(this.vehiculoEliminado[i]);
-  //         this.vehiculoService.vehiculo = busqueda;
-  //         look++;
-  //       }
-  //       if (look < 1) {
-  //         this.vehiculoService.vehiculo = [];
-  //       }
-  //     }
-  //   }
-  // }
 
   buscar(input, select) {
     var busqueda: Vehiculo[] = [], i;
@@ -82,6 +56,7 @@ export class VehiculoEliminadoComponent implements OnInit {
         this.vehiculoService.vehiculo = res as Vehiculo[];
         console.log("acaaaaaaaaaaaaaaa",this.vehiculoEliminado = res as Vehiculo[]);
         this.inicio = res as Vehiculo[];
+        this.tamarray = this.vehiculoService.vehiculo.length;
       })
   }
 

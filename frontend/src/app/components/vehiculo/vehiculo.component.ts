@@ -16,6 +16,7 @@ declare var M: any;
 export class VehiculoComponent implements OnInit {
 
   vehiculo: Vehiculo[] = [];
+  tamarray: number;
 
   constructor(private tipoVehiculoService: TipovehiculoService, private vehiculoService: VehiculoService) { }
 
@@ -57,6 +58,7 @@ export class VehiculoComponent implements OnInit {
         console.log(res);
         this.vehiculoService.vehiculo = res as Vehiculo[];
         this.vehiculo = res as Vehiculo[];
+        this.tamarray = this.vehiculoService.vehiculo.length;
       })
   }
 
