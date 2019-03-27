@@ -13,6 +13,8 @@ declare var M: any;
 })
 export class ConductorComponent implements OnInit {
 
+  tamarray: number;
+
   constructor(private conductorService: ConductorService) { }
 
   ngOnInit() {
@@ -24,6 +26,7 @@ export class ConductorComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
         this.conductorService.conductor = res as Conductor[];
+        this.tamarray = this.conductorService.conductor.length;
       });
   }
 

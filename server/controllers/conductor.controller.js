@@ -8,7 +8,7 @@ const conductorCtrl = {};
 //Método para cargar conductores
 conductorCtrl.getConductor = (req, res) => {
 
-    var query = 'SELECT * FROM Conductor';
+    var query = 'SELECT * FROM Conductor WHERE estadoEliminado = 0';
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
@@ -34,7 +34,7 @@ conductorCtrl.getConductor = (req, res) => {
 //Método para cargar conductores eliminados logicamente
 conductorCtrl.getConductorEliminado = (req, res) => {
 
-    var query = 'SELECT * FROM Conductor';
+    var query = 'SELECT * FROM Conductor WHERE estadoEliminado = 1';
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
@@ -64,11 +64,11 @@ conductorCtrl.createConductor = (req, res) => {
     let celularConductor = req.body.celularConductor;
     // let estadoEliminado = req.body.estadoEliminado || false;
 
-    var query = `INSERT INTO Conductor (nombreConductor, celularConductor) VALUES('${nombreConductor}', '${celularConductor}')`;
+    var query = `INSERT INTO Conductor (nombreConductor, celularConductor, estadoEliminado) VALUES('${nombreConductor}', '${celularConductor}',0)`;
 
     connection.query(query, function (error, results) {
         if (error) throw res.json({ errorinfo: error });
-        else res.json({results:'conductor creado'});
+        else res.json({ results: 'conductor creado' });
         console.log('Done Crea conductor');
 
     });
@@ -122,6 +122,7 @@ conductorCtrl.updateConductor = (req, res) => {
 conductorCtrl.deleteLogicoConductor = (req, res) => {
 
     let idConductor = parseInt(req.params.idConductor);
+    console.log("sdfsfdsfdds", req.params.idConductor);
 
     var query = `UPDATE Conductor SET estadoEliminado = 1 WHERE idConductor = '${idConductor}'`;
 
