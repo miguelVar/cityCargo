@@ -4,6 +4,7 @@ import { Conductor } from '../../models/conductor';
 import { from } from 'rxjs';
 
 declare var M: any;
+let Cargo = false;
 
 @Component({
   selector: 'app-conductor-eliminado',
@@ -15,6 +16,7 @@ export class ConductorEliminadoComponent implements OnInit {
   constructor(private conductorService: ConductorService) { }
 
   ngOnInit() {
+    Cargo = false;
     this.getConductorEliminado();
   }
 
@@ -23,6 +25,7 @@ export class ConductorEliminadoComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
         this.conductorService.conductor = res as Conductor[];
+        Cargo = true;
       });
   }
 
@@ -59,6 +62,14 @@ export class ConductorEliminadoComponent implements OnInit {
             </div>`});
         this.getConductorEliminado();
       })
+  }
+
+  yaCargo() {
+    if (Cargo == false) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 }

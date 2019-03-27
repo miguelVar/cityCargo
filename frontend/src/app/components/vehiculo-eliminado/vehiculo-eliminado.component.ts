@@ -4,6 +4,7 @@ import { VehiculoService } from 'src/app/services/vehiculo.service';
 import { NgForm } from '@angular/forms';
 
 declare var M: any;
+let Cargo = false;
 
 @Component({
   selector: 'app-vehiculo-eliminado',
@@ -13,12 +14,13 @@ declare var M: any;
 export class VehiculoEliminadoComponent implements OnInit {
 
   vehiculoEliminado: Vehiculo[] = [];
-  inicio:Vehiculo[]=[];
-  tamarray:number;
+  inicio: Vehiculo[] = [];
+  tamarray: number;
 
   constructor(private vehiculoService: VehiculoService) { }
 
   ngOnInit() {
+    Cargo = false;
     this.getVehiculoEliminado();
   }
 
@@ -54,9 +56,10 @@ export class VehiculoEliminadoComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
         this.vehiculoService.vehiculo = res as Vehiculo[];
-        console.log("acaaaaaaaaaaaaaaa",this.vehiculoEliminado = res as Vehiculo[]);
+        console.log("acaaaaaaaaaaaaaaa", this.vehiculoEliminado = res as Vehiculo[]);
         this.inicio = res as Vehiculo[];
         this.tamarray = this.vehiculoService.vehiculo.length;
+        Cargo = true;
       })
   }
 
@@ -94,6 +97,14 @@ export class VehiculoEliminadoComponent implements OnInit {
             </div>`});
         this.getVehiculoEliminado();
       });
+  }
+
+  yaCargo() {
+    if (Cargo == false) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 

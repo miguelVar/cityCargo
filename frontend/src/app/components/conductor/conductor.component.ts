@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { from } from 'rxjs';
 
 declare var M: any;
+let Cargo = false;
 
 @Component({
   selector: 'app-conductor',
@@ -18,6 +19,7 @@ export class ConductorComponent implements OnInit {
   constructor(private conductorService: ConductorService) { }
 
   ngOnInit() {
+    Cargo = false;
     this.getConductor();
   }
 
@@ -27,6 +29,7 @@ export class ConductorComponent implements OnInit {
         console.log(res);
         this.conductorService.conductor = res as Conductor[];
         this.tamarray = this.conductorService.conductor.length;
+        Cargo = true;
       });
   }
 
@@ -83,6 +86,14 @@ export class ConductorComponent implements OnInit {
     if (form)
       form.reset();
     this.conductorService.selectedConductor = new Conductor();
+  }
+
+  yaCargo() {
+    if (Cargo == false) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 }
