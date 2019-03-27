@@ -18,6 +18,7 @@ export class VehiculoComponent implements OnInit {
 
   vehiculo: Vehiculo[] = [];
   tamarray: number;
+  tamarrayTipo: number;
 
   constructor(private tipoVehiculoService: TipovehiculoService, private vehiculoService: VehiculoService) { }
 
@@ -91,7 +92,7 @@ export class VehiculoComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
         this.tipoVehiculoService.tipovehiculo = res as Tipovehiculo[];
-        this.tamarray = this.tipoVehiculoService.tipovehiculo.length;
+        this.tamarrayTipo = this.tipoVehiculoService.tipovehiculo.length;
         Cargo = true;
       });
   }
