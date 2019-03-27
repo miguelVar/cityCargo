@@ -58,7 +58,7 @@ serviceCityCargo.getServiceCityCargo = (req, res) => {
 
     let idCliente=parseInt(req.params.id);
 
-        var query = `SELECT * FROM Servicio WHERE Cliente_idCliente=${idCliente} and estadoEliminado=false`;
+        var query = `SELECT * FROM Servicio WHERE Cliente_idCliente=${idCliente} and estadoEliminado=false and Estado_idEstadoOrden=1`;
     
 
     connection.query(query, function (error, results) {
@@ -83,7 +83,7 @@ serviceCityCargo.getServiceCityCargo = (req, res) => {
 
 serviceCityCargo.getServiceCityCargoLink = (req, res) => {
 
-        var query = `SELECT * FROM Servicio where estadoEliminado=false`;
+        var query = `SELECT * FROM Servicio where estadoEliminado=false and Estado_idEstadoOrden=1`;
     
 
     connection.query(query, function (error, results) {
