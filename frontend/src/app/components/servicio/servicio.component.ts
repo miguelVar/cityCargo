@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 import { Vehiculo } from 'src/app/models/vehiculo';
 import { Orden } from 'src/app/models/orden';
 
-declare var M:any;
-let Cargo=false;
+declare var M: any;
+let Cargo = false;
 
 @Component({
   selector: 'app-servicio',
@@ -18,30 +18,30 @@ let Cargo=false;
 })
 export class ServicioComponent implements OnInit {
 
-  ruta:string[];
-  tamarray:number;
+  ruta: string[];
+  tamarray: number;
   inicio: Servicio[] = [];
 
-  constructor(private serviceCity:ServicioService, private clientService:ClientsService, private route:Router) { 
+  constructor(private serviceCity: ServicioService, private clientService: ClientsService, private route: Router) {
 
-    this.ruta=this.route.url.split('/');
+    this.ruta = this.route.url.split('/');
   }
 
   ngOnInit() {
-    Cargo=false;
+    Cargo = false;
     this.getServicios();
     this.getClients();
     this.getVehiculos();
     this.getOrdenes();
   }
 
-  resetForm(form?:NgForm){
-    if(form){
+  resetForm(form?: NgForm) {
+    if (form) {
       form.reset();
     }
   }
 
-  
+
   buscar(input, select) {
     var busqueda: Servicio[] = [], i;
     var look = 0;
@@ -69,55 +69,53 @@ export class ServicioComponent implements OnInit {
     }
   }
 
-  editService(servicio:Servicio){
-    this.serviceCity.selectedServiceCityCargo=servicio;
-    let fechaInicio=String(this.serviceCity.selectedServiceCityCargo.fechaInicioServicio).substring(0,10);
-    this.serviceCity.selectedServiceCityCargo.fechaInicioServicio=fechaInicio;
-    let fechaFin=String(this.serviceCity.selectedServiceCityCargo.fechaFinServicio).substring(0,10);
-    this.serviceCity.selectedServiceCityCargo.fechaFinServicio=fechaFin;
+  editService(servicio: Servicio) {
+    this.serviceCity.selectedServiceCityCargo = servicio;
+    let fechaInicio = String(this.serviceCity.selectedServiceCityCargo.fechaInicioServicio).substring(0, 10);
+    this.serviceCity.selectedServiceCityCargo.fechaInicioServicio = fechaInicio;
+    let fechaFin = String(this.serviceCity.selectedServiceCityCargo.fechaFinServicio).substring(0, 10);
+    this.serviceCity.selectedServiceCityCargo.fechaFinServicio = fechaFin;
     console.log('fecha inicio', this.serviceCity.selectedServiceCityCargo.fechaInicioServicio);
     // console.log('fecha inicio', fecha.substring(0,10));
 
   }
 
 
-  getServicios(){
+  getServicios() {
     console.log('sfdsf', this.ruta.length);
-    if(this.ruta.length==3){
+    if (this.ruta.length == 3) {
       console.log('id cliente ', this.ruta[2]);
       this.serviceCity.getServices(this.ruta[2])
-        .subscribe(res=>{
-          console.log("dataaaa",res);
-          this.serviceCity.services=res as Servicio[];
-          this.inicio=res as Servicio[];
-          this.tamarray=this.serviceCity.services.length;
-          console.log('ramanoooooooo', this.tamarray);
-          Cargo=true;
+        .subscribe(res => {
+          this.serviceCity.services = res as Servicio[];
+          this.inicio = res as Servicio[];
+          this.tamarray = this.serviceCity.services.length;
+          Cargo = true;
 
-  
         });
 
-    }else{
+    } else {
 
       this.serviceCity.getServicesLink()
-        .subscribe(res=>{
-          console.log("dataaaa",res);
-          this.serviceCity.services=res as Servicio[];
-          this.inicio=res as Servicio[];
-          Cargo=true;
-  
+        .subscribe(res => {
+          console.log("dataaaa", res);
+          this.serviceCity.services = res as Servicio[];
+          this.inicio = res as Servicio[];
+          this.tamarray = this.serviceCity.services.length;
+          Cargo = true;
+
         });
 
 
     }
-  
+
   }
 
-  addService(form?:NgForm){
+  addService(form?: NgForm) {
     console.log('Dat sera', form.value);
-    if(form.value.idServicio){
+    if (form.value.idServicio) {
       this.serviceCity.putServicio(form.value)
-        .subscribe(res=>{
+        .subscribe(res => {
 
           M.toast({
             html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
@@ -126,38 +124,38 @@ export class ServicioComponent implements OnInit {
                   <hr>
               </div>`});
 
-              this.getServicios();
+          this.getServicios();
         });
 
-    }else{
+    } else {
 
       this.serviceCity.postService(form.value)
-      .subscribe(res=>{
-        console.log('Registrado');
-        M.toast({
-          html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+        .subscribe(res => {
+          console.log('Registrado');
+          M.toast({
+            html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
                 <h4 class="alert-heading">SERVICIO AGREGADO!!</h4>
                 <p>El servicio ha sido agregado satisfactoriamente</p>
                 <hr>
             </div>`});
 
-            this.getServicios();
-            // this.resetForm(form);
-      });
-      
+          this.getServicios();
+          // this.resetForm(form);
+        });
+
     }
-   
+
   }
 
-  detallesServicio(servicio:Servicio){
-    this.serviceCity.selectedServiceCityCargo=servicio;
+  detallesServicio(servicio: Servicio) {
+    this.serviceCity.selectedServiceCityCargo = servicio;
     console.log('data ver detalles ', this.serviceCity.selectedServiceCityCargo);
 
   }
 
-  finalizarServicio(service:Servicio){
+  finalizarServicio(service: Servicio) {
     this.serviceCity.finalizarServicio(service)
-      .subscribe(res=>{
+      .subscribe(res => {
         console.log('estado actualizado', res);
         M.toast({
           html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
@@ -166,7 +164,7 @@ export class ServicioComponent implements OnInit {
                 <hr>
             </div>`});
         this.serviceCity.actulizarEstadoOrden(service)
-          .subscribe(res=>{
+          .subscribe(res => {
             console.log('Estado orden atualiado', res);
 
           });
@@ -175,44 +173,44 @@ export class ServicioComponent implements OnInit {
 
   }
 
-  getClients(){
+  getClients() {
     this.clientService.getClients()
-      .subscribe(res=>{
+      .subscribe(res => {
         console.log('clientes', res);
-        this.serviceCity.clientes=res as Clients[];
+        this.serviceCity.clientes = res as Clients[];
       });
   }
 
-  getVehiculos(){
+  getVehiculos() {
     this.serviceCity.getVehiculos()
-      .subscribe(res=>{
-        this.serviceCity.vehiculos=res as Vehiculo[];
+      .subscribe(res => {
+        this.serviceCity.vehiculos = res as Vehiculo[];
         console.log('vehiculos', res);
       });
   }
 
-  getOrdenes(){
+  getOrdenes() {
     this.serviceCity.getOrdenes()
-      .subscribe(res=>{
-        this.serviceCity.ordenes=res as Orden[];
+      .subscribe(res => {
+        this.serviceCity.ordenes = res as Orden[];
         console.log('ordenes', res);
       });
   }
 
-  asignaCliente(){
-    if(this.ruta.length==3){
-      this.serviceCity.selectedServiceCityCargo.Cliente_idCliente=parseInt(this.ruta[2]);
+  asignaCliente() {
+    if (this.ruta.length == 3) {
+      this.serviceCity.selectedServiceCityCargo.Cliente_idCliente = parseInt(this.ruta[2]);
     }
 
   }
 
-  serviceDeleteLogicData(servicio:Servicio){
-    this.serviceCity.selectedServiceCityCargo=servicio;
+  serviceDeleteLogicData(servicio: Servicio) {
+    this.serviceCity.selectedServiceCityCargo = servicio;
   }
 
-  deleteLogicService(servicio:Servicio){
+  deleteLogicService(servicio: Servicio) {
     this.serviceCity.putDeletedLogicService(servicio)
-      .subscribe(res=>{
+      .subscribe(res => {
         console.log('borrado', res);
         M.toast({
           html: `<div class="alert alert-success" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
