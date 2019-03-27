@@ -148,10 +148,10 @@
           </select>
         </div>
         <input id="input" class="form-control" placeholder="Buscar..." #myInput
-            (keyup)="this.buscar(myInput.value,mySelect.value)" style="border-radius: 0rem;"
+            (keyup)="this.buscar(myInput.value,mySelect.value)" style="border-radius: 0rem; height: 40px;"
             title="Ingrese el campo para filtrar" aria-describedby="basic-addon2">
         <div class="input-group-append">
-          <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
+          <span class="input-group-text" id="basic-addon2" style="height: 40px;"><i class="fa fa-search"></i></span>
         </div>
         <div class="col-4">
           <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#addcl" (click)="asignaCliente()">Agregar Servicio</button>&nbsp;
