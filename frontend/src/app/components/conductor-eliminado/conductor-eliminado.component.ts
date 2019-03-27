@@ -13,6 +13,8 @@ let Cargo = false;
 })
 export class ConductorEliminadoComponent implements OnInit {
 
+  tamarray:number;
+
   constructor(private conductorService: ConductorService) { }
 
   ngOnInit() {
@@ -25,6 +27,7 @@ export class ConductorEliminadoComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
         this.conductorService.conductor = res as Conductor[];
+        this.tamarray = this.conductorService.conductor.length;
         Cargo = true;
       });
   }
