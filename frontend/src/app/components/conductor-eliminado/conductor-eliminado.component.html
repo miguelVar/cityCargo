@@ -25,8 +25,8 @@
           </select>
         </div>
         <input id="input" class="form-control" placeholder="Buscar..." #myInput
-        (keyup)="this.buscar(myInput.value,mySelect.value)" style="border-radius: 0rem;"
-        title="Ingrese el campo para filtrar" aria-describedby="basic-addon2">
+          (keyup)="this.buscar(myInput.value,mySelect.value)" style="border-radius: 0rem;"
+          title="Ingrese el campo para filtrar" aria-describedby="basic-addon2">
         <div class="input-group-append">
           <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
         </div>
@@ -45,9 +45,9 @@
     <div class="card-group">
       <div class="container">
         <div class="row">
-            <div *ngIf="tamarray==0">
-                <h3>No Hay Conductores Eliminados Para Mostrar</h3>
-              </div>
+          <div *ngIf="tamarray==0">
+            <h3>No Hay Conductores Eliminados Para Mostrar</h3>
+          </div>
           <div *ngFor="let co of conductorService.conductor" class="col-sm-12 col-md-6 col-lg-4">
             <div class="card border-dark">
               <div class="card-header border-dark">
@@ -61,8 +61,8 @@
               </div>
               <div class="input-field col-12">
                 <div class="card-footer bg-transparent border-dark">
-                  <button class="btn btn-outline-primary" (click)="restauraConductor(co)"><i
-                      class="material-icons">edit</i>Restaurar
+                  <button class="btn btn-outline-success" (click)="restauraConductor(co)"><i
+                      class="material-icons">start</i>Restaurar
                   </button>&nbsp;
                   <button type="button" class="btn btn-outline-danger" (click)="getConductorEliminado1(co)"
                     onclick="('modal-dialog')" data-toggle="modal" data-target="#modal-eliminar-vehiculo">
@@ -102,9 +102,9 @@
   </div>
 
   <div class="text-center">
-      <div *ngIf="!yaCargo()" class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
-        <span class="sr-only">Loading...</span>
-      </div>
+    <div *ngIf="!yaCargo()" class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+      <span class="sr-only">Loading...</span>
     </div>
+  </div>
 
 </div>
