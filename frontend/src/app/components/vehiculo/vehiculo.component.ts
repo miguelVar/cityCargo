@@ -7,6 +7,7 @@ import { Vehiculo } from '../../models/vehiculo';
 import decode from 'jwt-decode';
 
 declare var M: any;
+let Cargo = false;
 
 @Component({
   selector: 'app-vehiculo',
@@ -21,6 +22,7 @@ export class VehiculoComponent implements OnInit {
   constructor(private tipoVehiculoService: TipovehiculoService, private vehiculoService: VehiculoService) { }
 
   ngOnInit() {
+    Cargo = false;
     this.getTipoVehiculo();
     this.getVehiculo();
   }
@@ -59,6 +61,7 @@ export class VehiculoComponent implements OnInit {
         this.vehiculoService.vehiculo = res as Vehiculo[];
         this.vehiculo = res as Vehiculo[];
         this.tamarray = this.vehiculoService.vehiculo.length;
+        Cargo = true;
       })
   }
 
@@ -180,6 +183,14 @@ export class VehiculoComponent implements OnInit {
     if (form)
       form.reset();
     this.vehiculoService.selectedVehiculo = new Vehiculo();
+  }
+
+  yaCargo() {
+    if (Cargo == false) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 }
