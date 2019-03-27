@@ -7,6 +7,7 @@ import decode from 'jwt-decode';
 import { LoginService } from 'src/app/services/login.service';
 
 let cargando = false;
+declare var M:any;
 
 @Component({
   selector: 'app-login',
@@ -40,9 +41,23 @@ export class LoginComponent implements OnInit {
     console.log("datossss",form.value);
     this.loginService.authentication(form.value)
       .subscribe((data) => {
-        console.log(data);
-        localStorage.setItem('usuario', data['token']);
+        console.log('erorr',data);
+        if(data=='Correo incorrecto' || data =='Correo o contraseña no son correctos'){
+          M.toast({
+            html: `<div class="alert alert-danger" style="position: fixed; top: 100px; right: 50px; z-index: 7000;" role="alert">
+                  <h4 class="alert-heading">DATOS INCORRECTOS!!</h4>
+                  <p>El correo o la contraseña son incorrectos</p>
+                  <hr>
+              </div>`});
+
+              cargando=true;
+              
+        }else{
+          localStorage.setItem('usuario', data['token']);
         this.router.navigate(['home']);
+
+        }
+        
         // this.tokenPayload = decode(data['token']);
         // this.loginService.validarAdmin(this.tokenPayload.id_usuario)
         // .subscribe(res => {

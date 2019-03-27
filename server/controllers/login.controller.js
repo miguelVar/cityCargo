@@ -56,11 +56,11 @@ loginCtrl.authentication = (req, res) => {
     else {
       if (data.length == 0) {
         console.log("correo mal");
-        res.send('Correo incorrecto')
+        res.json('Correo incorrecto')
       }
       else if (String(data[0].password) != md5(password)) {
         //  else if (password != data[0].PASSWORD){
-        res.send('Correo o contraseña no son correctos')
+        res.json('Correo o contraseña no son correctos')
       }
       else {
 
