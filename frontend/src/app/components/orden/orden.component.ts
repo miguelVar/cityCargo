@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { from } from 'rxjs';
 
 declare var M: any;
+let Cargo = false;
 
 @Component({
   selector: 'app-orden',
@@ -18,6 +19,7 @@ export class OrdenComponent implements OnInit {
   constructor(private ordenService: OrdenService) { }
 
   ngOnInit() {
+    Cargo = false;
     this.getOrden();
   }
 
@@ -27,6 +29,7 @@ export class OrdenComponent implements OnInit {
         console.log(res);
         this.ordenService.orden = res as Orden[];
         this.tamarray = this.ordenService.orden.length;
+        Cargo = true;
         console.log("tamarrayOrden", this.tamarray);
       })
   }
@@ -89,6 +92,14 @@ export class OrdenComponent implements OnInit {
     if (form)
       form.reset();
     this.ordenService.selectedOrdent = new Orden();
+  }
+
+  yaCargo() {
+    if (Cargo == false) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 }
