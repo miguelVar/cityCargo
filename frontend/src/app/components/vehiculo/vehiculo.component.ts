@@ -72,6 +72,7 @@ export class VehiculoComponent implements OnInit {
         console.log(res);
         this.tipoVehiculoService.tipovehiculo = res as Tipovehiculo[];
         this.tamarray = this.tipoVehiculoService.tipovehiculo.length;
+        Cargo = true;
       });
   }
 
