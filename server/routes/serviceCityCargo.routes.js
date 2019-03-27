@@ -9,6 +9,7 @@ router.get('/vehiculos',serviceCityCargoCtrl.getVehiculosCityCargo);
 router.get('/link',serviceCityCargoCtrl.getServiceCityCargoLink);
 router.get('/orden',serviceCityCargoCtrl.getOrdenesCityCargo);
 router.get('/servicesdeletedlogic',serviceCityCargoCtrl.getServicesDeleted);
+router.get('/servicesfinalizados',serviceCityCargoCtrl.getServicesFinalizados);
 router.get('/:id',serviceCityCargoCtrl.getServiceCityCargo);
 router.put('/finalizar/:id',serviceCityCargoCtrl.finalizarServicio);
 router.put('/actorden',serviceCityCargoCtrl.actualizarEstadoOrden);

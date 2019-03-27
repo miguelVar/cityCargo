@@ -170,6 +170,19 @@ serviceCityCargo.getServicesDeleted = (req, res) => {
 
 }
 
+
+serviceCityCargo.getServicesFinalizados = (req, res) => {
+
+    var query = `SELECT * FROM servicio where Estado_idEstadoOrden=2`;
+
+    connection.query(query, function (error, results) {
+        if (error) throw res.json({ errorinfo: error });
+        else res.json(results);
+        console.log('Done Lista orden');
+    });
+
+}
+
 serviceCityCargo.finalizarServicio=(req,res)=>{
 
     let idServicio=req.params.id;
