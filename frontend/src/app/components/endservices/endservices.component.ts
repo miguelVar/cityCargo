@@ -9,9 +9,10 @@ import { Servicio } from 'src/app/models/servicio';
 })
 export class EndservicesComponent implements OnInit {
 
-  inicio:Servicio[]=[];
+  inicio: Servicio[] = [];
+  tamarray: number;
 
-  constructor(private serviceCity:ServicioService) { }
+  constructor(private serviceCity: ServicioService) { }
 
   ngOnInit() {
     this.getServicesFinalizados();
@@ -47,11 +48,12 @@ export class EndservicesComponent implements OnInit {
   }
 
 
-  getServicesFinalizados(){
+  getServicesFinalizados() {
     this.serviceCity.getServicesFinalizados()
-      .subscribe(res=>{
-        this.serviceCity.servicesFinalizados=res as Servicio[];
-        this.inicio=res as Servicio[];
+      .subscribe(res => {
+        this.serviceCity.servicesFinalizados = res as Servicio[];
+        this.inicio = res as Servicio[];
+        this.tamarray = this.serviceCity.clientes.length;
       });
   }
 

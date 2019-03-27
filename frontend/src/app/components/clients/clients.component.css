@@ -82,6 +82,11 @@
       border-radius: .5rem;
       font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   } 
+
+  .h3, h3 {
+    font-size: 1.75rem;
+    opacity: 0.5;
+  }
   
   #lbl{
     color: red;
