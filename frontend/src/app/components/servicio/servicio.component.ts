@@ -163,6 +163,7 @@ export class ServicioComponent implements OnInit {
                 <p>El estado ha sido actualizado satisfactoriamente</p>
                 <hr>
             </div>`});
+        this.getServicios();
         this.serviceCity.actulizarEstadoOrden(service)
           .subscribe(res => {
             console.log('Estado orden atualiado', res);
