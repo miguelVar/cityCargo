@@ -14,7 +14,7 @@ let Cargo = false;
 export class ClientsComponent implements OnInit {
 
   inicio: Clients[] = [];
-  
+  tamarray: number;
 
   constructor(private clientService:ClientsService) { }
 
@@ -63,6 +63,7 @@ export class ClientsComponent implements OnInit {
       .subscribe(res=>{
         this.clientService.clients=res as Clients[];
         this.inicio = res as Clients[];
+        this.tamarray = this.clientService.clients.length;
         console.log('Data front', res);
         Cargo=true;
       });
