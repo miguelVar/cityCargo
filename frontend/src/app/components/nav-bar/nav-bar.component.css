@@ -1,7 +1,7 @@
 @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
 .navbar-dark{
-    background: #00598a;
+    background: #43A530;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
@@ -15,17 +15,17 @@
 }
 
 #nav-link{
-    color: #ffffff;
+    color: white;
 }
 
 #navbarDropdown{
-  color: #ffffff;
+  color: white;
 }
 
 .titulo{
     padding-top: 20px;
     margin-right: 110px;
-    color: #ffffff;
+    color: white;
     font-size: 140%;
     font-style: oblique;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -61,7 +61,7 @@
     vertical-align: middle;
     padding-top: 0;
     padding-bottom: 0;
-    color: #ffffff;
+    color: black;
   }
 
   .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link > .fa {
@@ -150,6 +150,6 @@
   }
  
   #iconNot{
-    color: #00598a;
+    color: #43A530;
   }
 }
