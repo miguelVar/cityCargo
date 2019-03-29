@@ -1,0 +1,99 @@
+<app-nav-bar></app-nav-bar>
+<br>
+<br>
+<br>
+<br>
+&nbsp;
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 id="tituloCliente">Clientes</h1>
+      <hr id="hrCliente">
+    </div>
+  </div>
+</div>
+<div class="container">
+
+  <div class="container">
+    <div class="row col-12">
+      <div class="input-group col-12">
+        <div class="col-2">
+          <select id="select" class="form-control" #mySelect>
+            <option value=1>Nombre</option>
+            <option value=2>ID</option>
+          </select>
+        </div>
+        <input id="input" class="form-control" placeholder="Buscar..." #myInput
+          (keyup)="this.buscar(myInput.value,mySelect.value)" style="border-radius: 0rem;"
+          title="Ingrese el campo para filtrar" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2"><i class="fa fa-search"></i></span>
+        </div>
+        <div class="col-4">
+          <button routerLink="/client" class="btn btn-outline-info">Volver</button>&nbsp;
+        </div>
+      </div>
+      <div class="col-2"></div>
+    </div>
+    <br>
+    <br>
+  </div>
+
+
+  <!-- ------- -->
+
+  <div class="container">
+
+
+    <div class="row">
+      <div *ngIf="tamarray==0">
+        <h3>No Hay Clientes Eliminados Para Mostrar</h3>
+      </div>
+
+      <div class="col-12">
+
+
+        <div class="card-group">
+          <div *ngFor="let c of clientService.clientsDeleted" class="col-sm-12 col-md-6 col-lg-4">
+            <div class="card border-dark">
+              <div class="card-header border-dark">
+                <h5 id="tituloCard" class="card-title">{{c.nombreCliente}}</h5>
+              </div>
+              <div class="card-body">
+                <p class="card-text"><strong>ID:</strong> {{c.idCliente}}</p>
+                <p class="card-text"><strong>CELULAR:</strong> {{c.celularCliente}}</p>
+                <p class="card-text"><strong>DIRECCIÓN:</strong> {{c.direccionCliente}}</p>
+              </div>
+              <div class="card-footer bg-transparent border-dark">
+                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#modal-restaurar"
+                  (click)="dataClientRestaurar(c)"><i class="material-icons">start</i>Restaurar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- ----- -->
+
+
+
+  <div class="modal fade" id="modal-restaurar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" id="modal-restaurar" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          ¿Desea restaurar el cliente?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal"
+            (click)="restaurarClient(clientService.selectedClient)">Restaurar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
